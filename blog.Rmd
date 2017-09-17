@@ -1,0 +1,84 @@
+---
+title: Recent Convective Cloud over Indonesian Maritime Continents
+author: Yosik Norman 
+date: Geophysics Tutorial
+output: html_document
+css: save.css
+runtime: shiny
+---
+
+In this site, Map and filtering convective cloud based on hourly product Cloud Top Temperature from [Geostationary Meteorological Satellite](http://weather.is.kochi-u.ac.jp/sat/CAL/2017/Sep/) are shown. The code are documented in my [repository](https://github.com/Yosiknorman/kochi_pgm2nc/blob/master/pgm2nc.R)
+
+```{r fig.width=20,fig.height=15,fig.align="center",echo=TRUE,background='#F7F7F7',warning=FALSE,message=FALSE}
+library(pixmap)
+library(R.utils)
+library(raster)
+library(maps)
+library(RColorBrewer)
+rm(list = ls())
+load("topograp.rda")
+# f <- download.file("http://weather.is.kochi-u.ac.jp/sat/GAME/2017/Sep/IR1/",destfile = "mtsat") 
+# f <- read.delim("mtsat",header = F)
+# f1 <- unlist(f)
+# f1 =as.character(f1)
+# datalist = f1[10:length(f1)-2]
+# data_download = c()
+# for(i in 1:length(datalist)){
+#   data_download[i] = substr(datalist[i],51,72)
+# }
+# pgmgz = data_download[length(data_download)]
+# download.file(url = sprintf("http://weather.is.kochi-u.ac.jp/sat/GAME/2017/Sep/IR1/%s",pgmgz),
+#               destfile = pgmgz)
+# pgm = substr(pgmgz,1,19)
+# pgm = gunzip(pgmgz, destname=pgm, overwrite=T,remove=TRUE)
+pgm = "HMW817091318IR1.pgm"
+ir <- read.pnm(file = pgm) # var
+ir <- getChannels(ir)
+data_ir <- ir[1101:1701,401:1601]*255
+# <<<<<<<<<<<<<< CAL >>>>>>>>>>>>>>#
+# calgz <- download.file("http://weather.is.kochi-u.ac.jp/sat/CAL/2017/Sep/",destfile= "cal") 
+# calgz <- read.delim("cal",header = F)
+# calgz <- unlist(calgz)
+# calgz =as.character(calgz)
+# calgz = calgz[11:length(calgz)-2]
+# calgz1 = c()
+# for(i in 1:length(calgz)){
+#   calgz1[i] = substr(calgz[i],51,72)
+# }
+# calgz = calgz1[length(calgz1)]
+# download.file(url = sprintf("http://weather.is.kochi-u.ac.jp/sat/CAL/2017/Sep/%s",calgz),destfile = calgz)
+# cal = substr(calgz,1,19)
+# cal = gunzip(calgz, destname=cal, overwrite=T,remove=TRUE)
+cal = "HMW817091318CAL.dat"
+kal = as.character(unlist(read.delim(cal,header = T)))
+i1 = grep(kal,pattern = "IR1")
+kal = kal[i1]
+kal1 = c()
+for(i in 1:length(kal)){
+  kal1[i] = as.numeric(substr(kal[i],32,41))
+}
+kal = kal1
+for(i in 0:(length(kal)-1)){
+  data_ir[data_ir==i]=kal[i+1]
+}
+putar90 <- function(x){
+  t(apply(x, 2, rev))
+}
+dtIR = putar90(data_ir)
+lon = seq(90,150,length=dim(dtIR)[1])
+lat = seq(-15,15,length=dim(dtIR)[2])
+xt =topograp$xnya
+yt =topograp$ynya
+to = topograp$el
+map("world", fill=F, col="Grey", bg=NULL, xlim=c(90,150), ylim=c(-15, 15), mar=c(0,0,0,0),resolution = 0.0000001)
+dtIR[dtIR >= 233] = NA
+# title(main = "Convective Cloud over Indonesian Maritime Continents")
+image(xt,yt,to,col=terrain.colors(10,alpha = 0.4),add=T)
+image(lon,lat,dtIR,col=(brewer.pal(9, "RdGy")),add=T)
+box()
+# mtext("longitude", side = 1, line = 3)
+# mtext("latitude", side = 2, line = 3)
+# axis(1,at=seq(90,150,5),labels = seq(90,150,5))
+# axis(2,at=seq(-15,15,5),labels = seq(-15,15,5))
+grid(ny=length(seq(-15,15,5))-1,nx=length(seq(90,150,5))-2,col="black")
+```

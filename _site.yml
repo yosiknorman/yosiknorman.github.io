@@ -1,0 +1,22 @@
+name: Yosik Norman
+output_dir: "."
+navbar:
+  title: "Yosik Norman"
+  left:
+    - text: "Home"
+      icon: fa-home
+      href: index.html
+  right:
+    - text: "Projects"     ##### the new
+      icon: fa-gear
+      href:  blog.html  ##### stuff
+    - text: "About Me"
+      icon: fa-newspaper-o
+      href: yosik_norman.html
+output:
+  html_document:
+    theme: cosmo
+    highlight: textmate
+    includes:
+      after_body: include_footer.html
+    css: save.css
