@@ -1,0 +1,8 @@
+```{r echo=F,message=F}
+library(leaflet)
+m <- leaflet() %>% addTiles() 
+m
+library(htmlwidgets)
+saveWidget(m, 'let.html', selfcontained = F) 
+
+```

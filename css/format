@@ -1,0 +1,27 @@
+body {
+	background-color: lightblue;
+}
+ul.products li {
+    width: 400px; /* adjust the size of the catalog block */
+	
+    display: inline-block; /* this creates the catalog effect */
+    text-align: center; /* align the image to center */
+    background-color:#282828 ; /* background color of each */
+    font-family: "Trebuchet MS", Helvetica, sans-serif; 
+    border-radius: 10px; /* rounded borders effect */
+    border: 2px solid #585858; /* border and color */
+   opacity: 0.8;
+}
+ul li img {
+	height: 250px;
+	width: 350px
+	
+
+}
+
+img.dua {
+	height: 250px;
+	width: 250px
+	
+}
+

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple Leaflet Map with Heatmap </title>
+    <meta charset="utf-8" />
+    <link 
+        rel="stylesheet" 
+        href="http://cdn.leafletjs.com/leaflet-0.7/leaflet.css"
+    />
+</head>
+<body>
+    <div id="map" style="width: 600px; height: 400px"></div>
+
+    <script
+       src="http://cdn.leafletjs.com/leaflet-0.7/leaflet.js">
+    </script>
+    
+    <script
+       src="http://leaflet.github.io/Leaflet.heat/dist/leaflet-heat.js">
+    </script>
+  <script src="2013-earthquake.js"></script>
+    <script>
+
+        var map = L.map('map').setView([-41.5546,174.146], 10);
+        mapLink = 
+            '<a href="http://openstreetmap.org">OpenStreetMap</a>';
+        L.tileLayer(
+            'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; ' + mapLink + ' Contributors',
+            maxZoom: 18,
+        }).addTo(map);
+        
+        var heat = L.heatLayer(quakePoints,{
+            radius: 20,
+            maxZoom: 17,
+        }).addTo(map);
+    
+    </script>
+
+</body>
+</html>
