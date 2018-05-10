@@ -1,0 +1,78 @@
+---
+title: "TEWS-ANALYSIS"
+output: 
+  flexdashboard::flex_dashboard:
+    logo: cross_files/png/tews_kecil.jpg
+    favicon: cross_files/png/tews_kecil.jpg
+    # theme: spacelab
+    theme: readable
+    social: [ "twitter", "facebook","instagram", "menu" ]
+    navbar:
+      - { title: "BMKG", href: "http://www.bmkg.go.id/cuaca/prakiraan-cuaca-indonesia.bmkg?Prov=28&NamaProv=Sulawesi%20Selatan", align: right }
+      - { title: "Ocean", href: "http://peta-maritim.bmkg.go.id/ofs/", align: right }
+    self_contained: false
+---
+
+<style>
+.section.sidebar {
+  top: 61px;
+  border-bottom: 10px solid #ececec;
+  border-left: 10px solid #ececec;
+  border-top: 10px solid #ececec;
+  border-right: 10px solid #ececec;
+  background-color: rgba(255, 255, 255, 1);
+}
+</style>
+
+
+Row {.sidebar data-width=570 data-padding=10}
+-------------------------------------
+
+
+<!-- ### Earthquakes Map -->
+
+```{r fig.height=3.4, fig.width=5.4}
+library(crosstalk)
+library(leaflet)
+library(DT)
+library(geojsonio)
+library(rgdal,warn.conflicts = F)
+
+dat = readOGR("../data_mag.geojson",verbose = FALSE)
+dep = as.numeric(gsub(pattern = " km","",dat$Depth))
+mdat = data.frame(Time = dat$Time ,long = as.numeric(dat@coords[,1]),lat = as.numeric(dat@coords[,2]) ,mag = as.numeric(dat$Mag), depth = dep, Remarks = as.character(dat$Remarks) )
+mdat = mdat[1:1000,]
+sd <- SharedData$new(mdat)
+filter_slider("depth", "Depth Km", sd, column=~depth, step=0.1, width = 200)
+filter_slider("mag", "Magnitude SR", sd, column=~mag, step=0.1, width = 200)
+leaflet(sd) %>% setView(lng = 124, lat = -2, zoom = 5) %>%
+  addProviderTiles("Esri") %>% addCircleMarkers(lng = ~long, lat = ~lat, color = "black", popup = as.character(mdat$mag), label = as.character(mdat$Remarks))
+                                                
+```
+
+
+
+Column {data-height=150 data-width=220}
+-------------------------------------
+
+<!-- Row {data-height=150 data-width=220} -->
+<!-- ------------------------------------- -->
+
+
+### 3D Open-GL Rendering
+
+<!-- # ```{r} -->
+<!-- # cat("Om Isi Om !!!") -->
+<!-- #  -->
+<!-- # ```    -->
+
+<iframe src="https://yosiknorman.github.io/banjir" height="250" width="750"></iframe> 
+
+<!-- Row {data-height=150} -->
+<!-- ------------------------------------- -->
+### Print Events
+```{r}
+datatable(sd,rownames = F,
+          extensions = 'Buttons',options = list(deferRender=TRUE, scrollY=300, scroller=TRUE,
+                                                dom = 'Bfrtip',buttons = c('copy', 'csv', 'excel', 'print')))
+```

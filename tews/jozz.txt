@@ -1,0 +1,8 @@
+ | 2018-05-05 22:18:57.4 | manual    | 10 | 4.0 | MLv    | 10 | 0.01 N  | 126.63 E | 17 km  | Northern Molucca Sea         
+ | 2018-05-05 21:27:58.5 | automatic | 12 | 4.5 | mb     | 11 | 7.54 N  | 123.84 E | 549 km | Mindanao, Philippines        
+ | 2018-05-05 20:24:49.3 | automatic | 10 | 4.8 | mb     | 7  | 6.04 S  | 142.24 E | 10 km  | New Guinea, Papua New Guinea 
+ | 2018-05-05 20:08:24.6 | manual    | 5  | 3.3 | MLv    | 4  | 0.35 S  | 121.86 E | 10 km  | Minahassa Peninsula, Sulawesi
+ | 2018-05-05 16:22:45.2 | automatic | 23 | 5.0 | mb     | 22 | 5.58 S  | 133.67 E | 10 km  | Aru Islands Region, Indonesia
+ | 2018-05-05 06:19:13.7 | automatic | 39 | 6.2 | Mw(mB) | 36 | 14.31 N | 124.01 E | 83 km  | Luzon, Philippines           
+ | 2018-05-05 03:51:47.4 | manual    | 7  | 3.9 | MLv    | 7  | 0.10 S  | 125.89 E | 10 km  | Southern Molucca Sea         
+

@@ -1,0 +1,278 @@
+ | Origin Time (GMT)     | Status    |cnt |Mag  |TypeMag |cnt | Lat     | Lon      | Depth  | Remarks
+ .........................................................................................................
+ | 2018-03-30 18:46:36.3 | manual    | 6  | 3.0 | MLv    | 6  | 0.47 S  | 121.92 E | 29 km  | Minahassa Peninsula, Sulawesi       
+ | 2018-03-30 18:44:31.7 | manual    | 30 | 5.8 | mb     | 29 | 37.01 N | 67.90 E  | 10 km  | Afghanistan-Tajikistan Border Region
+ | 2018-03-30 16:10:44.3 | manual    | 20 | 5.0 | MLv    | 17 | 9.12 S  | 116.84 E | 85 km  | Sumbawa Region, Indonesia           
+ | 2018-03-30 15:26:19.6 | manual    | 8  | 4.9 | MLv    | 5  | 6.20 S  | 142.62 E | 10 km  | New Guinea, Papua New Guinea        
+ | 2018-03-30 14:28:31.2 | manual    | 17 | 4.6 | MLv    | 13 | 7.28 S  | 129.72 E | 193 km | Banda Sea                           
+ | 2018-03-30 07:01:12.5 | manual    | 15 | 5.0 | MLv    | 10 | 3.22 S  | 130.96 E | 0 km   | Seram, Indonesia                    
+ | 2018-03-30 01:36:34.3 | manual    | 8  | 3.7 | MLv    | 8  | 1.70 S  | 128.46 E | 10 km  | Halmahera, Indonesia                
+ | 2018-03-29 23:25:26.1 | manual    | 10 | 3.7 | MLv    | 8  | 6.10 S  | 114.58 E | 443 km | Bali Sea                            
+ | 2018-03-29 23:17:29.6 | manual    | 18 | 5.7 | mb     | 16 | 36.64 N | 140.64 E | 30 km  | Near East Coast of Honshu, Japan    
+ | 2018-03-29 23:03:05.4 | manual    | 7  | 3.9 | MLv    | 7  | 1.32 N  | 123.15 E | 10 km  | Minahassa Peninsula, Sulawesi       
+ | 2018-03-29 22:54:14.5 | manual    | 29 | 5.8 | mb     | 29 | 38.74 N | 70.51 E  | 10 km  | Afghanistan-Tajikistan Border Region
+ | 2018-03-29 22:51:05.6 | manual    | 6  | 5.2 | mb     | 6  | 6.52 S  | 153.76 E | 124 km | New Britain Region, P.N.G.          
+ | 2018-03-29 22:15:31.4 | manual    | 20 | 4.9 | mb     | 20 | 5.72 S  | 151.46 E | 82 km  | New Britain Region, P.N.G.          
+ | 2018-03-29 21:50:14.1 | manual    | 19 | 4.9 | mb     | 18 | 5.93 S  | 150.54 E | 119 km | New Britain Region, P.N.G.          
+ | 2018-03-29 21:25:39.6 | manual    | 51 | 6.7 | Mw(mB) | 49 | 5.63 S  | 151.57 E | 81 km  | New Britain Region, P.N.G.          
+ | 2018-03-29 19:10:00.8 | manual    | 27 | 4.9 | mb     | 27 | 3.18 S  | 152.34 E | 10 km  | New Ireland Region, P.N.G.          
+ | 2018-03-29 18:51:17.2 | manual    | 53 | 6.0 | Mw(mB) | 48 | 9.37 S  | 159.56 E | 86 km  | Solomon Islands                     
+ | 2018-03-29 17:21:04.6 | manual    | 6  | 5.0 | mb     | 5  | 10.35 N | 125.87 E | 10 km  | Leyte, Philippines                  
+ | 2018-03-29 16:58:26.9 | manual    | 8  | 3.4 | MLv    | 5  | 0.19 S  | 124.47 E | 46 km  | Southern Molucca Sea                
+ | 2018-03-29 16:06:48.8 | manual    | 11 | 5.1 | mb     | 11 | 6.47 S  | 142.93 E | 10 km  | New Guinea, Papua New Guinea        
+ | 2018-03-29 16:06:44.2 | manual    | 40 | 5.1 | mb     | 37 | 6.24 S  | 143.29 E | 10 km  | New Guinea, Papua New Guinea        
+ | 2018-03-29 14:09:26.8 | manual    | 7  | 2.9 | MLv    | 4  | 0.42 N  | 121.57 E | 90 km  | Minahassa Peninsula, Sulawesi       
+ | 2018-03-29 11:03:52.3 | manual    | 8  | 4.3 | MLv    | 8  | 4.77 N  | 127.91 E | 10 km  | Talaud Islands, Indonesia           
+ | 2018-03-29 07:31:00.9 | manual    | 16 | 5.0 | mb     | 16 | 5.44 S  | 150.73 E | 149 km | New Britain Region, P.N.G.          
+ | 2018-03-29 07:26:44.6 | manual    | 8  | 3.8 | MLv    | 8  | 1.61 N  | 125.22 E | 35 km  | Northern Molucca Sea                
+ | 2018-03-29 02:40:20.5 | manual    | 38 | 5.1 | mb     | 34 | 6.03 S  | 142.67 E | 10 km  | New Guinea, Papua New Guinea        
+ | 2018-03-28 18:50:09.1 | manual    | 16 | 5.1 | mb     | 13 | 6.13 S  | 142.64 E | 10 km  | New Guinea, Papua New Guinea        
+ | 2018-03-28 18:34:21.3 | manual    | 21 | 5.3 | mb     | 17 | 6.69 S  | 131.66 E | 70 km  | Tanimbar Islands Reg., Indonesia    
+ | 2018-03-28 17:13:05.2 | manual    | 18 | 4.8 | MLv    | 16 | 1.61 N  | 126.32 E | 10 km  | Northern Molucca Sea                
+ | 2018-03-28 11:31:12.4 | manual    | 5  | 3.3 | MLv    | 5  | 0.12 S  | 122.98 E | 84 km  | Minahassa Peninsula, Sulawesi       
+ | 2018-03-27 19:48:38.4 | manual    | 7  | 2.8 | MLv    | 6  | 0.38 N  | 122.13 E | 165 km | Minahassa Peninsula, Sulawesi       
+ | 2018-03-27 18:51:37.3 | manual    | 39 | 5.0 | mb     | 37 | 7.48 S  | 130.62 E | 104 km | Tanimbar Islands Reg., Indonesia    
+ | 2018-03-27 10:31:46.8 | manual    | 6  | 2.8 | MLv    | 5  | 0.74 S  | 123.32 E | 10 km  | Minahassa Peninsula, Sulawesi       
+ | 2018-03-27 07:59:50.8 | manual    | 10 | 4.1 | MLv    | 10 | 1.08 N  | 128.37 E | 105 km | Halmahera, Indonesia                
+ | 2018-03-27 06:18:11.2 | manual    | 9  | 4.1 | MLv    | 9  | 0.11 S  | 120.00 E | 26 km  | Minahassa Peninsula, Sulawesi       
+ | 2018-03-27 05:06:42.9 | manual    | 10 | 3.5 | MLv    | 8  | 1.75 S  | 121.48 E | 10 km  | Sulawesi, Indonesia                 
+ | 2018-03-27 03:45:15.5 | manual    | 12 | 4.8 | mb     | 9  | 5.82 S  | 143.55 E | 37 km  | New Guinea, Papua New Guinea        
+ | 2018-03-26 16:20:12.7 | manual    | 6  | 4.0 | MLv    | 6  | 0.43 N  | 121.48 E | 18 km  | Minahassa Peninsula, Sulawesi       
+ | 2018-03-26 09:51:06.7 | manual    | 46 | 6.3 | Mw(mB) | 42 | 5.51 S  | 151.41 E | 116 km | New Britain Region, P.N.G.          
+ | 2018-03-26 07:59:02.8 | manual    | 5  | 3.5 | MLv    | 5  | 8.63 S  | 122.64 E | 176 km | Flores Region, Indonesia            
+ | 2018-03-26 06:53:08.8 | manual    | 8  | 3.8 | MLv    | 8  | 0.28 S  | 123.36 E | 179 km | Minahassa Peninsula, Sulawesi       
+ | 2018-03-26 03:42:06.6 | manual    | 20 | 4.7 | MLv    | 20 | 5.61 S  | 118.27 E | 39 km  | Sulawesi, Indonesia                 
+ | 2018-03-26 03:31:37.4 | manual    | 6  | 3.8 | MLv    | 6  | 0.19 N  | 122.50 E | 161 km | Minahassa Peninsula, Sulawesi       
+ | 2018-03-25 20:14:48.2 | manual    | 43 | 6.7 | Mw(mB) | 41 | 6.77 S  | 129.83 E | 180 km | Banda Sea                           
+ | 2018-03-25 15:24:29.9 | manual    | 12 | 4.7 | MLv    | 11 | 6.99 S  | 129.33 E | 202 km | Banda Sea                           
+ | 2018-03-25 14:44:43.2 | manual    | 11 | 5.4 | mb     | 10 | 17.71 S | 111.49 E | 10 km  | Northwest of Australia              
+ | 2018-03-25 14:38:17.1 | manual    | 40 | 5.5 | mb     | 40 | 26.97 N | 137.29 E | 58 km  | Bonin Islands, Japan Region         
+ | 2018-03-25 12:45:48.7 | manual    | 7  | 3.3 | MLv    | 5  | 0.49 S  | 122.84 E | 10 km  | Minahassa Peninsula, Sulawesi       
+ | 2018-03-25 12:18:41.5 | manual    | 10 | 4.1 | MLv    | 9  | 1.03 N  | 122.74 E | 16 km  | Minahassa Peninsula, Sulawesi       
+ | 2018-03-25 08:58:11.7 | manual    | 44 | 5.7 | Mw(mB) | 33 | 7.54 S  | 128.63 E | 157 km | Banda Sea                           
+ | 2018-03-25 07:41:49.4 | manual    | 7  | 3.2 | MLv    | 5  | 2.31 S  | 118.71 E | 7 km   | Sulawesi, Indonesia                 
+ | 2018-03-25 01:18:26.1 | manual    | 9  | 3.9 | MLv    | 9  | 0.09 N  | 126.69 E | 35 km  | Northern Molucca Sea                
+ | 2018-03-24 19:58:30.6 | manual    | 29 | 5.4 | mb     | 29 | 46.41 S | 96.67 E  | 0 km   | Southeast Indian Ridge              
+ | 2018-03-24 18:59:06.3 | manual    | 14 | 5.1 | mb     | 14 | 17.51 N | 121.58 E | 256 km | Luzon, Philippines                  
+ | 2018-03-24 12:02:03.5 | manual    | 8  | 4.4 | MLv    | 8  | 8.71 S  | 118.29 E | 98 km  | Sumbawa Region, Indonesia           
+ | 2018-03-24 11:23:38.8 | manual    | 51 | 6.3 | Mw(mB) | 47 | 5.60 S  | 151.48 E | 110 km | New Britain Region, P.N.G.          
+ | 2018-03-24 10:34:42.9 | manual    | 16 | 5.1 | mb     | 15 | 9.96 N  | 125.87 E | 54 km  | Mindanao, Philippines               
+ | 2018-03-24 09:15:24.3 | manual    | 8  | 4.6 | MLv    | 8  | 0.94 S  | 125.20 E | 10 km  | Southern Molucca Sea                
+ | 2018-03-24 04:42:00.8 | manual    | 6  | 4.1 | MLv    | 6  | 0.69 N  | 123.48 E | 79 km  | Minahassa Peninsula, Sulawesi       
+ | 2018-03-24 02:50:09.6 | manual    | 5  | 3.3 | MLv    | 5  | 1.17 S  | 119.83 E | 10 km  | Sulawesi, Indonesia                 
+ | 2018-03-23 11:52:46.1 | manual    | 33 | 5.2 | mb     | 30 | 6.13 S  | 142.58 E | 37 km  | New Guinea, Papua New Guinea        
+ | 2018-03-23 10:41:30.3 | manual    | 7  | 4.8 | MLv    | 7  | 5.54 N  | 126.46 E | 10 km  | Mindanao, Philippines               
+ | 2018-03-23 10:32:22.4 | manual    | 7  | 3.3 | MLv    | 4  | 0.75 S  | 123.06 E | 26 km  | Minahassa Peninsula, Sulawesi       
+ | 2018-03-23 10:19:04.4 | manual    | 10 | 5.2 | mb     | 6  | 4.79 N  | 126.91 E | 10 km  | Talaud Islands, Indonesia           
+ | 2018-03-22 23:38:03.8 | manual    | 9  | 4.1 | MLv    | 9  | 0.27 N  | 126.13 E | 10 km  | Northern Molucca Sea                
+ | 2018-03-22 23:23:25.4 | manual    | 7  | 4.5 | mb     | 4  | 5.87 S  | 142.74 E | 285 km | New Guinea, Papua New Guinea        
+ | 2018-03-22 22:42:45.6 | manual    | 5  | 3.2 | MLv    | 4  | 0.27 S  | 123.57 E | 73 km  | Minahassa Peninsula, Sulawesi       
+ | 2018-03-22 14:11:12.5 | manual    | 4  | 2.9 | MLv    | 4  | 1.01 N  | 121.40 E | 84 km  | Minahassa Peninsula, Sulawesi       
+ | 2018-03-22 13:21:05.2 | manual    | 5  | 3.1 | MLv    | 5  | 0.19 N  | 122.51 E | 77 km  | Minahassa Peninsula, Sulawesi       
+ | 2018-03-22 11:20:33.1 | manual    | 6  | 3.4 | MLv    | 6  | 1.30 N  | 122.34 E | 217 km | Minahassa Peninsula, Sulawesi       
+ | 2018-03-22 10:05:31.9 | manual    | 5  | 3.1 | MLv    | 5  | 0.16 S  | 122.88 E | 10 km  | Minahassa Peninsula, Sulawesi       
+ | 2018-03-22 04:05:35.8 | manual    | 7  | 3.5 | MLv    | 4  | 0.30 S  | 122.84 E | 94 km  | Minahassa Peninsula, Sulawesi       
+ | 2018-03-22 03:40:55.2 | manual    | 17 | 4.3 | MLv    | 10 | 3.27 S  | 131.13 E | 31 km  | Irian Jaya Region, Indonesia        
+ | 2018-03-22 02:46:30.9 | manual    | 40 | 4.9 | mb     | 25 | 0.30 N  | 126.16 E | 29 km  | Northern Molucca Sea                
+ | 2018-03-22 02:31:08.2 | manual    | 11 | 4.5 | MLv    | 8  | 6.36 S  | 131.01 E | 165 km | Tanimbar Islands Reg., Indonesia    
+ | 2018-03-22 00:08:01.4 | manual    | 41 | 5.3 | mb     | 36 | 4.52 S  | 102.68 E | 73 km  | Southern Sumatra, Indonesia         
+ | 2018-03-21 16:22:27.5 | manual    | 19 | 4.4 | MLv    | 15 | 1.44 N  | 127.84 E | 9 km   | Halmahera, Indonesia                
+ | 2018-03-21 15:33:26.1 | manual    | 16 | 5.3 | mb     | 13 | 2.79 N  | 130.43 E | 53 km  | Irian Jaya Region, Indonesia        
+ | 2018-03-21 08:00:29.7 | manual    | 23 | 4.6 | mb     | 21 | 5.69 S  | 142.42 E | 198 km | New Guinea, Papua New Guinea        
+ | 2018-03-21 04:02:49.2 | manual    | 9  | 3.9 | MLv    | 9  | 0.27 S  | 125.30 E | 10 km  | Southern Molucca Sea                
+ | 2018-03-21 03:51:43.2 | manual    | 8  | 4.0 | MLv    | 8  | 3.12 N  | 125.67 E | 10 km  | Talaud Islands, Indonesia           
+ | 2018-03-21 03:40:04.8 | manual    | 8  | 3.6 | MLv    | 8  | 0.34 N  | 126.01 E | 17 km  | Northern Molucca Sea                
+ | 2018-03-21 03:24:09.4 | manual    | 11 | 4.1 | MLv    | 11 | 1.32 N  | 126.21 E | 24 km  | Northern Molucca Sea                
+ | 2018-03-21 02:16:26.2 | manual    | 5  | 3.6 | MLv    | 5  | 2.81 S  | 121.17 E | 25 km  | Sulawesi, Indonesia                 
+ | 2018-03-20 23:51:40.9 | manual    | 35 | 5.0 | mb     | 32 | 3.18 S  | 139.77 E | 31 km  | Irian Jaya, Indonesia               
+ | 2018-03-20 14:07:18.3 | manual    | 4  | 3.3 | MLv    | 4  | 1.51 S  | 119.47 E | 10 km  | Sulawesi, Indonesia                 
+ | 2018-03-20 13:56:00.6 | manual    | 9  | 4.4 | MLv    | 9  | 1.53 S  | 119.51 E | 10 km  | Sulawesi, Indonesia                 
+ | 2018-03-20 13:53:51.7 | manual    | 7  | 3.6 | MLv    | 7  | 0.25 S  | 125.18 E | 10 km  | Southern Molucca Sea                
+ | 2018-03-20 13:44:04.9 | manual    | 6  | 4.4 | MLv    | 6  | 5.35 N  | 126.39 E | 10 km  | Mindanao, Philippines               
+ | 2018-03-20 12:58:22.6 | manual    | 12 | 5.2 | mb     | 11 | 4.90 S  | 132.47 E | 10 km  | Irian Jaya Region, Indonesia        
+ | 2018-03-20 11:10:44.9 | manual    | 39 | 4.8 | mb     | 37 | 6.66 N  | 123.68 E | 607 km | Mindanao, Philippines               
+ | 2018-03-19 20:45:27.3 | manual    | 7  | 3.4 | MLv    | 6  | 2.90 S  | 130.14 E | 10 km  | Seram, Indonesia                    
+ | 2018-03-19 20:28:42.1 | manual    | 5  | 3.1 | MLv    | 4  | 0.31 S  | 125.24 E | 10 km  | Southern Molucca Sea                
+ | 2018-03-19 18:40:03.6 | manual    | 7  | 3.4 | MLv    | 4  | 0.84 N  | 122.49 E | 16 km  | Minahassa Peninsula, Sulawesi       
+ | 2018-03-19 15:18:51.6 | manual    | 9  | 4.6 | MLv    | 9  | 7.72 S  | 127.58 E | 189 km | Banda Sea                           
+ | 2018-03-19 14:54:35.8 | manual    | 4  | 3.1 | MLv    | 4  | 1.18 S  | 120.41 E | 10 km  | Sulawesi, Indonesia                 
+ | 2018-03-19 14:20:46.8 | manual    | 4  | 3.6 | MLv    | 4  | 0.24 N  | 125.85 E | 0 km   | Northern Molucca Sea                
+ | 2018-03-19 11:46:23.3 | manual    | 7  | 3.1 | MLv    | 5  | 1.23 S  | 120.70 E | 10 km  | Sulawesi, Indonesia                 
+ | 2018-03-19 11:36:30.2 | manual    | 25 | 5.1 | mb     | 25 | 7.24 S  | 105.92 E | 84 km  | Java, Indonesia                     
+ | 2018-03-19 10:02:12.4 | manual    | 4  | 2.9 | MLv    | 4  | 2.87 S  | 119.59 E | 10 km  | Sulawesi, Indonesia                 
+ | 2018-03-19 08:24:56.1 | manual    | 6  | 3.1 | MLv    | 6  | 0.04 S  | 123.13 E | 17 km  | Minahassa Peninsula, Sulawesi       
+ | 2018-03-19 08:17:49.6 | manual    | 5  | 2.4 | MLv    | 4  | 0.56 N  | 121.66 E | 10 km  | Minahassa Peninsula, Sulawesi       
+ | 2018-03-19 02:45:24.5 | manual    | 35 | 5.5 | mb     | 35 | 33.13 N | 139.17 E | 10 km  | Southeast of Honshu, Japan          
+ | 2018-03-19 02:44:13.2 | automatic | 12 | 4.3 | MLv    | 10 | 5.22 S  | 118.49 E | 378 km | Sulawesi, Indonesia                 
+ | 2018-03-19 02:36:22.9 | manual    | 28 | 5.7 | mb     | 26 | 15.70 S | 167.81 E | 10 km  | Vanuatu Islands                     
+ | 2018-03-19 01:20:36.5 | manual    | 4  | 3.1 | MLv    | 4  | 0.04 N  | 122.14 E | 10 km  | Minahassa Peninsula, Sulawesi       
+ | 2018-03-18 23:10:31.8 | manual    | 9  | 4.0 | MLv    | 8  | 0.33 S  | 125.08 E | 10 km  | Southern Molucca Sea                
+ | 2018-03-18 18:00:00.1 | manual    | 27 | 5.6 | mb     | 26 | 45.19 N | 150.95 E | 10 km  | Kuril Islands                       
+ | 2018-03-18 11:35:06.7 | manual    | 52 | 5.3 | Mw(mB) | 30 | 0.55 N  | 121.55 E | 103 km | Minahassa Peninsula, Sulawesi       
+ | 2018-03-18 11:19:22.1 | manual    | 8  | 3.9 | MLv    | 6  | 0.47 S  | 121.73 E | 56 km  | Minahassa Peninsula, Sulawesi       
+ | 2018-03-18 10:43:55.7 | manual    | 8  | 3.0 | MLv    | 4  | 0.60 N  | 122.28 E | 60 km  | Minahassa Peninsula, Sulawesi       
+ | 2018-03-17 20:54:23.4 | manual    | 11 | 4.5 | MLv    | 10 | 3.71 N  | 126.74 E | 10 km  | Talaud Islands, Indonesia           
+ | 2018-03-17 15:53:50.9 | manual    | 11 | 4.4 | MLv    | 11 | 0.41 S  | 124.03 E | 50 km  | Southern Molucca Sea                
+ | 2018-03-17 12:48:14.2 | manual    | 23 | 4.9 | mb     | 17 | 3.23 N  | 122.53 E | 540 km | Celebes Sea                         
+ | 2018-03-17 12:40:25.5 | manual    | 7  | 3.3 | MLv    | 6  | 0.84 N  | 126.06 E | 13 km  | Northern Molucca Sea                
+ | 2018-03-17 09:23:51.5 | manual    | 10 | 4.8 | mb     | 7  | 10.24 S | 126.89 E | 107 km | Timor Sea                           
+ | 2018-03-17 05:23:53.3 | manual    | 10 | 4.4 | MLv    | 8  | 2.73 N  | 128.22 E | 10 km  | Halmahera, Indonesia                
+ | 2018-03-17 03:46:26.9 | manual    | 10 | 3.7 | MLv    | 5  | 0.02 N  | 119.70 E | 130 km | Minahassa Peninsula, Sulawesi       
+ | 2018-03-17 02:31:55.5 | manual    | 8  | 4.4 | MLv    | 8  | 2.70 N  | 128.22 E | 125 km | Halmahera, Indonesia                
+ | 2018-03-17 01:57:28.2 | manual    | 9  | 3.7 | MLv    | 5  | 1.11 S  | 120.27 E | 10 km  | Sulawesi, Indonesia                 
+ | 2018-03-17 00:36:17.7 | manual    | 9  | 4.4 | MLv    | 9  | 0.20 S  | 123.18 E | 149 km | Minahassa Peninsula, Sulawesi       
+ | 2018-03-16 14:21:05.6 | manual    | 8  | 3.6 | MLv    | 8  | 0.47 N  | 125.52 E | 10 km  | Northern Molucca Sea                
+ | 2018-03-16 07:33:22.1 | manual    | 8  | 3.4 | MLv    | 8  | 7.10 S  | 113.43 E | 14 km  | Java, Indonesia                     
+ | 2018-03-16 02:01:34.8 | manual    | 14 | 4.1 | MLv    | 13 | 1.30 N  | 126.86 E | 27 km  | Northern Molucca Sea                
+ | 2018-03-16 01:30:38.2 | manual    | 24 | 5.3 | MLv    | 13 | 0.60 S  | 121.67 E | 10 km  | Minahassa Peninsula, Sulawesi       
+ | 2018-03-16 00:30:12.5 | manual    | 14 | 5.0 | MLv    | 13 | 5.41 N  | 127.22 E | 117 km | Philippine Islands Region           
+ | 2018-03-15 20:20:56.6 | manual    | 15 | 4.7 | MLv    | 14 | 8.34 S  | 118.52 E | 118 km | Sumbawa Region, Indonesia           
+ | 2018-03-15 18:58:29.2 | manual    | 18 | 4.9 | mb     | 15 | 5.97 S  | 142.38 E | 10 km  | New Guinea, Papua New Guinea        
+ | 2018-03-15 14:16:09.3 | manual    | 13 | 4.4 | MLv    | 11 | 9.11 S  | 118.36 E | 10 km  | Sumbawa Region, Indonesia           
+ | 2018-03-15 12:30:53.4 | manual    | 8  | 3.3 | MLv    | 6  | 2.11 N  | 121.83 E | 31 km  | Celebes Sea                         
+ | 2018-03-15 06:48:02.6 | manual    | 15 | 5.6 | mb     | 15 | 21.58 S | 172.20 E | 67 km  | Southeast of Loyalty Islands        
+ | 2018-03-15 04:28:49.2 | manual    | 43 | 5.4 | mb     | 32 | 0.89 N  | 125.43 E | 26 km  | Northern Molucca Sea                
+ | 2018-03-15 02:04:17.2 | manual    | 4  | 3.6 | MLv    | 4  | 0.53 N  | 122.35 E | 96 km  | Minahassa Peninsula, Sulawesi       
+ | 2018-03-15 01:19:31.7 | manual    | 14 | 4.8 | MLv    | 9  | 9.57 S  | 119.29 E | 10 km  | Sumba Region, Indonesia             
+ | 2018-03-15 00:22:07.8 | manual    | 6  | 3.5 | MLv    | 6  | 8.80 S  | 123.62 E | 10 km  | Flores Region, Indonesia            
+ | 2018-03-14 19:08:31.2 | manual    | 7  | 3.0 | MLv    | 7  | 1.23 S  | 120.57 E | 10 km  | Sulawesi, Indonesia                 
+ | 2018-03-14 16:52:47.1 | manual    | 8  | 3.3 | MLv    | 8  | 1.85 S  | 127.99 E | 121 km | Halmahera, Indonesia                
+ | 2018-03-14 14:26:04.8 | manual    | 29 | 4.6 | mb     | 18 | 1.39 N  | 125.69 E | 10 km  | Northern Molucca Sea                
+ | 2018-03-14 13:37:24.4 | manual    | 13 | 5.2 | MLv    | 12 | 5.10 N  | 127.40 E | 106 km | Philippine Islands Region           
+ | 2018-03-14 12:43:28.8 | manual    | 9  | 3.9 | MLv    | 9  | 2.62 S  | 126.84 E | 11 km  | Ceram Sea                           
+ | 2018-03-14 11:46:07.2 | manual    | 23 | 5.8 | mb     | 23 | 20.52 S | 174.77 W | 14 km  | Tonga Islands                       
+ | 2018-03-14 11:27:34.6 | manual    | 7  | 5.3 | mb     | 4  | 5.85 S  | 144.23 E | 10 km  | New Guinea, Papua New Guinea        
+ | 2018-03-14 10:59:10.4 | manual    | 5  | 2.7 | MLv    | 5  | 0.47 N  | 121.70 E | 99 km  | Minahassa Peninsula, Sulawesi       
+ | 2018-03-14 06:56:38.4 | manual    | 12 | 5.1 | mb     | 9  | 6.07 S  | 143.24 E | 10 km  | New Guinea, Papua New Guinea        
+ | 2018-03-14 05:36:01.1 | manual    | 6  | 5.5 | mb     | 5  | 9.86 S  | 138.33 E | 10 km  | Arafura Sea                         
+ | 2018-03-14 05:18:47.9 | manual    | 7  | 4.3 | MLv    | 7  | 1.31 S  | 120.57 E | 10 km  | Sulawesi, Indonesia                 
+ | 2018-03-14 04:10:04.2 | manual    | 9  | 3.7 | MLv    | 9  | 1.48 N  | 122.93 E | 10 km  | Minahassa Peninsula, Sulawesi       
+ | 2018-03-14 02:31:44.6 | manual    | 12 | 5.6 | mb     | 12 | 37.77 N | 136.73 E | 10 km  | Near West Coast of Honshu, Japan    
+ | 2018-03-13 23:13:09.4 | manual    | 16 | 4.5 | MLv    | 14 | 0.01 S  | 126.68 E | 26 km  | Southern Molucca Sea                
+ | 2018-03-13 16:08:16.1 | manual    | 11 | 4.7 | MLv    | 10 | 5.24 N  | 124.23 E | 10 km  | Mindanao, Philippines               
+ | 2018-03-13 05:08:55.1 | manual    | 14 | 4.3 | MLv    | 14 | 2.61 S  | 128.82 E | 89 km  | Ceram Sea                           
+ | 2018-03-13 04:32:47.4 | manual    | 17 | 5.4 | mb     | 17 | 2.49 N  | 94.63 E  | 10 km  | Off West Coast of Northern Sumatra  
+ | 2018-03-13 01:34:11.7 | manual    | 20 | 4.7 | mb     | 18 | 5.95 S  | 141.10 E | 11 km  | New Guinea, Papua New Guinea        
+ | 2018-03-13 01:04:54.2 | manual    | 35 | 5.1 | mb     | 34 | 6.25 S  | 148.67 E | 66 km  | New Britain Region, P.N.G.          
+ | 2018-03-12 19:59:26.3 | manual    | 10 | 5.4 | mb     | 10 | 22.16 N | 143.71 E | 99 km  | Volcano Islands, Japan Region       
+ | 2018-03-12 19:40:53.5 | manual    | 14 | 3.4 | MLv    | 13 | 0.69 N  | 125.45 E | 10 km  | Northern Molucca Sea                
+ | 2018-03-12 19:21:59.5 | manual    | 7  | 3.2 | MLv    | 7  | 9.84 S  | 113.83 E | 38 km  | South of Java, Indonesia            
+ | 2018-03-12 18:12:32.7 | manual    | 12 | 3.3 | MLv    | 12 | 0.51 N  | 123.77 E | 203 km | Minahassa Peninsula, Sulawesi       
+ | 2018-03-12 15:33:58.5 | manual    | 16 | 3.8 | MLv    | 15 | 0.17 S  | 122.00 E | 147 km | Minahassa Peninsula, Sulawesi       
+ | 2018-03-12 15:07:53.1 | manual    | 7  | 2.8 | MLv    | 7  | 0.16 S  | 122.85 E | 28 km  | Minahassa Peninsula, Sulawesi       
+ | 2018-03-12 14:42:14.1 | manual    | 8  | 3.5 | MLv    | 8  | 1.04 N  | 120.65 E | 112 km | Minahassa Peninsula, Sulawesi       
+ | 2018-03-12 06:00:24.1 | manual    | 18 | 4.8 | MLv    | 17 | 9.48 S  | 118.50 E | 10 km  | Sumbawa Region, Indonesia           
+ | 2018-03-12 01:59:26.5 | manual    | 7  | 4.6 | MLv    | 6  | 11.73 S | 120.05 E | 132 km | South of Sumba, Indonesia           
+ | 2018-03-11 23:52:55.7 | manual    | 15 | 4.6 | MLv    | 15 | 2.80 N  | 128.48 E | 219 km | Halmahera, Indonesia                
+ | 2018-03-11 11:52:31.8 | manual    | 18 | 5.1 | mb     | 11 | 4.14 S  | 131.05 E | 0 km   | Banda Sea                           
+ | 2018-03-10 01:00:12.6 | manual    | 15 | 3.8 | MLv    | 11 | 0.58 S  | 122.93 E | 36 km  | Minahassa Peninsula, Sulawesi       
+ | 2018-03-09 22:09:35.5 | manual    | 5  | 3.8 | MLv    | 5  | 1.24 N  | 125.42 E | 184 km | Northern Molucca Sea                
+ | 2018-03-09 20:45:07.8 | manual    | 12 | 3.9 | MLv    | 9  | 1.42 N  | 125.99 E | 87 km  | Northern Molucca Sea                
+ | 2018-03-09 20:14:50.8 | manual    | 12 | 4.0 | MLv    | 12 | 0.09 S  | 123.17 E | 146 km | Minahassa Peninsula, Sulawesi       
+ | 2018-03-09 19:06:37.3 | manual    | 9  | 4.5 | mb     | 9  | 4.33 S  | 140.25 E | 331 km | Irian Jaya, Indonesia               
+ | 2018-03-09 16:23:24.7 | manual    | 50 | 5.6 | Mw(mB) | 42 | 20.88 S | 178.72 W | 565 km | Fiji Islands Region                 
+ | 2018-03-09 15:56:02.8 | manual    | 11 | 4.5 | MLv    | 10 | 2.55 S  | 128.83 E | 45 km  | Ceram Sea                           
+ | 2018-03-09 14:14:40.6 | manual    | 7  | 3.4 | MLv    | 4  | 0.99 S  | 120.42 E | 10 km  | Minahassa Peninsula, Sulawesi       
+ | 2018-03-09 11:30:31.3 | manual    | 7  | 4.2 | MLv    | 6  | 0.66 S  | 121.55 E | 10 km  | Minahassa Peninsula, Sulawesi       
+ | 2018-03-09 11:06:14.7 | manual    | 46 | 5.9 | Mw(mB) | 33 | 4.33 S  | 153.22 E | 101 km | New Ireland Region, P.N.G.          
+ | 2018-03-09 02:11:27.8 | manual    | 9  | 4.3 | MLv    | 9  | 9.52 S  | 112.90 E | 11 km  | South of Java, Indonesia            
+ | 2018-03-08 21:54:41.2 | manual    | 19 | 4.4 | MLv    | 17 | 0.06 S  | 123.18 E | 142 km | Minahassa Peninsula, Sulawesi       
+ | 2018-03-08 20:09:55.7 | manual    | 4  | 2.7 | MLv    | 4  | 1.22 N  | 123.13 E | 10 km  | Minahassa Peninsula, Sulawesi       
+ | 2018-03-08 17:39:58.9 | manual    | 42 | 6.8 | Mw(mB) | 42 | 4.45 S  | 153.24 E | 94 km  | New Ireland Region, P.N.G.          
+ | 2018-03-08 14:18:30.6 | manual    | 5  | 2.9 | MLv    | 5  | 0.31 N  | 122.04 E | 167 km | Minahassa Peninsula, Sulawesi       
+ | 2018-03-08 13:06:03.8 | manual    | 42 | 5.1 | Mw(mB) | 30 | 6.88 N  | 116.60 E | 10 km  | Borneo                              
+ | 2018-03-08 11:24:57.6 | manual    | 8  | 4.5 | MLv    | 8  | 3.18 S  | 130.87 E | 10 km  | Seram, Indonesia                    
+ | 2018-03-08 11:14:26.5 | manual    | 6  | 3.0 | MLv    | 5  | 3.39 S  | 118.95 E | 10 km  | Sulawesi, Indonesia                 
+ | 2018-03-08 08:50:18.5 | manual    | 17 | 5.4 | mb     | 17 | 16.70 S | 37.11 E  | 217 km | Mozambique                          
+ | 2018-03-08 07:34:21.2 | manual    | 9  | 3.3 | MLv    | 9  | 0.94 S  | 123.99 E | 22 km  | Minahassa Peninsula, Sulawesi       
+ | 2018-03-08 05:58:43.5 | manual    | 48 | 5.7 | mb     | 45 | 28.99 N | 142.00 E | 27 km  | Bonin Islands, Japan Region         
+ | 2018-03-08 04:58:42.1 | manual    | 15 | 4.4 | MLv    | 9  | 3.50 S  | 131.10 E | 439 km | Irian Jaya Region, Indonesia        
+ | 2018-03-08 04:35:06.5 | manual    | 10 | 4.3 | MLv    | 9  | 3.19 S  | 130.88 E | 111 km | Seram, Indonesia                    
+ | 2018-03-08 04:01:37.7 | manual    | 20 | 4.9 | mb     | 13 | 4.12 S  | 131.62 E | 88 km  | Banda Sea                           
+ | 2018-03-08 03:51:11.5 | manual    | 45 | 5.7 | mb     | 37 | 3.19 S  | 130.90 E | 44 km  | Seram, Indonesia                    
+ | 2018-03-08 03:33:55.5 | manual    | 13 | 5.4 | MLv    | 9  | 3.23 S  | 131.00 E | 10 km  | Irian Jaya Region, Indonesia        
+ | 2018-03-07 17:15:41.2 | manual    | 12 | 4.3 | mb     | 12 | 6.53 N  | 126.83 E | 127 km | Mindanao, Philippines               
+ | 2018-03-07 16:24:51.4 | manual    | 6  | 3.1 | MLv    | 5  | 0.28 S  | 122.86 E | 51 km  | Minahassa Peninsula, Sulawesi       
+ | 2018-03-07 15:34:35.3 | manual    | 15 | 5.2 | MLv    | 14 | 3.05 N  | 127.44 E | 10 km  | Talaud Islands, Indonesia           
+ | 2018-03-07 13:49:29.7 | manual    | 15 | 5.5 | mb     | 15 | 5.65 S  | 150.76 E | 108 km | New Britain Region, P.N.G.          
+ | 2018-03-07 13:35:55.8 | manual    | 5  | 2.5 | MLv    | 4  | 0.31 S  | 122.42 E | 10 km  | Minahassa Peninsula, Sulawesi       
+ | 2018-03-07 10:39:11.9 | manual    | 40 | 5.7 | mb     | 39 | 18.46 N | 145.89 E | 111 km | Mariana Islands                     
+ | 2018-03-07 07:36:55.8 | manual    | 5  | 5.1 | MLv    | 4  | 5.88 S  | 143.32 E | 10 km  | New Guinea, Papua New Guinea        
+ | 2018-03-07 06:55:11.8 | manual    | 18 | 4.6 | MLv    | 15 | 8.30 S  | 119.75 E | 133 km | Flores Region, Indonesia            
+ | 2018-03-07 04:40:05.3 | manual    | 26 | 5.7 | mb     | 25 | 46.90 N | 152.66 E | 45 km  | Kuril Islands                       
+ | 2018-03-07 04:01:00.7 | manual    | 18 | 4.5 | MLv    | 14 | 2.42 S  | 128.80 E | 0 km   | Ceram Sea                           
+ | 2018-03-07 02:37:48.1 | manual    | 7  | 3.5 | MLv    | 6  | 8.33 S  | 115.63 E | 10 km  | Bali Region, Indonesia              
+ | 2018-03-07 00:41:14.7 | manual    | 7  | 3.3 | MLv    | 7  | 0.30 N  | 122.27 E | 86 km  | Minahassa Peninsula, Sulawesi       
+ | 2018-03-06 17:32:52.6 | manual    | 35 | 4.9 | mb     | 33 | 6.50 S  | 143.39 E | 116 km | New Guinea, Papua New Guinea        
+ | 2018-03-06 14:40:10.2 | manual    | 28 | 5.0 | mb     | 22 | 5.69 S  | 143.35 E | 48 km  | New Guinea, Papua New Guinea        
+ | 2018-03-06 14:13:06.8 | manual    | 50 | 6.6 | Mw(mB) | 45 | 6.33 S  | 142.55 E | 7 km   | New Guinea, Papua New Guinea        
+ | 2018-03-06 12:01:28.2 | manual    | 32 | 4.9 | mb     | 29 | 5.92 S  | 143.09 E | 63 km  | New Guinea, Papua New Guinea        
+ | 2018-03-06 07:57:35.8 | manual    | 6  | 3.2 | MLv    | 6  | 2.44 S  | 119.64 E | 10 km  | Sulawesi, Indonesia                 
+ | 2018-03-06 07:24:12.9 | manual    | 5  | 2.8 | MLv    | 5  | 3.78 S  | 119.38 E | 10 km  | Sulawesi, Indonesia                 
+ | 2018-03-06 05:27:00.5 | manual    | 10 | 5.1 | mb     | 10 | 18.27 S | 108.62 E | 121 km | Northwest of Australia              
+ | 2018-03-06 03:26:46.7 | manual    | 41 | 5.2 | mb     | 38 | 6.16 S  | 142.55 E | 10 km  | New Guinea, Papua New Guinea        
+ | 2018-03-06 02:52:40.5 | manual    | 45 | 5.0 | mb     | 42 | 6.09 S  | 142.57 E | 69 km  | New Guinea, Papua New Guinea        
+ | 2018-03-06 02:45:43.7 | manual    | 5  | 3.2 | MLv    | 5  | 0.94 N  | 126.59 E | 43 km  | Northern Molucca Sea                
+ | 2018-03-06 02:10:10.5 | manual    | 9  | 2.7 | MLv    | 9  | 8.49 S  | 112.69 E | 22 km  | Java, Indonesia                     
+ | 2018-03-06 01:51:52.6 | manual    | 14 | 4.4 | MLv    | 14 | 0.27 N  | 121.87 E | 210 km | Minahassa Peninsula, Sulawesi       
+ | 2018-03-06 01:22:17.8 | manual    | 13 | 3.8 | MLv    | 13 | 3.62 S  | 127.20 E | 74 km  | Seram, Indonesia                    
+ | 2018-03-05 23:19:49.2 | manual    | 15 | 4.1 | MLv    | 15 | 1.60 N  | 126.32 E | 12 km  | Northern Molucca Sea                
+ | 2018-03-05 23:18:26.6 | manual    | 10 | 3.5 | MLv    | 10 | 0.02 S  | 122.97 E | 94 km  | Minahassa Peninsula, Sulawesi       
+ | 2018-03-05 06:02:33.1 | manual    | 32 | 5.2 | mb     | 32 | 5.15 S  | 154.49 E | 156 km | Solomon Islands                     
+ | 2018-03-05 06:01:41.5 | manual    | 12 | 4.6 | MLv    | 10 | 5.23 N  | 126.48 E | 264 km | Mindanao, Philippines               
+ | 2018-03-05 06:01:32.6 | manual    | 8  | 5.5 | mb     | 8  | 5.83 S  | 160.41 E | 63 km  | Solomon Islands                     
+ | 2018-03-05 02:46:01.4 | manual    | 6  | 3.4 | MLv    | 6  | 3.77 S  | 129.60 E | 10 km  | Seram, Indonesia                    
+ | 2018-03-04 22:18:58.8 | manual    | 5  | 4.0 | MLv    | 5  | 5.75 S  | 127.47 E | 10 km  | Banda Sea                           
+ | 2018-03-04 20:40:41.2 | manual    | 22 | 5.0 | mb     | 18 | 1.70 S  | 135.83 E | 10 km  | Irian Jaya Region, Indonesia        
+ | 2018-03-04 19:56:18.7 | manual    | 37 | 5.6 | Mw(mB) | 32 | 6.26 S  | 142.68 E | 10 km  | New Guinea, Papua New Guinea        
+ | 2018-03-04 16:02:50.6 | manual    | 5  | 3.3 | MLv    | 4  | 0.33 N  | 121.99 E | 149 km | Minahassa Peninsula, Sulawesi       
+ | 2018-03-04 15:41:15.6 | manual    | 10 | 4.2 | MLv    | 10 | 4.22 N  | 127.05 E | 10 km  | Talaud Islands, Indonesia           
+ | 2018-03-04 14:47:21.2 | manual    | 11 | 4.4 | MLv    | 11 | 0.31 N  | 127.11 E | 115 km | Halmahera, Indonesia                
+ | 2018-03-04 14:33:21.4 | manual    | 32 | 5.4 | mb     | 29 | 5.94 S  | 142.89 E | 10 km  | New Guinea, Papua New Guinea        
+ | 2018-03-04 12:52:22.9 | manual    | 7  | 3.7 | MLv    | 5  | 0.17 S  | 122.91 E | 121 km | Minahassa Peninsula, Sulawesi       
+ | 2018-03-04 12:40:02.8 | manual    | 31 | 5.2 | mb     | 29 | 6.16 S  | 142.76 E | 22 km  | New Guinea, Papua New Guinea        
+ | 2018-03-04 11:44:30.9 | manual    | 29 | 5.0 | mb     | 27 | 6.34 S  | 143.12 E | 55 km  | New Guinea, Papua New Guinea        
+ | 2018-03-04 03:48:57.6 | manual    | 7  | 4.0 | MLv    | 7  | 0.58 S  | 123.12 E | 73 km  | Minahassa Peninsula, Sulawesi       
+ | 2018-03-04 03:24:15.9 | manual    | 7  | 3.7 | MLv    | 7  | 0.60 S  | 123.11 E | 24 km  | Minahassa Peninsula, Sulawesi       
+ | 2018-03-04 03:10:38.9 | manual    | 36 | 5.7 | mb     | 23 | 0.66 S  | 123.24 E | 16 km  | Minahassa Peninsula, Sulawesi       
+ | 2018-03-03 23:01:02.5 | manual    | 42 | 4.8 | mb     | 40 | 6.62 S  | 143.45 E | 41 km  | New Guinea, Papua New Guinea        
+ | 2018-03-03 20:43:45.7 | manual    | 5  | 3.3 | MLv    | 5  | 1.37 N  | 123.17 E | 130 km | Minahassa Peninsula, Sulawesi       
+ | 2018-03-03 18:56:59.8 | manual    | 5  | 3.1 | MLv    | 5  | 0.12 S  | 123.09 E | 9 km   | Minahassa Peninsula, Sulawesi       
+ | 2018-03-03 18:12:55.8 | manual    | 41 | 4.9 | mb     | 28 | 0.57 N  | 126.18 E | 20 km  | Northern Molucca Sea                
+ | 2018-03-03 18:08:48.5 | manual    | 24 | 4.5 | MLv    | 17 | 1.77 N  | 127.36 E | 61 km  | Halmahera, Indonesia                
+ | 2018-03-03 18:00:56.8 | manual    | 9  | 3.8 | MLv    | 9  | 0.33 S  | 123.69 E | 88 km  | Minahassa Peninsula, Sulawesi       
+ | 2018-03-03 06:34:42.8 | manual    | 5  | 4.3 | MLv    | 5  | 0.94 N  | 122.51 E | 10 km  | Minahassa Peninsula, Sulawesi       
+ | 2018-03-03 06:26:35.5 | manual    | 13 | 4.9 | mb     | 11 | 6.35 S  | 143.03 E | 18 km  | New Guinea, Papua New Guinea        
+ | 2018-03-03 04:27:54.9 | manual    | 10 | 3.4 | MLv    | 7  | 2.06 S  | 119.69 E | 10 km  | Sulawesi, Indonesia                 
+ | 2018-03-03 02:52:45.9 | manual    | 10 | 4.3 | MLv    | 9  | 8.14 S  | 115.64 E | 10 km  | Bali Region, Indonesia              
+ | 2018-03-02 22:38:48.6 | manual    | 21 | 4.9 | mb     | 19 | 6.24 S  | 143.05 E | 10 km  | New Guinea, Papua New Guinea        
+ | 2018-03-02 21:30:58.7 | manual    | 21 | 5.2 | mb     | 19 | 5.75 S  | 143.42 E | 46 km  | New Guinea, Papua New Guinea        
+ | 2018-03-02 21:04:17.3 | manual    | 14 | 4.9 | mb     | 14 | 0.59 N  | 98.49 E  | 156 km | Northern Sumatra, Indonesia         
+ | 2018-03-02 20:47:42.5 | manual    | 8  | 3.6 | MLv    | 8  | 0.34 S  | 125.26 E | 10 km  | Southern Molucca Sea                
+ | 2018-03-02 14:21:39.8 | manual    | 5  | 4.7 | MLv    | 4  | 6.72 S  | 130.17 E | 151 km | Banda Sea                           
+ | 2018-03-02 12:48:36.8 | manual    | 5  | 2.5 | MLv    | 4  | 0.06 S  | 123.17 E | 10 km  | Minahassa Peninsula, Sulawesi       
+ | 2018-03-02 11:40:48.3 | manual    | 6  | 3.1 | MLv    | 5  | 0.38 S  | 122.76 E | 10 km  | Minahassa Peninsula, Sulawesi       
+ | 2018-03-02 07:59:03.6 | manual    | 44 | 5.0 | mb     | 42 | 5.88 S  | 142.71 E | 20 km  | New Guinea, Papua New Guinea        
+ | 2018-03-02 04:37:14.3 | manual    | 6  | 4.1 | MLv    | 6  | 3.66 S  | 132.23 E | 10 km  | Irian Jaya Region, Indonesia        
+ | 2018-03-02 03:42:12.7 | manual    | 7  | 5.0 | mb     | 7  | 25.37 N | 123.10 E | 10 km  | Northeast of Taiwan                 
+ | 2018-03-02 03:01:20.5 | manual    | 21 | 5.4 | mb     | 19 | 6.10 S  | 142.51 E | 10 km  | New Guinea, Papua New Guinea        
+ | 2018-03-02 02:20:12.9 | manual    | 41 | 6.2 | Mw(mB) | 37 | 6.21 S  | 130.41 E | 147 km | Banda Sea                           
+ | 2018-03-02 01:32:37.4 | manual    | 7  | 3.6 | MLv    | 7  | 0.81 S  | 120.71 E | 10 km  | Minahassa Peninsula, Sulawesi       
+ | 2018-03-02 01:11:41.3 | manual    | 10 | 4.2 | MLv    | 10 | 2.92 S  | 130.52 E | 7 km   | Seram, Indonesia                    
+ | 2018-03-02 00:57:09.8 | manual    | 30 | 5.0 | mb     | 28 | 6.03 S  | 142.91 E | 10 km  | New Guinea, Papua New Guinea        
+ | 2018-03-02 00:44:58.8 | manual    | 10 | 3.7 | MLv    | 10 | 9.91 S  | 112.67 E | 11 km  | South of Java, Indonesia            
+ | 2018-03-01 23:10:34.4 | manual    | 15 | 4.4 | MLv    | 14 | 0.33 N  | 123.62 E | 165 km | Minahassa Peninsula, Sulawesi       
+ | 2018-03-01 13:42:28.3 | manual    | 39 | 5.6 | mb     | 38 | 24.08 N | 123.56 E | 10 km  | Southwestern Ryukyu Islands, Japan  
+ | 2018-03-01 06:44:21.5 | manual    | 10 | 3.9 | MLv    | 10 | 0.54 S  | 120.67 E | 28 km  | Minahassa Peninsula, Sulawesi       
+ | 2018-03-01 06:37:23.3 | manual    | 10 | 3.8 | MLv    | 9  | 0.09 S  | 120.31 E | 12 km  | Minahassa Peninsula, Sulawesi       
+ | 2018-03-01 06:11:10.5 | manual    | 11 | 4.5 | MLv    | 11 | 0.16 S  | 120.00 E | 10 km  | Minahassa Peninsula, Sulawesi       
+ | 2018-03-01 05:54:48.9 | manual    | 10 | 4.4 | MLv    | 9  | 0.08 S  | 119.84 E | 15 km  | Minahassa Peninsula, Sulawesi       
+ | 2018-03-01 05:30:29.9 | manual    | 10 | 4.2 | MLv    | 10 | 0.10 S  | 119.83 E | 25 km  | Minahassa Peninsula, Sulawesi       
+ | 2018-03-01 05:26:48.5 | manual    | 12 | 4.3 | MLv    | 12 | 0.20 S  | 120.04 E | 8 km   | Minahassa Peninsula, Sulawesi       
+ | 2018-03-01 05:14:27.3 | manual    | 11 | 4.9 | MLv    | 10 | 0.11 S  | 119.79 E | 36 km  | Minahassa Peninsula, Sulawesi       
+ | 2018-03-01 03:17:07.7 | manual    | 20 | 4.9 | mb     | 17 | 5.82 S  | 142.91 E | 10 km  | New Guinea, Papua New Guinea        
+ | 2018-03-01 03:16:59.4 | manual    | 46 | 5.6 | Mw(mB) | 31 | 1.00 N  | 98.09 E  | 67 km  | Northern Sumatra, Indonesia         
+ | 2018-03-01 01:35:41.5 | manual    | 48 | 5.7 | mb     | 46 | 1.10 N  | 98.03 E  | 76 km  | Northern Sumatra, Indonesia         
+ | 2018-03-01 01:02:09.9 | manual    | 6  | 3.5 | MLv    | 6  | 2.85 S  | 127.52 E | 10 km  | Ceram Sea                           
+ | 2018-03-01 00:59:55.2 | manual    | 8  | 3.0 | MLv    | 5  | 8.16 S  | 114.64 E | 10 km  | Bali Region, Indonesia              
+

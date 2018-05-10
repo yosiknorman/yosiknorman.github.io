@@ -1,0 +1,96 @@
+--- 
+title: "TEWS-ANALYSIS"
+output: 
+  flexdashboard::flex_dashboard:
+    logo: cross_files/png/tews_kecil.jpg
+    favicon: cross_files/png/tews_kecil.jpg
+    # theme: spacelab
+    # theme: readable
+    social: [ "twitter", "facebook","instagram", "menu" ]
+    navbar:
+      - { title: "BMKG", href: "http://www.bmkg.go.id/cuaca/prakiraan-cuaca-indonesia.bmkg?Prov=28&NamaProv=Sulawesi%20Selatan", align: right }
+      - { title: "Ocean", href: "http://peta-maritim.bmkg.go.id/ofs/", align: right }
+    self_contained: false
+---
+<style>
+.section.sidebar {
+  top: 61px;
+  border-bottom: 10px solid #ececec;
+  border-left: 10px solid #ececec;
+  background-color: rgba(255, 255, 255, 1);
+}
+</style>
+
+Column {.sidebar data-width=600 data-padding=10}
+-------------------------------------
+
+### Map of Last 100'th EarthQuakes 
+
+
+```{r echo=FALSE, warning=FALSE}
+library(crosstalk)
+library(leaflet)
+library(DT)
+library(geojsonio)
+library(rgdal,warn.conflicts = F)
+
+# data(quakes)
+dat = readOGR("../data_mag.geojson",verbose = FALSE)
+# dat = dat[1:100]
+dep = as.numeric(gsub(pattern = " km","",dat$Depth))
+# dep = dep[1:100]
+mdat = data.frame(long = as.numeric(dat@coords[,1]),lat = as.numeric(dat@coords[,2]) ,mag = as.numeric(dat$Mag), 
+                  depth = dep, Remarks = as.character(dat$Remarks) )
+mdat = mdat[1:100,]
+
+sd <- SharedData$new(mdat)
+
+
+# names(quakes) = c("lat","lng", "depth", "mag", "stations")
+# sd <- SharedData$new(quakes[sample(nrow(quakes), 100),])
+
+
+
+
+# filter_slider("depth", "Depth", sd, column=~depth, step=0.1, width=250)
+
+# filter_slider("depth", "Depth", sd, column=~depth, step=0.01,width = 200)
+# filter_slider("depth", "Depth", sd, column=~depth, step=0.01,width = 200)
+leaflet(sd) %>% addProviderTiles("Esri") %>% addCircleMarkers(lng = ~long, lat = ~lat, color = "red")
+
+```
+
+
+Row {data-height=250}
+-------------------------------------
+
+### Chart 2
+```{r}
+filter_slider("depth", "Depth Km", sd, column=~depth, step=0.1)
+```
+
+<!-- Row {data-height=350} -->
+<!-- ------------------------------------- -->
+<!-- ### Chart 3 -->
+```{r}
+filter_slider("mag", "Magnitude SR", sd, column=~mag, step=0.1)
+```   
+
+Row {data-height=650 data-width=650}
+-------------------------------------
+
+### Table of Last 100'th EarthQuakes 
+
+```{r}
+# filter_slider("depth", "Depth", sd, column=~depth, step=0.1, width=550)
+# filter_slider("mag", "Magnitude", sd, column=~mag, step=0.01, width = 200)          
+datatable(sd
+          # ,  style="bootstrap", class="jozz", width="100%"
+          ,rownames = F,
+          extensions = 'Buttons',options = list(deferRender=TRUE, scrollY=300, scroller=TRUE,
+                                                dom = 'Bfrtip',buttons = c('copy', 'csv', 'excel', 'print')))
+          
+
+            # options=list(deferRender=TRUE, scrollY=300, scroller=TRUE))
+```
+
