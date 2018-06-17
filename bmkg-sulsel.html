@@ -19,17 +19,79 @@ body { background-image: url('png/hex.png');
 <!-- <center><iframe src="sulsel.html" height='550' width="450"></iframe></center> -->
 
 
-<head>
+<!-- <head> -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+<style>
+* {box-sizing: border-box}
+body {font-family: Verdana, sans-serif; margin:0}
+.mySlides1, .mySlides2 {display: none}
+img {vertical-align: middle;}
+
+/* Slideshow container */
+.slideshow-container {
+  max-width: 1000px;
+  position: relative;
+  margin: auto;
+}
+
+/* Next & previous buttons */
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  padding: 16px;
+  margin-top: -22px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+}
+
+/* Position the "next button" to the right */
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a grey background color */
+.prev:hover, .next:hover {
+  background-color: #f1f1f1;
+  color: black;
+}
+</style>
+
+<style>
+.containeres {
+    position: relative;
+    font-family: Arial;
+}
+
+.text-blockes {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background-color: black;
+    color: white;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+</style>
+
+
 </head>
 <body>
 
 <div class="container" >
   <!-- <h2><img src="sulsel_files/png/g4195.png" height=150px; width=100%></h2> -->
-  <h2><img src="png/spanduk.png" height=150px; width=100%></h2>
+  <h2><img src="png/header.png" height=50px; width=32%></h2>
   
   <!-- <p>Cepat, Akurat, dan Jozz-Gandozz</p>                                                                                       -->
   <div class="table-responsive">          
@@ -37,15 +99,18 @@ body { background-image: url('png/hex.png');
     <thead>
 
     <nav class="navbar navbar-inverse">
-  <div class="container-fluid" style="background-color:">
+  <div class="container-fluid" style="background-color:"></center>
     <div class="navbar-header">
-      <a class="navbar-brand" href="#"> <img src="png/logo-bmkg.png" height='30' width="30"></a>
+      <!-- <a class="navbar-brand" href="#"> <img src="png/logo-bmkg1.png" height='30' width="30"></a> -->
     </div>
     <ul class="nav navbar-nav" >
-      <li class="active" ><a href="#" >Home </a></li>
-      <li><a href="#">Prakiraan Cuaca</a></li>
-      <li><a href="#">Informasi Gempa</a></li>
-      <li><a href="#">Peringatan Dini</a></li>
+      <li class="active" ><a href="#" >Oops!!</a></li>
+      <li><a href="#">Informasi</a></li>
+      <li><a href="#">Data Service</a></li>
+      <li><a href="#">Inovasi dan Riset</a></li>
+      <li><a href="#">Kegiatan dan MoU</a></li>
+      <li><a href="#">Profil</a></li>
+      <li><a href="#">A-Z</a></li>
     </ul>
   </div>
 </nav>
@@ -72,6 +137,71 @@ body { background-image: url('png/hex.png');
   </table>
   </div>
 </div>
+
+
+
+<!-- <h2 style="text-align:center">Multiple Slideshows</h2> -->
+
+<div class="slideshow-container">
+  <div class="mySlides1">
+    <img src="png/sld/staklim_mrs.jpg" style=" height:400px;width:100%">
+
+    <!-- <img src="png/sld/stamet_hnd.jpg" style=" height:400px; width:100%"> -->
+  <div class="text-blockes">
+    <h4>Stasiun Meteorologi Klas I Maros</h4>
+    <p>Objek Wisata Geologi Rammang - Rammang (Kabupaten Maros) </p>
+  </div>
+  </div>
+
+  <div class="mySlides1">
+
+    <img src="png/sld/stamet_hnd.jpg" style=" height:400px; width:100%">
+    <!-- <img src="png/sld/stamet_hnd.jpg" style=" height:400px; width:100%"> -->
+  <div class="text-blockes">
+    <h4>Stasiun Meteorologi Klas I Hasanuddin</h4>
+    <p>Bandara Sultan Hasanuddin  - Maros</p>
+    <!-- <center><iframe src="https://cloudiness.github.io" height='550' width="450" frameBorder="0"></iframe></center> -->
+  </div>
+  </div>
+
+  <div class="mySlides1">
+    <img src="png/sld/stamet_msb.jpg" style="height:400px; width:100%">
+    <!-- <img src="png/sld/stamet_hnd.jpg" style=" height:400px; width:100%"> -->
+  <div class="text-blockes">
+    <h4>Stasiun Meteorologi Klas III Andi Jemma Masamba</h4>
+    <p>Bandara Andi Jemma - Masamba</p>
+    </div>
+    <!-- <center><iframe src="sulsel.html" height='550' width="450" frameBorder="0"></iframe></center> -->
+
+  </div>
+
+  <a class="prev" onclick="plusSlides(-1, 0)">&#10094;</a>
+  <a class="next" onclick="plusSlides(1, 0)">&#10095;</a>
+</div>
+
+
+<script>
+var slideIndex = [1,1];
+var slideId = ["mySlides1", "mySlides2"]
+showSlides(1, 0);
+showSlides(1, 1);
+
+function plusSlides(n, no) {
+  showSlides(slideIndex[no] += n, no);
+}
+
+function showSlides(n, no) {
+  var i;
+  var x = document.getElementsByClassName(slideId[no]);
+  if (n > x.length) {slideIndex[no] = 1}    
+  if (n < 1) {slideIndex[no] = x.length}
+  for (i = 0; i < x.length; i++) {
+     x[i].style.display = "none";  
+  }
+  x[slideIndex[no]-1].style.display = "block";  
+}
+</script>
+
 
 
 <!-- <div class="container2">
