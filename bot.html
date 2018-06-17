@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>BMKG - Sulsel</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#"> <img src="png/logo-bmkg.png" height='30' width="30"></a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="#">Home</a></li>
+      <li><a href="#">Prakiraan Cuaca</a></li>
+      <li><a href="#">Informasi Gempa</a></li>
+      <li><a href="#">Peringatan Dini</a></li>
+    </ul>
+  </div>
+</nav>
+  
+<div class="container">
+  <h3>Prakiraan cuaca esok hari</h3>
+  <p>Tanggal 18 Juni 2018</p>
+  <iframe id="myFrame" src="sulsel.html" style="height:600px;width:50%"></iframe>
+
+  <p>Click the "Tryit" button to hide the first H1 element in the iframe (another document).</p>
+
+  <button onclick="myFunction()">Try it</button>
+
+<script>
+function myFunction() {
+  var iframe = document.getElementById("myFrame");
+  var elmnt = iframe.contentWindow.document.getElementsByTagName("H1")[0];
+  elmnt.style.display = "none";
+}
+</script>
+
+
+</div>
+<div class="container">
+  <h3>Prakiraan cuaca lusa hari</h3>
+  <p>Tanggal 19 Juni 2018</p>
+  <iframe src="sulsel.html" height='550' width="450"></iframe>
+</div>
+
+
+</body>
+</html>

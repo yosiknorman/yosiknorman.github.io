@@ -24,7 +24,7 @@ hr {
 
 h1 {
   position: relative;
-  font-family: courier; 
+  font-family: courier;
   font-style: bold;
   top: 0px;
   left: 0px;
@@ -49,7 +49,7 @@ h2 img {
     width: 50px;
     height: 50px;
 
-  
+
 }
 
 
@@ -58,28 +58,28 @@ h2 img {
     height: 450px;
     border: px solid black;
     margin: 0;
-    
+
 }
 body    {
     background: url("nature.jpeg") no-repeat;
     background-size: cover;
-    font-family: Courier;  
+    font-family: Courier;
     background-color: white;
     color: black;
-    align-content: 
+    align-content:
 
 }
 ul {
     margin: none;
     padding: none;
     list-style: none;
-    
+
 
 }
 
 
 ul li {
-    float: left; 
+    float: left;
     width: 200px;
     height: 40px;
     background-color: none;
@@ -126,7 +126,7 @@ ul li:hover ul li {
             opacity: 0.7;
 
         }
-       
+
         .image-holder
         {
             width: 2100px;
@@ -134,13 +134,13 @@ ul li:hover ul li {
             height: 367px;
             clear: both;
             position: relative;
-           
+
             -webkit-transition: left 1s;
             -moz-transition: left 1s;
             -o-transition: left 1s;
             transition: left 1s;
         }
-       
+
         .slider-image
         {
             float: left;
@@ -148,28 +148,28 @@ ul li:hover ul li {
             padding: 0px;
             position: relative;
         }
-       
+
         #slider-image-1:target ~ .image-holder
         {
             left: 0px;
         }
-       
+
         #slider-image-2:target ~ .image-holder
         {
             left: -700px;
         }
-       
+
         #slider-image-3:target ~ .image-holder
         {
             left: -1400px;
         }
-       
+
         .button-holder
         {
             position: relative;
             top: -20px;
         }
-       
+
         .slider-change
         {
             display: inline-block;
@@ -206,6 +206,3 @@ ul li:hover ul li {
 .slider-wrapper > .slide:first-child {
     opacity: 1;
 }
-
-
-
