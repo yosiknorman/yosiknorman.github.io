@@ -36,9 +36,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.4622041"
-     inkscape:cx="701.23867"
-     inkscape:cy="-85.465428"
+     inkscape:zoom="0.51696721"
+     inkscape:cx="694.84252"
+     inkscape:cy="-135.78592"
      inkscape:document-units="px"
      inkscape:current-layer="g4219"
      showgrid="false"
@@ -80,43 +80,70 @@
          height="186.69862"
          width="761.18011"
          id="rect4204"
-         style="opacity:1;fill:#d4ff2a;fill-opacity:1;fill-rule:nonzero;stroke:#d30000;stroke-width:0.9941662;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+         style="opacity:1;fill:#d4ff2a;fill-opacity:1;fill-rule:nonzero;stroke:#d30000;stroke-width:0.9941662;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         inkscape:export-xdpi="72"
+         inkscape:export-ydpi="72" />
       <text
-         transform="scale(0.98027491,1.020122)"
+         transform="scale(0.9660165,1.035179)"
          sodipodi:linespacing="122%"
          id="text4147"
-         y="988.33209"
-         x="206.43524"
-         style="font-style:normal;font-weight:normal;font-size:36.41020966px;line-height:122.00000286%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-         xml:space="preserve"><tspan
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Lobster Two';-inkscape-font-specification:'Lobster Two';fill:#504416;stroke:#420800;stroke-width:0.91025531px;stroke-opacity:1"
-           y="988.33209"
-           x="206.43524"
+         y="957.15814"
+         x="209.50143"
+         style="font-style:normal;font-weight:normal;font-size:35.88061142px;line-height:122.00000286%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         xml:space="preserve"
+         inkscape:export-xdpi="72"
+         inkscape:export-ydpi="72"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Lobster Two';-inkscape-font-specification:'Lobster Two';fill:#0088aa;stroke:#420800;stroke-width:0.89701533px;stroke-opacity:1"
+           y="957.15814"
+           x="209.50143"
            id="tspan4149"
-           sodipodi:role="line">Integrated Forecast System + NN</tspan></text>
+           sodipodi:role="line"><tspan
+   style="fill:#00ff66"
+   id="tspan4277">Integrated</tspan><tspan
+   style="fill:#0000d4"
+   id="tspan4279"> Forecast</tspan><tspan
+   style="fill:#ab37c8"
+   id="tspan4281"> System</tspan> + </tspan><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Lobster Two';-inkscape-font-specification:'Lobster Two';fill:#0088aa;stroke:#420800;stroke-width:0.89701533px;stroke-opacity:1"
+           y="1000.9325"
+           x="209.50143"
+           sodipodi:role="line"
+           id="tspan4267"><tspan
+             style="fill:#ff0066"
+             id="tspan4283">Adaptive</tspan><tspan
+             style="fill:#ffcc00"
+             id="tspan4285"><tspan
+   style="fill:#00aad4"
+   id="tspan4289"> Local</tspan> Experimentation</tspan></tspan></text>
       <text
          transform="scale(0.92574138,1.0802153)"
          sodipodi:linespacing="122%"
          id="text4147-0"
-         y="890.87885"
+         y="874.78119"
          x="220.20232"
          style="font-style:normal;font-weight:normal;font-size:40.68725967px;line-height:122.00000286%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-         xml:space="preserve"><tspan
+         xml:space="preserve"
+         inkscape:export-xdpi="72"
+         inkscape:export-ydpi="72"><tspan
            style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Loma;-inkscape-font-specification:Loma;fill:#504416;stroke:#420800;stroke-width:1.01718152px;stroke-opacity:1"
-           y="890.87885"
+           y="874.78119"
            x="220.20232"
            id="tspan4149-0"
            sodipodi:role="line">BMKG IV - Sulawesi Selatan</tspan></text>
       <path
          inkscape:connector-curvature="0"
          id="path4169"
-         d="m 208.85714,972.3622 511.42857,0 0,0"
-         style="fill:#22280b;fill-rule:evenodd;stroke:#0e0700;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+         d="m 208.85714,954.97316 511.42857,0 0,0"
+         style="fill:#22280b;fill-rule:evenodd;stroke:#0e0700;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         inkscape:export-xdpi="72"
+         inkscape:export-ydpi="72" />
       <path
          inkscape:connector-curvature="0"
          id="path4175"
          d="m 183.28572,890.21936 0,99.2857"
-         style="fill:#28220b;fill-rule:evenodd;stroke:#d30000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;filter:url(#filter4185)" />
+         style="fill:#28220b;fill-rule:evenodd;stroke:#d30000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;filter:url(#filter4185)"
+         inkscape:export-xdpi="72"
+         inkscape:export-ydpi="72" />
       <image
          width="132.78769"
          height="169.31282"
@@ -286,7 +313,9 @@ nA8JDkWLiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiokv8P/Mqw1h0wwGkAAAAASUVORK5CYII=
 "
          id="image4216"
          x="18.717932"
-         y="888.20013" />
+         y="888.20013"
+         inkscape:export-xdpi="72"
+         inkscape:export-ydpi="72" />
     </g>
   </g>
 </svg>
