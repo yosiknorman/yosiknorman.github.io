@@ -1,0 +1,438 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- (c) ammap.com | SVG weather icons -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   version="1.1"
+   width="64"
+   height="64"
+   viewbox="0 0 64 64"
+   id="svg2"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="hujan-ringan-only.svg">
+  <metadata
+     id="metadata44">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1366"
+     inkscape:window-height="691"
+     id="namedview42"
+     showgrid="false"
+     inkscape:zoom="3.6875"
+     inkscape:cx="-27.782031"
+     inkscape:cy="1.283518"
+     inkscape:window-x="0"
+     inkscape:window-y="24"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="rainy-6" />
+  <defs
+     id="defs4">
+    <filter
+       id="blur"
+       width="200%"
+       height="200%">
+      <feGaussianBlur
+         in="SourceAlpha"
+         stdDeviation="3"
+         id="feGaussianBlur7" />
+      <feOffset
+         dx="0"
+         dy="4"
+         result="offsetblur"
+         id="feOffset9" />
+      <feComponentTransfer
+         id="feComponentTransfer11">
+        <feFuncA
+           type="linear"
+           slope="0.05"
+           id="feFuncA13" />
+      </feComponentTransfer>
+      <feMerge
+         id="feMerge15">
+        <feMergeNode
+           id="feMergeNode17" />
+        <feMergeNode
+           in="SourceGraphic"
+           id="feMergeNode19" />
+      </feMerge>
+    </filter>
+    <style
+       type="text/css"
+       id="style21"><![CDATA[
+/*
+** RAIN
+*/
+
+@keyframes am-weather-cloud-1 {
+  0% {
+    -webkit-transform: translate(-5px,0px);
+       -moz-transform: translate(-5px,0px);
+        -ms-transform: translate(-5px,0px);
+            transform: translate(-5px,0px);
+  }
+
+  50% {
+    -webkit-transform: translate(10px,0px);
+       -moz-transform: translate(10px,0px);
+        -ms-transform: translate(10px,0px);
+            transform: translate(10px,0px);
+  }
+
+  100% {
+    -webkit-transform: translate(-5px,0px);
+       -moz-transform: translate(-5px,0px);
+        -ms-transform: translate(-5px,0px);
+            transform: translate(-5px,0px);
+  }
+}
+
+.am-weather-cloud-1 {
+  -webkit-animation-name: am-weather-cloud-1;
+     -moz-animation-name: am-weather-cloud-1;
+          animation-name: am-weather-cloud-1;
+  -webkit-animation-duration: 7s;
+     -moz-animation-duration: 7s;
+          animation-duration: 7s;
+  -webkit-animation-timing-function: linear;
+     -moz-animation-timing-function: linear;
+          animation-timing-function: linear;
+  -webkit-animation-iteration-count: infinite;
+     -moz-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+}
+
+@keyframes am-weather-rain {
+  0% {
+    stroke-dashoffset: 0;
+  }
+
+  100% {
+    stroke-dashoffset: -100;
+  }
+}
+
+.am-weather-rain-1 {
+  -webkit-animation-name: am-weather-rain;
+     -moz-animation-name: am-weather-rain;
+      -ms-animation-name: am-weather-rain;
+          animation-name: am-weather-rain;
+  -webkit-animation-duration: 8s;
+     -moz-animation-duration: 8s;
+      -ms-animation-duration: 8s;
+          animation-duration: 8s;
+  -webkit-animation-timing-function: linear;
+     -moz-animation-timing-function: linear;
+      -ms-animation-timing-function: linear;
+          animation-timing-function: linear;
+  -webkit-animation-iteration-count: infinite;
+     -moz-animation-iteration-count: infinite;
+      -ms-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+}
+
+.am-weather-rain-2 {
+  -webkit-animation-name: am-weather-rain;
+     -moz-animation-name: am-weather-rain;
+      -ms-animation-name: am-weather-rain;
+          animation-name: am-weather-rain;
+  -webkit-animation-delay: 0.1s;
+     -moz-animation-delay: 0.1s;
+      -ms-animation-delay: 0.1s;
+          animation-delay: 0.1s;
+  -webkit-animation-duration: 8s;
+     -moz-animation-duration: 8s;
+      -ms-animation-duration: 8s;
+          animation-duration: 8s;
+  -webkit-animation-timing-function: linear;
+     -moz-animation-timing-function: linear;
+      -ms-animation-timing-function: linear;
+          animation-timing-function: linear;
+  -webkit-animation-iteration-count: infinite;
+     -moz-animation-iteration-count: infinite;
+      -ms-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+}
+
+.am-weather-rain-3 {
+  -webkit-animation-name: am-weather-rain;
+     -moz-animation-name: am-weather-rain;
+      -ms-animation-name: am-weather-rain;
+          animation-name: am-weather-rain;
+  -webkit-animation-delay: 0.5s;
+     -moz-animation-delay: 0.5s;
+      -ms-animation-delay: 0.5s;
+          animation-delay: 0.1s;
+  -webkit-animation-duration: 8s;
+     -moz-animation-duration: 8s;
+      -ms-animation-duration: 8s;
+          animation-duration: 8s;
+  -webkit-animation-timing-function: linear;
+     -moz-animation-timing-function: linear;
+      -ms-animation-timing-function: linear;
+          animation-timing-function: linear;
+  -webkit-animation-iteration-count: infinite;
+     -moz-animation-iteration-count: infinite;
+      -ms-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+}
+
+@keyframes am-weather-stroke {
+  0% {
+    -webkit-transform: translate(0.0px,0.0px);
+       -moz-transform: translate(0.0px,0.0px);
+        -ms-transform: translate(0.0px,0.0px);
+            transform: translate(0.0px,0.0px);
+  }
+
+  2% {
+    -webkit-transform: translate(0.3px,0.0px);
+       -moz-transform: translate(0.3px,0.0px);
+        -ms-transform: translate(0.3px,0.0px);
+            transform: translate(0.3px,0.0px);
+  }
+
+  4% {
+    -webkit-transform: translate(0.0px,0.0px);
+       -moz-transform: translate(0.0px,0.0px);
+        -ms-transform: translate(0.0px,0.0px);
+            transform: translate(0.0px,0.0px);
+  }
+
+  6% {
+    -webkit-transform: translate(0.5px,0.4px);
+       -moz-transform: translate(0.5px,0.4px);
+        -ms-transform: translate(0.5px,0.4px);
+            transform: translate(0.5px,0.4px);
+  }
+
+  8% {
+    -webkit-transform: translate(0.0px,0.0px);
+       -moz-transform: translate(0.0px,0.0px);
+        -ms-transform: translate(0.0px,0.0px);
+            transform: translate(0.0px,0.0px);
+  }
+
+  10% {
+    -webkit-transform: translate(0.3px,0.0px);
+       -moz-transform: translate(0.3px,0.0px);
+        -ms-transform: translate(0.3px,0.0px);
+            transform: translate(0.3px,0.0px);
+  }
+
+  12% {
+    -webkit-transform: translate(0.0px,0.0px);
+       -moz-transform: translate(0.0px,0.0px);
+        -ms-transform: translate(0.0px,0.0px);
+            transform: translate(0.0px,0.0px);
+  }
+
+  14% {
+    -webkit-transform: translate(0.3px,0.0px);
+       -moz-transform: translate(0.3px,0.0px);
+        -ms-transform: translate(0.3px,0.0px);
+            transform: translate(0.3px,0.0px);
+  }
+
+  16% {
+    -webkit-transform: translate(0.0px,0.0px);
+       -moz-transform: translate(0.0px,0.0px);
+        -ms-transform: translate(0.0px,0.0px);
+            transform: translate(0.0px,0.0px);
+  }
+
+  18% {
+    -webkit-transform: translate(0.3px,0.0px);
+       -moz-transform: translate(0.3px,0.0px);
+        -ms-transform: translate(0.3px,0.0px);
+            transform: translate(0.3px,0.0px);
+  }
+
+  20% {
+    -webkit-transform: translate(0.0px,0.0px);
+       -moz-transform: translate(0.0px,0.0px);
+        -ms-transform: translate(0.0px,0.0px);
+            transform: translate(0.0px,0.0px);
+  }
+
+  22% {
+    -webkit-transform: translate(1px,0.0px);
+       -moz-transform: translate(1px,0.0px);
+        -ms-transform: translate(1px,0.0px);
+            transform: translate(1px,0.0px);
+  }
+
+  24% {
+    -webkit-transform: translate(0.0px,0.0px);
+       -moz-transform: translate(0.0px,0.0px);
+        -ms-transform: translate(0.0px,0.0px);
+            transform: translate(0.0px,0.0px);
+  }
+
+  26% {
+    -webkit-transform: translate(-1px,0.0px);
+       -moz-transform: translate(-1px,0.0px);
+        -ms-transform: translate(-1px,0.0px);
+            transform: translate(-1px,0.0px);
+
+  }
+
+  28% {
+    -webkit-transform: translate(0.0px,0.0px);
+       -moz-transform: translate(0.0px,0.0px);
+        -ms-transform: translate(0.0px,0.0px);
+            transform: translate(0.0px,0.0px);
+  }
+
+  40% {
+    fill: orange;
+    -webkit-transform: translate(0.0px,0.0px);
+       -moz-transform: translate(0.0px,0.0px);
+        -ms-transform: translate(0.0px,0.0px);
+            transform: translate(0.0px,0.0px);
+  }
+
+  65% {
+    fill: white;
+    -webkit-transform: translate(-1px,5.0px);
+       -moz-transform: translate(-1px,5.0px);
+        -ms-transform: translate(-1px,5.0px);
+            transform: translate(-1px,5.0px);
+  }
+  61% {
+    fill: orange;
+  }
+
+  100% {
+    -webkit-transform: translate(0.0px,0.0px);
+       -moz-transform: translate(0.0px,0.0px);
+        -ms-transform: translate(0.0px,0.0px);
+            transform: translate(0.0px,0.0px);
+  }
+}
+
+.am-weather-stroke {
+  -webkit-animation-name: am-weather-stroke;
+     -moz-animation-name: am-weather-stroke;
+          animation-name: am-weather-stroke;
+  -webkit-animation-duration: 1.11s;
+     -moz-animation-duration: 1.11s;
+          animation-duration: 1.11s;
+  -webkit-animation-timing-function: linear;
+     -moz-animation-timing-function: linear;
+          animation-timing-function: linear;
+  -webkit-animation-iteration-count: infinite;
+     -moz-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+}
+
+        ]]></style>
+  </defs>
+  <g
+     filter="url(#blur)"
+     id="rainy-6">
+    <g
+       transform="translate(20,10)"
+       id="g24">
+      <g
+         class="am-weather-cloud-1"
+         id="g26"
+         style="stroke:#8d5778;stroke-opacity:1">
+        <path
+           d="M47.7,35.4     c0-4.6-3.7-8.2-8.2-8.2c-1,0-1.9,0.2-2.8,0.5c-0.3-3.4-3.1-6.2-6.6-6.2c-3.7,0-6.7,3-6.7,6.7c0,0.8,0.2,1.6,0.4,2.3     c-0.3-0.1-0.7-0.1-1-0.1c-3.7,0-6.7,3-6.7,6.7c0,3.6,2.9,6.6,6.5,6.7l17.2,0C44.2,43.3,47.7,39.8,47.7,35.4z"
+           fill="lightblue"
+           stroke="lightblue"
+           stroke-linejoin="round"
+           stroke-width="1.2"
+           transform="translate(-10,-6), scale(0.6)"
+           id="path28"
+           style="stroke:#8d5778;stroke-opacity:1" />
+      </g>
+      <g
+         id="g30"
+         style="fill:#0000ff;stroke:#8d574f;stroke-opacity:0.51381218">
+        <path
+           d="M47.7,35.4c0-4.6-3.7-8.2-8.2-8.2c-1,0-1.9,0.2-2.8,0.5c-0.3-3.4-3.1-6.2-6.6-6.2c-3.7,0-6.7,3-6.7,6.7c0,0.8,0.2,1.6,0.4,2.3    c-0.3-0.1-0.7-0.1-1-0.1c-3.7,0-6.7,3-6.7,6.7c0,3.6,2.9,6.6,6.5,6.7l17.2,0C44.2,43.3,47.7,39.8,47.7,35.4z"
+           fill="grey"
+           stroke="grey"
+           stroke-linejoin="round"
+           stroke-width="1.7"
+           transform="translate(-20,-11)"
+           id="path32"
+           style="fill:#3771c8;stroke:#8d574f;stroke-opacity:0.51381218" />
+      </g>
+      <g
+         transform="translate(-9,20), scale(1.2)"
+         id="g34">
+        <!-- <polygon class="am-weather-stroke" fill="orange" stroke="black" stroke-width="1" points="14.3,-2.9 20.5,-2.9 16.4,4.3 20.3,4.3 11.5,14.6 14.9,6.9 11.1,6.9" /> -->
+      </g>
+      <!-- <g transform="translate(-9,20), scale(1.5)">
+               <polygon class="am-weather-stroke" fill="orange" stroke="black" stroke-width="1" points="14.3,-2.9 20.5,-2.9 16.4,4.3 20.3,4.3 11.5,14.6 14.9,6.9 11.1,8" />
+
+            </g> -->
+    </g>
+    <g
+       transform="translate(23.559322,43.313559)"
+       id="g36-3"
+       style="fill:#e3dedb">
+      <line
+         class="am-weather-rain-1"
+         x1="4.7118645"
+         x2="4.7118645"
+         y1="0.45762712"
+         y2="10.457627"
+         id="line38-6"
+         style="fill:#e3dedb;stroke:#808080;stroke-width:4;stroke-linecap:round;stroke-dasharray:4, 4" />
+      <!-- <line class="am-weather-rain-2" fill="none" stroke="grey" stroke-dasharray="4,4" stroke-linecap="round" stroke-width="4" transform="translate(0,-1)" x1="0" x2="0" y1="0" y2="10" /> -->
+      <!-- <polygon class="am-weather-stroke" fill="orange" stroke="white" stroke-width="1" points="14.3,-2.9 20.5,-2.9 16.4,4.3 20.3,4.3 11.5,14.6 14.9,6.9 11.1,6.9" /> -->
+      <line
+         class="am-weather-rain-1"
+         x1="10"
+         x2="10"
+         y1="0"
+         y2="10"
+         id="line40-7"
+         style="fill:#e3dedb;stroke:#808080;stroke-width:4;stroke-linecap:round;stroke-dasharray:4, 4" />
+      <!-- <line class="am-weather-rain-3" fill="none" stroke="grey" stroke-dasharray="4,4" stroke-linecap="round" stroke-width="4" transform="translate(8,0)" x1="0" x2="0" y1="0" y2="10" /> -->
+      <!-- Hujan Lebat -->
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:27.58727264px;line-height:122.00000286%;font-family:'Roboto Condensed';-inkscape-font-specification:'Roboto Condensed, Bold';letter-spacing:0px;word-spacing:0px;fill:#d35f5f;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="8.2647581"
+       y="62.936218"
+       id="text4180-2"
+       sodipodi:linespacing="122%"
+       transform="scale(1.0301738,0.97071)"><tspan
+         sodipodi:role="line"
+         id="tspan4182-0"
+         x="8.2647581"
+         y="62.936218"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:8.62102318px;font-family:'Roboto Condensed';-inkscape-font-specification:'Roboto Condensed,  Bold';fill:#d35f5f;fill-opacity:1">Hujan Ringan</tspan></text>
+  </g>
+  <!-- <g transform="translate(-9,28), scale(1.2)">
+       <polygon class="am-weather-stroke" fill="orange" stroke="white" stroke-width="1" points="14.3,-2.9 20.5,-2.9 16.4,4.3 20.3,4.3 11.5,14.6 14.9,6.9 11.1,6.9" />
+    </g> -->
+</svg>

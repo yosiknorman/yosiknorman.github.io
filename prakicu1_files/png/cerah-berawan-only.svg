@@ -1,0 +1,369 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- (c) ammap.com | SVG weather icons -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   version="1.1"
+   width="64"
+   height="64"
+   viewbox="0 0 64 64"
+   id="svg2"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="cerah-berawan-only.svg">
+  <metadata
+     id="metadata70">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1366"
+     inkscape:window-height="691"
+     id="namedview68"
+     showgrid="false"
+     inkscape:zoom="5.2149125"
+     inkscape:cx="0.98083614"
+     inkscape:cy="31.722435"
+     inkscape:window-x="0"
+     inkscape:window-y="24"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg2" />
+  <defs
+     id="defs4">
+    <filter
+       id="blur"
+       width="200%"
+       height="200%">
+      <feGaussianBlur
+         in="SourceAlpha"
+         stdDeviation="3"
+         id="feGaussianBlur7" />
+      <feOffset
+         dx="0"
+         dy="4"
+         result="offsetblur"
+         id="feOffset9" />
+      <feComponentTransfer
+         id="feComponentTransfer11">
+        <feFuncA
+           type="linear"
+           slope="0.05"
+           id="feFuncA13" />
+      </feComponentTransfer>
+      <feMerge
+         id="feMerge15">
+        <feMergeNode
+           id="feMergeNode17" />
+        <feMergeNode
+           in="SourceGraphic"
+           id="feMergeNode19" />
+      </feMerge>
+    </filter>
+    <style
+       type="text/css"
+       id="style21"><![CDATA[
+/*
+** CLOUDS
+*/
+@keyframes am-weather-cloud-2 {
+  0% {
+    -webkit-transform: translate(0px,0px);
+       -moz-transform: translate(0px,0px);
+        -ms-transform: translate(0px,0px);
+            transform: translate(0px,0px);
+  }
+
+  50% {
+    -webkit-transform: translate(2px,0px);
+       -moz-transform: translate(2px,0px);
+        -ms-transform: translate(2px,0px);
+            transform: translate(2px,0px);
+  }
+
+  100% {
+    -webkit-transform: translate(0px,0px);
+       -moz-transform: translate(0px,0px);
+        -ms-transform: translate(0px,0px);
+            transform: translate(0px,0px);
+  }
+}
+
+.am-weather-cloud-2 {
+  -webkit-animation-name: am-weather-cloud-2;
+     -moz-animation-name: am-weather-cloud-2;
+          animation-name: am-weather-cloud-2;
+  -webkit-animation-duration: 3s;
+     -moz-animation-duration: 3s;
+          animation-duration: 3s;
+  -webkit-animation-timing-function: linear;
+     -moz-animation-timing-function: linear;
+          animation-timing-function: linear;
+  -webkit-animation-iteration-count: infinite;
+     -moz-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+}
+
+/*
+** SUN
+*/
+@keyframes am-weather-sun {
+  0% {
+    -webkit-transform: rotate(0deg);
+       -moz-transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+
+  100% {
+    -webkit-transform: rotate(360deg);
+       -moz-transform: rotate(360deg);
+        -ms-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+.am-weather-sun {
+  -webkit-animation-name: am-weather-sun;
+     -moz-animation-name: am-weather-sun;
+      -ms-animation-name: am-weather-sun;
+          animation-name: am-weather-sun;
+  -webkit-animation-duration: 9s;
+     -moz-animation-duration: 9s;
+      -ms-animation-duration: 9s;
+          animation-duration: 9s;
+  -webkit-animation-timing-function: linear;
+     -moz-animation-timing-function: linear;
+      -ms-animation-timing-function: linear;
+          animation-timing-function: linear;
+  -webkit-animation-iteration-count: infinite;
+     -moz-animation-iteration-count: infinite;
+      -ms-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+}
+
+@keyframes am-weather-sun-shiny {
+  0% {
+    stroke-dasharray: 3px 10px;
+    stroke-dashoffset: 0px;
+  }
+
+  50% {
+    stroke-dasharray: 0.1px 10px;
+    stroke-dashoffset: -1px;
+  }
+
+  100% {
+    stroke-dasharray: 3px 10px;
+    stroke-dashoffset: 0px;
+  }
+}
+
+.am-weather-sun-shiny line {
+  -webkit-animation-name: am-weather-sun-shiny;
+     -moz-animation-name: am-weather-sun-shiny;
+      -ms-animation-name: am-weather-sun-shiny;
+          animation-name: am-weather-sun-shiny;
+  -webkit-animation-duration: 2s;
+     -moz-animation-duration: 2s;
+      -ms-animation-duration: 2s;
+          animation-duration: 2s;
+  -webkit-animation-timing-function: linear;
+     -moz-animation-timing-function: linear;
+      -ms-animation-timing-function: linear;
+          animation-timing-function: linear;
+  -webkit-animation-iteration-count: infinite;
+     -moz-animation-iteration-count: infinite;
+      -ms-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+}
+        ]]></style>
+  </defs>
+  <g
+     filter="url(#blur)"
+     id="cloudy-day-3">
+    <g
+       transform="translate(20,10)"
+       id="g24">
+      <g
+         transform="translate(0,16)"
+         id="g26">
+        <g
+           class="am-weather-sun"
+           id="g28">
+          <g
+             id="g30">
+            <line
+               fill="none"
+               stroke="orange"
+               stroke-linecap="round"
+               stroke-width="2"
+               transform="translate(0,9)"
+               x1="0"
+               x2="0"
+               y1="0"
+               y2="3"
+               id="line32" />
+          </g>
+          <g
+             transform="rotate(45)"
+             id="g34">
+            <line
+               fill="none"
+               stroke="orange"
+               stroke-linecap="round"
+               stroke-width="2"
+               transform="translate(0,9)"
+               x1="0"
+               x2="0"
+               y1="0"
+               y2="3"
+               id="line36" />
+          </g>
+          <g
+             transform="rotate(90)"
+             id="g38">
+            <line
+               fill="none"
+               stroke="orange"
+               stroke-linecap="round"
+               stroke-width="2"
+               transform="translate(0,9)"
+               x1="0"
+               x2="0"
+               y1="0"
+               y2="3"
+               id="line40" />
+          </g>
+          <g
+             transform="rotate(135)"
+             id="g42">
+            <line
+               fill="none"
+               stroke="orange"
+               stroke-linecap="round"
+               stroke-width="2"
+               transform="translate(0,9)"
+               x1="0"
+               x2="0"
+               y1="0"
+               y2="3"
+               id="line44" />
+          </g>
+          <g
+             transform="rotate(180)"
+             id="g46">
+            <line
+               fill="none"
+               stroke="orange"
+               stroke-linecap="round"
+               stroke-width="2"
+               transform="translate(0,9)"
+               x1="0"
+               x2="0"
+               y1="0"
+               y2="3"
+               id="line48" />
+          </g>
+          <g
+             transform="rotate(225)"
+             id="g50">
+            <line
+               fill="none"
+               stroke="orange"
+               stroke-linecap="round"
+               stroke-width="2"
+               transform="translate(0,9)"
+               x1="0"
+               x2="0"
+               y1="0"
+               y2="3"
+               id="line52" />
+          </g>
+          <g
+             transform="rotate(270)"
+             id="g54">
+            <line
+               fill="none"
+               stroke="orange"
+               stroke-linecap="round"
+               stroke-width="2"
+               transform="translate(0,9)"
+               x1="0"
+               x2="0"
+               y1="0"
+               y2="3"
+               id="line56" />
+          </g>
+          <g
+             transform="rotate(315)"
+             id="g58">
+            <line
+               fill="none"
+               stroke="orange"
+               stroke-linecap="round"
+               stroke-width="2"
+               transform="translate(0,9)"
+               x1="0"
+               x2="0"
+               y1="0"
+               y2="3"
+               id="line60" />
+          </g>
+        </g>
+        <circle
+           cx="0"
+           cy="0"
+           fill="orange"
+           r="5"
+           stroke="orange"
+           stroke-width="2"
+           id="circle62" />
+      </g>
+      <g
+         class="am-weather-cloud-2"
+         id="g64">
+        <path
+           d="M47.7,35.4c0-4.6-3.7-8.2-8.2-8.2c-1,0-1.9,0.2-2.8,0.5c-0.3-3.4-3.1-6.2-6.6-6.2c-3.7,0-6.7,3-6.7,6.7c0,0.8,0.2,1.6,0.4,2.3    c-0.3-0.1-0.7-0.1-1-0.1c-3.7,0-6.7,3-6.7,6.7c0,3.6,2.9,6.6,6.5,6.7l17.2,0C44.2,43.3,47.7,39.8,47.7,35.4z"
+           fill="#57A0EE"
+           stroke="white"
+           stroke-linejoin="round"
+           stroke-width="1.2"
+           transform="translate(-20,-11)"
+           id="path66" />
+      </g>
+    </g>
+  </g>
+  <text
+     xml:space="preserve"
+     style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:27.58727264px;line-height:122.00000286%;font-family:'Roboto Condensed';-inkscape-font-specification:'Roboto Condensed, Bold';letter-spacing:0px;word-spacing:0px;fill:#d35f5f;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     x="6.3039346"
+     y="53.428448"
+     id="text4180-0"
+     sodipodi:linespacing="122%"
+     transform="scale(1.0301738,0.97071)"><tspan
+       sodipodi:role="line"
+       id="tspan4182-1"
+       x="6.3039346"
+       y="53.428448"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:8.62102318px;font-family:'Roboto Condensed';-inkscape-font-specification:'Roboto Condensed,  Bold';fill:#d35f5f;fill-opacity:1">Cerah Berawan</tspan></text>
+</svg>
