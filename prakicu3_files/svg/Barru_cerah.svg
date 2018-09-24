@@ -16,7 +16,7 @@
    viewbox="0 0 64 64"
    id="svg2"
    inkscape:version="0.91 r13725"
-   sodipodi:docname="cerah-berawan.svg">
+   sodipodi:docname="cerah.svg">
   <metadata
      id="metadata70">
     <rdf:RDF>
@@ -25,6 +25,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -42,7 +43,7 @@
      id="namedview68"
      showgrid="false"
      inkscape:zoom="5.2149125"
-     inkscape:cx="36.360145"
+     inkscape:cx="-11.30365"
      inkscape:cy="31.722435"
      inkscape:window-x="0"
      inkscape:window-y="24"
@@ -341,7 +342,8 @@
       </g>
       <g
          class="am-weather-cloud-2"
-         id="g64">
+         id="g64"
+         style="fill:#e5ff80">
         <path
            d="M47.7,35.4c0-4.6-3.7-8.2-8.2-8.2c-1,0-1.9,0.2-2.8,0.5c-0.3-3.4-3.1-6.2-6.6-6.2c-3.7,0-6.7,3-6.7,6.7c0,0.8,0.2,1.6,0.4,2.3    c-0.3-0.1-0.7-0.1-1-0.1c-3.7,0-6.7,3-6.7,6.7c0,3.6,2.9,6.6,6.5,6.7l17.2,0C44.2,43.3,47.7,39.8,47.7,35.4z"
            fill="#57A0EE"
@@ -349,7 +351,8 @@
            stroke-linejoin="round"
            stroke-width="1.2"
            transform="translate(-20,-11)"
-           id="path66" />
+           id="path66"
+           style="fill:#e5ff80" />
       </g>
     </g>
   </g>
@@ -380,7 +383,7 @@
            id="tspan4167"
            x="-105.28694"
            y="23.028551"
-           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:'Roboto Condensed';-inkscape-font-specification:'Roboto Condensed, Bold';fill:#1c2422">17-26</tspan></text>
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:'Roboto Condensed';-inkscape-font-specification:'Roboto Condensed, Bold';fill:#1c2422">24-31</tspan></text>
       <g
          id="g4178"
          transform="matrix(0.10762195,0,0,0.15323007,-69.932009,17.111578)"
@@ -415,26 +418,26 @@
   <text
      xml:space="preserve"
      style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:40px;line-height:122.00000286%;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-     x="2.6291246"
-     y="11.197073"
+     x="5.0950613"
+     y="14.813557"
      id="text4159"
      sodipodi:linespacing="122%"><tspan
        sodipodi:role="line"
        id="tspan4161"
-       x="2.6291246"
-       y="11.197073"
-       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:7.5px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold'">   Parepare  </tspan></text>
+       x="5.0950613"
+       y="14.813557"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:7.5px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold'">     Barru   </tspan></text>
   <text
      xml:space="preserve"
      style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:27.58727264px;line-height:122.00000286%;font-family:'Roboto Condensed';-inkscape-font-specification:'Roboto Condensed, Bold';letter-spacing:0px;word-spacing:0px;fill:#d35f5f;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-     x="6.3039346"
-     y="53.428448"
+     x="21.399057"
+     y="52.133144"
      id="text4180-0"
      sodipodi:linespacing="122%"
      transform="scale(1.0301738,0.97071)"><tspan
        sodipodi:role="line"
        id="tspan4182-1"
-       x="6.3039346"
-       y="53.428448"
-       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:8.62102318px;font-family:'Roboto Condensed';-inkscape-font-specification:'Roboto Condensed,  Bold';fill:#d35f5f;fill-opacity:1">Cerah Berawan</tspan></text>
+       x="21.399057"
+       y="52.133144"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:8.62102318px;font-family:'Roboto Condensed';-inkscape-font-specification:'Roboto Condensed,  Bold';fill:#d35f5f;fill-opacity:1">Cerah</tspan></text>
 </svg>
