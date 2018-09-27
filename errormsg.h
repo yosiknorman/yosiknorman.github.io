@@ -1,0 +1,1 @@
+#define ERRORMSG(msg) write(0,'("There was an error at ",I4," in file ",/,A,/,"Error message: ",A)') __LINE__,__FILE__,msg
