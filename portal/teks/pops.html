@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+.alertxx {
+    padding: 20px;
+    background-color: #f44336;
+    color: white;
+    width: 20%;
+    font-size: 12px;
+    
+}
+
+.alertcuaca {
+    padding: 20px;
+    background-color: orange;
+    color: white;
+    width: 20%;
+    font-size: 12px;
+    
+}
+
+.closebtnxx {
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.closebtnxx:hover {
+    color: black;
+    
+}
+</style>
+</head>
+<body>
+<!-- 
+<h2>Alert Messages</h2>
+
+<p>Click on the "x" symbol to close the alert message.</p> -->
+<div class="alertxx">
+  <span class="closebtnxx" onclick="this.parentElement.style.display='none';">&times;</span> 
+  <strong>Gempa!</strong> Gempa bumi 5.3 SR (Barat Laut Kec. Panakukkang, Kota. Makassar, Sulawesi Selatan ) 
+</div>
+<div class="alertcuaca">
+        <span class="closebtnxx" onclick="this.parentElement.style.display='none';">&times;</span> 
+        <strong>Gempa!</strong> Gempa bumi 5.3 SR (Barat Laut Kec. Panakukkang, Kota. Makassar, Sulawesi Selatan ) 
+      </div>
+      <script>
+        //   var urls = ["./teks/data.txt"];
+        var reader = new FileReader();
+
+function readText(that){
+
+    if(that.files && that.files[0]){
+        var reader = new FileReader();
+        reader.onload = function (e) {  
+            var output=e.target.result;
+
+            //process text to show only lines with "@":				
+            output=output.split("\n").filter(/./.test, /\@/).join("\n");
+
+            document.getElementById('main').innerHTML= output;
+        };//end onload()
+        reader.readAsText(that.files[0]);
+    }//end if html5 filelist support
+} 
+      </script>
+      <input type="file" onchange='readText(this)' />
+      <div id="main"></div>
+
+</body>
+</html>
