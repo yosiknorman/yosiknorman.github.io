@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Cloud-Top Tomography</title>
+<meta name="author" content="Yosik Norman">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --ground:#f6f7f5; --panel:#ffffff; --line:#d3dade; --paper:#16232c; --mist:#5f727b;
+  --cold:#e0245e; --cyan:#0b8597; --warn:#b86e00;
+  --display:"Archivo",ui-sans-serif,"Helvetica Neue",Arial,sans-serif;
+  --data:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html,body{background:var(--ground)}
+body{margin:0;color:var(--paper);font-family:var(--display);font-size:15px;line-height:1.5}
+button,select{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
+a{color:var(--cyan)}
+.app{max-width:1440px;margin:0 auto;padding-block:18px 28px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:14px 18px}
+header{grid-column:1/-1;display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 18px}
+h1{margin:0;font-weight:700;font-size:20px;letter-spacing:0}
+.sub{color:var(--mist);font-size:14px}
+.badge{font-family:var(--data);font-size:12px;color:var(--mist)}
+.clock{margin-left:auto;font-family:var(--data);font-size:14px;color:var(--mist)}
+.clock b{color:var(--paper);font-weight:500;font-size:20px}
+.main{min-width:0;display:flex;flex-direction:column;gap:12px}
+.stage{position:relative;border-radius:10px;overflow:hidden;background:radial-gradient(120% 90% at 50% 20%,#ffffff 0,#e7ecee 75%);box-shadow:0 0 0 1px var(--line);height:calc(100vh - 130px);min-height:340px;touch-action:none}
+#gl{display:block;width:100%;height:100%}
+.labels{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.lb{position:absolute;transform:translate(-50%,-130%);font-size:11.5px;white-space:nowrap;color:var(--paper);text-shadow:0 0 3px #fff,0 0 6px #fff}
+.lb.c{font-family:var(--data);font-size:11px;color:var(--cyan)}
+.lb.c.on{color:var(--cold);font-weight:500}
+.lb.ax{font-family:var(--data);font-size:10.5px;color:var(--mist);transform:translate(4px,-50%)}
+.tools{position:absolute;left:12px;top:12px;display:flex;gap:6px;flex-wrap:wrap;max-width:calc(100% - 24px)}
+.seg{display:flex;background:rgba(255,255,255,.82);border-radius:7px;padding:3px;box-shadow:0 0 0 1px var(--line)}
+.seg button{border:0;background:transparent;padding:4px 10px;border-radius:5px;font-size:12.5px;cursor:pointer;color:var(--mist)}
+.seg button.on{background:var(--paper);color:var(--ground)}
+.leg{position:absolute;right:12px;bottom:12px;width:230px;font-family:var(--data);font-size:10.5px;color:var(--mist);background:rgba(255,255,255,.82);padding:8px 10px;border-radius:6px;pointer-events:none}
+.leg canvas{width:100%;height:8px;display:block;border-radius:2px;margin-bottom:3px}
+.leg .tk{display:flex;justify-content:space-between}
+.leg .tk.h{color:var(--paper)}
+.leg p{margin:5px 0 0;font-family:var(--display);font-size:11.5px}
+.hint{position:absolute;left:12px;bottom:12px;font-size:11.5px;color:var(--mist);background:rgba(255,255,255,.7);padding:4px 8px;border-radius:5px;pointer-events:none}
+.load{position:absolute;inset:0;display:grid;place-items:center;font-family:var(--data);font-size:13px;color:var(--mist)}
+.timeline{display:flex;align-items:center;gap:12px;min-width:0}
+.play{width:42px;height:42px;border-radius:50%;border:0;background:var(--paper);color:var(--ground);cursor:pointer;flex:none;display:grid;place-items:center}
+.play svg{width:16px;height:16px}
+.scrub{flex:1;min-width:0}
+#t{width:100%;accent-color:var(--cold)}
+.ticks{display:flex;justify-content:space-between;font-family:var(--data);font-size:11px;color:var(--mist);margin-top:2px}
+.side{display:flex;flex-direction:column;gap:14px;min-width:0}
+.card{background:none;border-top:1px solid rgba(60,80,90,.25);border-radius:0;padding:10px 0}
+.card h2{margin:0 0 8px;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--mist);display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.card h2 span{font-weight:400;color:var(--mist);font-size:12.5px;font-family:var(--data)}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:8px 14px;margin:0}
+.stats div{min-width:0}
+.stats dt{font-size:12px;color:var(--mist)}
+.stats dd{margin:0;font-family:var(--data);font-size:16px}
+.stats dd small{font-size:11.5px;color:var(--mist)}
+#prof{width:100%;height:90px;display:block;margin-top:12px}
+.empty{color:var(--mist);font-size:13.5px;margin:0}
+.cells{display:grid;gap:2px;max-height:calc(100vh - 360px);overflow:auto;margin:0 -6px;padding:0 6px}
+.cell{display:grid;grid-template-columns:40px 1fr auto;gap:10px;align-items:center;padding:7px 6px;border-radius:7px;border:0;background:transparent;text-align:left;cursor:pointer;width:100%}
+.cell:hover{background:rgba(60,80,90,.08)}
+.cell.on{background:rgba(255,77,122,.14)}
+.cell .id{font-family:var(--data);font-size:13px;color:var(--mist)}
+.cell .nm{font-size:13px;line-height:1.35}
+.cell .nm em{font-style:normal;color:var(--mist);font-family:var(--data);font-size:11.5px;display:block}
+.cell .h{font-family:var(--data);font-size:13px}
+.cell.off{opacity:.5}
+.note{margin:4px 0 0;font-size:12px;color:var(--mist);line-height:1.5}
+.method p{margin:0 0 8px;color:#c3d0d5;font-size:13.5px}
+.method p.s{color:var(--mist);font-size:12.5px;margin:0}
+.method code{font-family:var(--data);font-size:12px;color:var(--paper)}
+@media (max-width:960px){
+  .app{grid-template-columns:1fr}
+  .clock{margin-left:0;width:100%}
+  .stage{height:min(60vh,92vw);min-height:280px}
+  .cells{max-height:150px}
+  .app{padding-block:10px 14px;gap:10px}
+  .leg{width:180px}
+  .hint{display:none}
+}
+@media (max-width:520px){.leg{left:12px;right:12px;width:auto}}
+/* full-bleed layout: the map is the page, UI floats on top */
+@media (min-width:961px){
+  .app{display:block;max-width:none;padding:0;height:100vh}
+  .stage{position:fixed;inset:0;height:auto;border-radius:0;box-shadow:none;background:radial-gradient(90% 80% at 40% 45%,#ffffff 0,#e9edee 60%,#dfe5e7 100%)}
+  header{position:fixed;top:28px;left:36px;z-index:5;display:flex;flex-direction:column;align-items:flex-start;gap:6px;pointer-events:none}
+  header a{pointer-events:auto}
+  header .badge{order:-1;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--mist)}
+  h1{font-size:46px;font-weight:600;letter-spacing:-.025em;line-height:1}
+  .sub{font-size:14px}
+  .clock{position:fixed;left:36px;bottom:92px;margin:0;font-size:12px;letter-spacing:.06em}
+  .clock b{display:block;font-size:64px;font-weight:300;letter-spacing:-.04em;line-height:1;margin-bottom:4px}
+  .tools{left:auto;right:404px;top:28px}
+  .leg{right:404px;bottom:96px;width:220px;background:rgba(255,255,255,.72);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-radius:10px}
+  .hint{display:none}
+  .timeline{position:fixed;left:36px;right:404px;bottom:28px;z-index:5}
+  .play{width:44px;height:44px}
+  #t{height:2px}
+  .side{position:fixed;top:24px;right:24px;bottom:24px;width:356px;z-index:5;gap:0;padding:6px 22px 18px;background:rgba(255,255,255,.7);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-radius:16px;box-shadow:0 1px 0 rgba(255,255,255,.8) inset,0 12px 40px rgba(30,50,60,.12);overflow:auto}
+  .side .card:first-child{border-top:0}
+  .cells{max-height:none}
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <header>
+    <h1>Cloud-top height</h1>
+    <span class="sub">Banten, Lampung · <a href="convective-tracker.html">2D tracker</a></span>
+    <span class="badge">Concept demo · sample data</span>
+    <div class="clock"><b id="wib">--:--</b> WIB · <span id="utc">--:-- UTC</span></div>
+  </header>
+
+  <div class="main">
+    <div class="stage" id="stage">
+      <canvas id="gl" aria-label="3D view of cloud-top height with convective cell tracks"></canvas>
+      <div class="labels" id="labels"></div>
+      <div class="tools">
+        <div class="seg" role="group" aria-label="Vertical exaggeration"><button data-ex="2">×2</button><button data-ex="4" class="on">×4</button><button data-ex="8">×8</button></div>
+      </div>
+      <div class="leg" id="leg">
+        <canvas id="cbar" width="230" height="8"></canvas>
+        <div class="tk"><span>300 K</span><span>263</span><span>227</span><span>190 K</span></div>
+        <div class="tk h"><span>0 km</span><span>5.7</span><span>11.2</span><span>16.9 km</span></div>
+        <p id="legtxt"></p>
+      </div>
+      <div class="hint">drag · zoom · click a track</div>
+      <div class="load" id="load">Loading…</div>
+    </div>
+    <div class="timeline">
+      <button class="play" id="play" aria-label="Play"><svg viewBox="0 0 16 16" id="pi"></svg></button>
+      <div class="scrub"><input type="range" id="t" min="0" max="18" step="0.01" value="0" aria-label="Time"><div class="ticks" id="ticks"></div></div>
+    </div>
+  </div>
+
+  <aside class="side">
+    <section class="card">
+      <h2>Cell <span id="selid"></span></h2>
+      <div id="selbody"><p class="empty">No cell selected</p></div>
+    </section>
+    <section class="card">
+      <h2>Cells <span id="ncell">0 active</span></h2>
+      <div class="cells" id="cells"></div>
+    </section>
+    <p class="note">Height: (300 - Tb) / 6.5 K/km, tropopause 16.9 km (190 K). Estimate.</p>
+  </aside>
+</div>
+
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
+<script type="module" src="view3d.js"></script>
+</body>
+</html>

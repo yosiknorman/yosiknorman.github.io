@@ -1,188 +1,266 @@
 <!doctype html>
-<html>
-
+<html lang="en">
 <head>
-    <title>Yosik Norman</title>
-    <link href="style.css" type="text/css" rel="stylesheet">
-
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Yosik Norman · Weather and climate data</title>
+<meta name="description" content="Meteorologist since 2010. Satellite, rainfall and climate data turned into tools people act on. R, NetCDF, GIS.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+:root{--ivory:#f7f4ee;--paper:#fffdf9;--ink:#14201b;--soft:#5b6660;--hair:#e4ded2;--gold:#a8834a;
+  --serif:"Instrument Serif",Georgia,serif;--sans:"Manrope",ui-sans-serif,Arial,sans-serif;--mono:"JetBrains Mono",ui-monospace,Menlo,monospace;color-scheme:light}
+*{box-sizing:border-box}html{scroll-behavior:smooth}html,body{margin:0;background:var(--ivory);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit}.w{max-width:1240px;margin:0 auto;padding:0 32px}
+nav{position:sticky;top:0;z-index:10;background:rgba(247,244,238,.86);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--hair)}
+nav .w{display:flex;align-items:center;gap:28px;height:64px}
+nav .nm{font-family:var(--serif);font-size:24px;text-decoration:none}nav .nm i{color:var(--gold)}
+nav .ln{display:flex;gap:22px;margin-left:auto;font-size:14px}nav .ln a{text-decoration:none;color:var(--soft)}nav .ln a:hover{color:var(--ink)}
+.btn{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-weight:600;font-size:14px;padding:11px 18px;border-radius:999px;border:1px solid var(--ink)}
+.btn.d{background:var(--ink);color:var(--ivory)}.btn:hover{transform:translateY(-1px)}
+.hero{display:grid;grid-template-columns:1.1fr 1fr;gap:56px;align-items:center;padding:84px 0 70px}
+.eye{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold)}
+h1{font-family:var(--serif);font-weight:400;font-size:clamp(52px,7.2vw,108px);line-height:.93;letter-spacing:-.03em;margin:16px 0 26px}
+h1 i{color:var(--gold)}
+.who{display:flex;align-items:center;gap:14px}.who img{width:56px;height:56px;border-radius:50%;object-fit:cover;box-shadow:0 0 0 3px var(--paper),0 0 0 4px var(--hair)}.who b{display:block;font-weight:600;font-size:15px;line-height:1.2}
+.lede{font-size:19px;color:#323c37;max-width:540px;margin:0 0 30px}
+.cta{display:flex;gap:10px;flex-wrap:wrap}
+.cred{display:grid;grid-template-columns:repeat(3,1fr);margin-top:44px;border-top:1px solid var(--ink)}
+.cred div{padding:14px 14px 0 0}.cred div+div{padding-left:16px;border-left:1px solid var(--hair)}
+.cred b{display:block;font-family:var(--serif);font-weight:400;font-size:40px;line-height:1}.cred span{font-size:12.5px;color:var(--soft)}
+.stack{position:relative;aspect-ratio:1/1.02}
+.stack video{position:absolute;width:64%;aspect-ratio:1;object-fit:cover;border-radius:6px;box-shadow:0 30px 60px -20px rgba(20,32,27,.35);background:#ddd}
+.stack video:nth-child(1){left:0;top:4%}.stack video:nth-child(2){right:0;top:0;width:52%}.stack video:nth-child(3){left:22%;bottom:0;width:56%}
+.sec{padding:96px 0 0}
+h2{font-family:var(--serif);font-weight:400;font-size:clamp(40px,5vw,64px);letter-spacing:-.02em;line-height:1;margin:0 0 12px}
+.sub{color:var(--soft);max-width:640px;margin:0 0 48px;font-size:17px}
+.feat{display:grid;grid-template-columns:1.1fr 1fr;gap:56px;align-items:center;padding:44px 0;border-top:1px solid var(--hair)}
+.feat.flip .vid{order:2}
+.vid{position:relative;display:block;border-radius:6px;overflow:hidden;box-shadow:0 24px 50px -24px rgba(20,32,27,.35);background:#ddd}
+.vid video{width:100%;aspect-ratio:1;object-fit:cover;display:block;transition:transform .6s}.vid:hover video{transform:scale(1.02)}
+.vid .chip{position:absolute;left:14px;top:14px;font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;background:rgba(255,253,249,.92);padding:5px 10px;border-radius:999px}
+.txt .no{font-family:var(--mono);font-size:12px;color:var(--gold)}
+.txt h3{font-family:var(--serif);font-weight:400;font-size:clamp(34px,3.6vw,48px);letter-spacing:-.02em;line-height:1.02;margin:8px 0 14px}
+.txt .prob{font-size:19px;color:var(--ink);margin:0 0 12px}.txt p{color:#3a443f;margin:0 0 18px}
+.txt dl{display:grid;grid-template-columns:110px 1fr;gap:6px 14px;margin:0 0 22px;padding-top:14px;border-top:1px solid var(--hair);font-size:14px}
+.txt dt{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--soft);padding-top:2px}.txt dd{margin:0}
+.go{font-weight:600;text-decoration:none;border-bottom:1px solid var(--ink);padding-bottom:2px}.go span{color:var(--gold)}
+.grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+.tile{position:relative;display:block;border-radius:4px;overflow:hidden;text-decoration:none;color:#fff;background:#222;aspect-ratio:1}
+.tile video{width:100%;height:100%;object-fit:cover;display:block;opacity:.92}
+.tile .yr{position:absolute;left:10px;top:10px;font-family:var(--mono);font-size:11px;background:rgba(20,32,27,.7);padding:3px 8px;border-radius:999px}
+.tile .cap{position:absolute;inset:auto 0 0 0;padding:28px 12px 10px;background:linear-gradient(transparent,rgba(10,16,13,.85));font-size:13px;line-height:1.3}
+.tile .cap i{display:block;font-style:normal;font-family:var(--mono);font-size:10.5px;opacity:.75;margin-top:3px}
+.svc{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--ink)}
+.svc div{padding:22px 22px 26px 0;border-bottom:1px solid var(--hair)}.svc div:not(:first-child){padding-left:22px;border-left:1px solid var(--hair)}
+.svc b{font-family:var(--mono);font-size:11px;color:var(--gold);font-weight:500}.svc h4{font-family:var(--serif);font-weight:400;font-size:30px;margin:4px 0 8px;line-height:1.05}
+.svc p{margin:0 0 10px;color:#3a443f;font-size:15px}.svc span{font-family:var(--mono);font-size:11px;color:var(--soft)}.svc span a{color:var(--soft)}
+@media (max-width:900px){.svc{grid-template-columns:1fr 1fr}.svc div:nth-child(3){padding-left:0;border-left:0}.tasks{grid-template-columns:1fr!important}}
+.tk{font-family:var(--mono);font-weight:500;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin:40px 0 4px}
+.tasks{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;column-gap:40px}
+.tasks li{padding:13px 0;border-bottom:1px solid var(--hair);font-size:14.5px;color:#3a443f;display:grid;grid-template-columns:170px 1fr;gap:14px}
+.tasks li b{color:var(--ink);font-weight:600}.tasks a{color:var(--soft);font-family:var(--mono);font-size:11.5px}
+@media (max-width:620px){.tasks li{grid-template-columns:1fr;gap:2px}}
+.fmt{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.about{display:grid;grid-template-columns:380px 1fr;gap:56px;align-items:center}
+.about img{width:100%;height:auto;aspect-ratio:1;object-fit:cover;border-radius:6px;box-shadow:0 24px 50px -24px rgba(20,32,27,.35)}
+.about .lede{margin-bottom:14px}
+@media (max-width:900px){.about{grid-template-columns:1fr}.about img{max-width:340px}}
+.fmt div{background:var(--paper);border:1px solid var(--hair);border-radius:6px;padding:18px 18px 14px;display:flex;flex-direction:column}
+.fmt h4{font-family:var(--mono);font-weight:500;font-size:22px;letter-spacing:-.01em;margin:0 0 6px}
+.fmt p{margin:0 0 12px;font-size:14px;color:#3a443f;flex:1}.fmt span{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold)}
+@media (max-width:1000px){.fmt{grid-template-columns:repeat(3,1fr)}}@media (max-width:640px){.fmt{grid-template-columns:1fr 1fr}}
+.pipes{display:grid;gap:0}
+.pipe{display:grid;grid-template-columns:330px 1fr;gap:32px;padding:26px 0;border-top:1px solid var(--hair)}
+.pipe h4{font-family:var(--serif);font-weight:400;font-size:26px;line-height:1.1;margin:0 0 8px}
+.pipe a,.pipe span{display:block;font-family:var(--mono);font-size:12px;color:var(--soft)}
+.pipe ol{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.pipe li{background:var(--paper);border:1px solid var(--hair);border-radius:6px;padding:8px 12px;font-size:13px;max-width:220px}.pipe li b{display:block;font-size:11px;font-family:var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--gold)}
+.pipe li.r{border-color:var(--gold)}
+.pub{display:grid;grid-template-columns:1fr 1fr;gap:40px;border-top:1px solid var(--ink);padding-top:22px}
+.pub p{margin:0 0 10px}.pub .ref{font-family:var(--serif);font-size:24px;line-height:1.25}
+.end{margin:110px 0 0;padding:80px 0;background:var(--ink);color:var(--ivory)}
+.end h2{color:var(--ivory)}.end h2 i{color:#d6b47a}.end p{color:#b9c2bd;max-width:560px}
+.end .btn{border-color:var(--ivory);color:var(--ivory)}.end .btn.d{background:var(--ivory);color:var(--ink)}
+footer{padding:22px 0 40px;font-size:12.5px;color:var(--soft);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+@media (max-width:1000px){.hero,.feat,.pub,.pipe{grid-template-columns:1fr}.feat.flip .vid{order:0}.grid{grid-template-columns:repeat(3,1fr)}nav .ln{display:none}}
+@media (max-width:620px){.w{padding:0 18px}.grid{grid-template-columns:1fr 1fr}.cred b{font-size:30px}.hero{padding-top:48px}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.vid video,.btn{transition:none}}
+</style>
 </head>
-<head>
-	<div class="header"><center><img src="slider/Logo.png" alt="logo"/></center>
-
-
-
-	<h1><center><b>Yosik Norman</center></b></h1>
-
-	<center>
-	<div id:"container">
-
-	</div>
-	<link rel="stylesheet" type="text/css" href="style.css">
-		<ul>
-			<li><a href="index.html"><b>Beranda</b></a></li>
-			<li><a href="Belajar.html"><b>Blog Belajar</b></a>
-					<ul>
-						<li><a href="index.html"><b>Tim Kami</b></a></li>
-						<li><a href="index.html"><b>Lokasi Belajar</b></a></li>
-						<li><a href="index.html"><b>Kontak</b></a></li>
-
-					</ul>
-			</li>
-
-			<li><a href="Software.html"><b>Software</b></a>
-					<ul>
-						<li><a href="index.html"><b>Tim Kami</b></a></li>
-						<li><a href="index.html"><b>Lokasi Belajar</b></a></li>
-						<li><a href="index.html"><b>Kontak</b></a></li>
-
-					</ul>
-			</li>
-
-			<li><a href="Saya.html"><b>Tentang Saya</b></a></li>
-
-
-		</ul>
-
-
-	</center>
-
-
-
-	</div>
-
-
-	<p>
-	<p>&emsp; </p>
-		<p>&emsp; </p>
-		<hr/>
-	</p>
-
-
-	<body>
-
-
-	<div class="slider" id="main-slider"><!-- outermost container element -->
-		<div class="slider-wrapper"><!-- innermost wrapper element -->
-			<img src="slider/mount.jpg" alt="" class="slide" /><!-- slides -->
-			<img src="slider/vespa.jpg" alt="" class="slide" />
-
-		</div>
-
-		<div class="buttonBlock"><center>
-			<button id="toggle">Pause</button>
-			<button id="next">Next</button>
-			<button id="previous">Previous</button>
-
-		</center></div>
-
-	</div>
-	</body>
-</head>
-
-
-
-
-
-
-
-<center><p>
-Selamat datang di website Yosik Norman. </p>
- </center>
-<p>&emsp; </p>
-<p>&emsp; </p>
-
-	<p>
-	<p>&emsp; </p>
-	<p>&emsp; </p>
-
-	</p>
-
-
-	<p>
-	<p>&emsp; </p>
-	<p>&emsp; </p>
-
-	</p>
-
-	<p>
-	<p>&emsp; </p>
-	<p>&emsp; </p>
-		<hr/>
-	</p>
-
-
-
-<center>
-<iframe width="70%" height="500px" src="https://www.youtube.com/embed/7v4YycrXpf8" frameborder="0" allowfullscreen></iframe>
-</center>
-
-<center>
-Monitoring Awan Konvektif di Benua Maritim Indonesia
-
- </center>
-
-<center>
-<iframe width="70%" height="500px" src="https://cloudiness.github.io"> </iframe>
-</center>
-
-<p>&emsp; </p>
-<p>&emsp; </p>
-<hr/>
-<p>
 <body>
-<link rel="stylesheet" type="text/css" href="css/katalog.css">
-<ul class="products">
-    <li>
-        <img src="katalog/1.jpeg">
-        <a href="http://facebook.com" style="color:white">
-            <h4>Dinamika Monsun</h4>
-            <p></p>
-        </a>
-    </li>
-    <li>
-        <img  src="katalog/2.jpeg">
-        <a href="#" style="color:white">
-            <h4>Surga Dunia</h4>
-            <p></p>
-        </a>
-    </li>
-    <li>
-        <img class="dua" src="katalog/3.png">
-        <a href="#" style="color:white">
-            <h4>SAYA</h4>
-            <p></p>
-        </a>
-    </li>
+<nav><div class="w"><a class="nm" href="#">Yosik <i>Norman</i></a><div class="ln"><a href="#work">Work</a><a href="#earlier">Earlier</a><a href="#pipelines">Expertise</a><a href="#formats">Formats</a><a href="#about">About</a><a href="#research">Research</a></div><a class="btn d" href="https://www.upwork.com/freelancers/~01fa050996385100a1" target="_blank" rel="noopener">Hire on Upwork</a></div></nav>
 
-</ul>
+<header class="w hero">
+  <div>
+    <div class="who"><img src="img/yosik.jpg" alt="Yosik Norman" width="56" height="56"><div><b>Yosik Norman</b><div class="eye">Meteorologist · data scientist · R</div></div></div>
+    <h1>Weather data,<br>made <i>useful.</i></h1>
+    <p class="lede">I turn satellite, radar, rainfall and climate records into maps, warnings and clean datasets. I have worked as an operational meteorologist since 2010.</p>
+    <div class="cta"><a class="btn d" href="#work">See the work</a><a class="btn" href="https://www.upwork.com/freelancers/~01fa050996385100a1" target="_blank" rel="noopener">Hire on Upwork ↗</a></div>
+    <div class="cred"><div><b>Since 2010</b><span>operational meteorologist</span></div><div><b>R</b><span>plus Bash, Fortran, GrADS, GIS</span></div><div><b>MSc</b><span>earth sciences, 2017</span></div></div>
+  </div>
+  <div class="stack" aria-hidden="true">
+    <video muted loop playsinline autoplay><source src="videos/tracker.webm" type="video/webm"><source src="videos/tracker.mp4" type="video/mp4"></video>
+    <video muted loop playsinline autoplay><source src="videos/fenologi.webm" type="video/webm"><source src="videos/fenologi.mp4" type="video/mp4"></video>
+    <video muted loop playsinline autoplay><source src="videos/cloud3d.webm" type="video/webm"><source src="videos/cloud3d.mp4" type="video/mp4"></video>
+  </div>
+</header>
+
+<section class="w sec" id="work">
+  <div class="eye">Selected work · 2026</div>
+  <h2>Eight tools, live in the browser</h2>
+  <p class="sub">Demos I built to show how I work. They run as plain static files, no server needed. Most use sample data, and each page says so.</p>
+  <article class="feat">
+  <a class="vid" href="apps/convective-tracker/convective-tracker.html" target="_blank" rel="noopener" aria-label="Open Convective cell tracker"><video muted loop playsinline autoplay preload="metadata"><source src="videos/tracker.webm" type="video/webm"><source src="videos/tracker.mp4" type="video/mp4"></video><span class="chip">Concept demo</span></a>
+  <div class="txt"><span class="no">01</span><h3>Convective cell tracker</h3><p class="prob">Storms that hit a town in the next hour start as cold cloud tops on satellite imagery.</p><p>Detects deep convective cells on real Himawari-9 infrared data, tracks them through merges and splits, projects 60 minutes ahead and warns towns in the path.</p>
+    <dl><dt>Method</dt><dd>Tb &lt; 235 K, area ≥ 150 km², overlap tracking ≥ 25 %, 30-min motion</dd><dt>Built with</dt><dd>R · terra · sf · Parquet · Zarr</dd></dl>
+    <a class="go" href="apps/convective-tracker/convective-tracker.html" target="_blank" rel="noopener">Open the live demo <span>↗</span></a></div>
+</article>
+<article class="feat flip">
+  <a class="vid" href="apps/convective-tracker/view3d.html" target="_blank" rel="noopener" aria-label="Open Cloud-top height in 3D"><video muted loop playsinline autoplay preload="metadata"><source src="videos/cloud3d.webm" type="video/webm"><source src="videos/cloud3d.mp4" type="video/mp4"></video><span class="chip">Concept demo</span></a>
+  <div class="txt"><span class="no">02</span><h3>Cloud-top height in 3D</h3><p class="prob">A flat infrared image hides how tall a storm really is.</p><p>Lifts every pixel to an estimated cloud-top height over real terrain and bathymetry, with the tracked cells drawn through time.</p>
+    <dl><dt>Method</dt><dd>Tropical lapse-rate profile, ETOPO1 relief</dd><dt>Built with</dt><dd>R · three.js · WebGL</dd></dl>
+    <a class="go" href="apps/convective-tracker/view3d.html" target="_blank" rel="noopener">Open the live demo <span>↗</span></a></div>
+</article>
+<article class="feat">
+  <a class="vid" href="apps/mews-sulsel/index.html" target="_blank" rel="noopener" aria-label="Open Rain warning, South Sulawesi"><video muted loop playsinline autoplay preload="metadata"><source src="videos/mews.webm" type="video/webm"><source src="videos/mews.mp4" type="video/mp4"></video><span class="chip">Concept demo</span></a>
+  <div class="txt"><span class="no">03</span><h3>Rain warning, South Sulawesi</h3><p class="prob">A warning desk needs rain by district, the systems causing it and a message ready to send.</p><p>Rebuilt from my 2021 MEWS-SULSEL dashboard. Hourly rain for 307 sub-districts, satellite view, cluster tracking as a graph (GTG) and an auto-written public warning.</p>
+    <dl><dt>Method</dt><dd>GTG-style graph tracking, Orlanski scale, BMKG rain classes</dd><dt>Built with</dt><dd>R · terra · SVG</dd></dl>
+    <a class="go" href="apps/mews-sulsel/index.html" target="_blank" rel="noopener">Open the live demo <span>↗</span></a></div>
+</article>
+<article class="feat flip">
+  <a class="vid" href="apps/fenologi/index.html" target="_blank" rel="noopener" aria-label="Open Rice phenology, Banten"><video muted loop playsinline autoplay preload="metadata"><source src="videos/fenologi.webm" type="video/webm"><source src="videos/fenologi.mp4" type="video/mp4"></video><span class="chip">Concept demo</span></a>
+  <div class="txt"><span class="no">04</span><h3>Rice phenology, Banten</h3><p class="prob">Food planners need to know where rice is planted, growing or ready to harvest.</p><p>Rebuilt from my 2024 phenology monitor. Growth phase for 154 sub-districts every ten days, harvest outlook, NDVI, rain and SPI, with satellite views of the fields.</p>
+    <dl><dt>Method</dt><dd>NDVI phase rules, SPI-3</dd><dt>Built with</dt><dd>R · sf · GADM</dd></dl>
+    <a class="go" href="apps/fenologi/index.html" target="_blank" rel="noopener">Open the live demo <span>↗</span></a></div>
+</article>
+<article class="feat">
+  <a class="vid" href="apps/qc-hujan/index.html" target="_blank" rel="noopener" aria-label="Open Rain gauge quality control"><video muted loop playsinline autoplay preload="metadata"><source src="videos/qc.webm" type="video/webm"><source src="videos/qc.mp4" type="video/mp4"></video><span class="chip">Concept demo</span></a>
+  <div class="txt"><span class="no">05</span><h3>Rain gauge quality control</h3><p class="prob">Raw gauge records are full of gaps, typos, stuck sensors and silent relocations.</p><p>Flags seven fault types, fills gaps from neighbours, finds breaks with SNHT and scores itself against the known truth. Clean CSV out.</p>
+    <dl><dt>Method</dt><dd>WMO-No. 100 and 1245, SNHT, normal-ratio filling</dd><dt>Built with</dt><dd>R · Monte Carlo · CSV</dd></dl>
+    <a class="go" href="apps/qc-hujan/index.html" target="_blank" rel="noopener">Open the live demo <span>↗</span></a></div>
+</article>
+<article class="feat flip">
+  <a class="vid" href="apps/dairy-thi/index.html" target="_blank" rel="noopener" aria-label="Open Herd Climate, dairy heat stress"><video muted loop playsinline autoplay preload="metadata"><source src="videos/dairy.webm" type="video/webm"><source src="videos/dairy.mp4" type="video/mp4"></video><span class="chip">Concept demo</span></a>
+  <div class="txt"><span class="no">06</span><h3>Herd Climate, dairy heat stress</h3><p class="prob">Heat stress cuts milk and harms cows, and Indonesia is importing more dairy cattle.</p><p>Hour-by-hour temperature-humidity index for eight dairy centres, with actions to take and the published evidence behind each threshold.</p>
+    <dl><dt>Method</dt><dd>THI (NRC 1971), threshold 68 (Zimbelman et al. 2009)</dd><dt>Built with</dt><dd>R · SVG</dd></dl>
+    <a class="go" href="apps/dairy-thi/index.html" target="_blank" rel="noopener">Open the live demo <span>↗</span></a></div>
+</article>
+<article class="feat">
+  <a class="vid" href="apps/banjir/index.html" target="_blank" rel="noopener" aria-label="Open Flood atlas, Indonesia"><video muted loop playsinline autoplay preload="metadata"><source src="videos/banjir.webm" type="video/webm"><source src="videos/banjir.mp4" type="video/mp4"></video><span class="chip">Concept demo</span></a>
+  <div class="txt"><span class="no">07</span><h3>Flood atlas, Indonesia</h3><p class="prob">Where floods hit, in which season, and how much La Niña and El Niño change the count.</p><p>Rebuilt from my 2018 flood map. Ten years of flood counts for 502 regencies, plus an inundation simulation on real Jakarta terrain and roads: tap a house to get its evacuation route and the best warning lead time.</p>
+    <dl><dt>Method</dt><dd>HAND inundation, Dijkstra routing, Copernicus DEM, OpenStreetMap</dd><dt>Built with</dt><dd>R · terra · OSM · Canvas</dd></dl>
+    <a class="go" href="apps/banjir/index.html" target="_blank" rel="noopener">Open the live demo <span>↗</span></a></div>
+</article>
+<article class="feat flip">
+  <a class="vid" href="apps/tambak-pinrang/index.html" target="_blank" rel="noopener" aria-label="Open Pond watch, Pinrang"><video muted loop playsinline autoplay preload="metadata"><source src="videos/tambak.webm" type="video/webm"><source src="videos/tambak.mp4" type="video/mp4"></video><span class="chip">Concept demo</span></a>
+  <div class="txt"><span class="no">08</span><h3>Pond watch, Pinrang</h3><p class="prob">Heavy rain can crash pond salinity overnight, a risk for shrimp and their natural feed.</p><p>Daily salinity, water temperature and rain for 42 coastal ponds, alerts with plain advice, and satellite views of each pond.</p>
+    <dl><dt>Method</dt><dd>Salinity 20-35 ppt from Phronima culture studies</dd><dt>Built with</dt><dd>R · sf · SVG</dd></dl>
+    <a class="go" href="apps/tambak-pinrang/index.html" target="_blank" rel="noopener">Open the live demo <span>↗</span></a></div>
+</article>
+</section>
+
+<section class="w sec" id="earlier">
+  <div class="eye">Earlier work · 2018-2024</div>
+  <h2>Built for the warning desk</h2>
+  <p class="sub">Maps and dashboards made for day-to-day forecasting and climate bulletins. Years follow the git history.</p>
+  <div class="grid"><a class="tile" href="https://yosiknorman.github.io/oews.html" target="_blank" rel="noopener"><video muted loop playsinline autoplay preload="none"><source src="videos/oews.webm" type="video/webm"><source src="videos/oews.mp4" type="video/mp4"></video>
+  <span class="yr">2019</span><span class="cap"><b>Offshore early warning system</b><i>R · leaflet · raster</i></span></a>
+<a class="tile" href="https://yosiknorman.github.io/M_Kering.html" target="_blank" rel="noopener"><video muted loop playsinline autoplay preload="none"><source src="videos/M_Kering.webm" type="video/webm"><source src="videos/M_Kering.mp4" type="video/mp4"></video>
+  <span class="yr">2019</span><span class="cap"><b>Meteorological drought warning map</b><i>R · leaflet · sf</i></span></a>
+<a class="tile" href="https://yosiknorman.github.io/petapos.html" target="_blank" rel="noopener"><video muted loop playsinline autoplay preload="none"><source src="videos/petapos.webm" type="video/webm"><source src="videos/petapos.mp4" type="video/mp4"></video>
+  <span class="yr">2019</span><span class="cap"><b>Rain-gauge network status, Banten</b><i>R · leaflet</i></span></a>
+<a class="tile" href="https://yosiknorman.github.io/tews.html" target="_blank" rel="noopener"><video muted loop playsinline autoplay preload="none"><source src="videos/tews.webm" type="video/webm"><source src="videos/tews.mp4" type="video/mp4"></video>
+  <span class="yr">2018</span><span class="cap"><b>Earthquake analysis explorer</b><i>R · leaflet · plotly · crosstalk · DT</i></span></a>
+<a class="tile" href="https://yosiknorman.github.io/indonesiawarning.html" target="_blank" rel="noopener"><video muted loop playsinline autoplay preload="none"><source src="videos/indonesiawarning.webm" type="video/webm"><source src="videos/indonesiawarning.mp4" type="video/mp4"></video>
+  <span class="yr">2018</span><span class="cap"><b>Indonesia sub-district weather warnings</b><i>R · leaflet · sf</i></span></a>
+<a class="tile" href="https://yosiknorman.github.io/radar.html" target="_blank" rel="noopener"><video muted loop playsinline autoplay preload="none"><source src="videos/radar.webm" type="video/webm"><source src="videos/radar.mp4" type="video/mp4"></video>
+  <span class="yr">2018</span><span class="cap"><b>Weather radar heavy-rain map</b><i>R · leaflet · sp</i></span></a>
+<a class="tile" href="https://yosiknorman.github.io/prakicu1.html" target="_blank" rel="noopener"><video muted loop playsinline autoplay preload="none"><source src="videos/prakicu1.webm" type="video/webm"><source src="videos/prakicu1.mp4" type="video/mp4"></video>
+  <span class="yr">2018</span><span class="cap"><b>District forecast map, South Sulawesi</b><i>R · leaflet · leaflet.extras</i></span></a></div>
+</section>
+
+<section class="w sec" id="pipelines">
+  <div class="eye">Expertise</div>
+  <h2>What I do</h2>
+  <p class="sub">Most of my work falls into these four areas.</p>
+  <div class="svc">
+    <div><b>01</b><h4>Satellite and radar</h4><p>Himawari, GSMaP and radar: decoding, calibration, cloud detection and tracking.</p></div>
+    <div><b>02</b><h4>Climate data quality</h4><p>Station records checked, filled and homogenised to WMO guidance.</p></div>
+    <div><b>03</b><h4>Early warning and risk</h4><p>Heavy rain, drought, flood and marine hazard maps for the warning desk.</p></div>
+    <div><b>04</b><h4>Agriculture and livestock</h4><p>Crop phenology, pond water and heat stress in herds, read from weather data.</p></div>
+  </div>
+  <h3 class="tk">Specific tasks</h3>
+  <ul class="tasks">
+    <li><b>Replicate input data</b>Rebuild the dataset behind a study or report from its original sources.</li>
+    <li><b>Replicate a method</b>Turn a paper's method into working, tested code.</li>
+    <li><b>Replicate results</b>Reproduce published figures and tables, and explain any difference.</li>
+    <li><b>Digitise</b>Paper records, scanned maps and charts into usable data.</li>
+    <li><b>Vectorise</b>Raster to clean polygons: cloud cells, flood extent, fields.</li>
+    <li><b>Convert formats</b>Between grids, tables, vectors and databases, metadata kept.</li>
+    <li><b>Training data</b>Labelled, tiled sets with splits that respect time and space.</li>
+    <li><b>Store and query</b>Chunked arrays, columnar tables and databases that load fast.</li>
+    <li><b>Clean and check</b>Gaps, typos, stuck sensors and relocations, scored against truth.</li>
+    <li><b>Automate</b>Scheduled download, process and publish chains. <a href="https://github.com/yosiknorman/oto_monitoring_himawari" target="_blank" rel="noopener">oto_monitoring_himawari</a> · <a href="https://github.com/yosiknorman/chiba_himawari_8" target="_blank" rel="noopener">chiba_himawari_8</a> · <a href="https://github.com/yosiknorman/gsmap" target="_blank" rel="noopener">gsmap</a></li>
+  </ul>
+</section>
+
+<section class="w sec" id="formats">
+  <div class="eye">Formats</div>
+  <h2>Read, write, convert</h2>
+  <p class="sub">Data rarely comes clean or in one format. These are the ones I handle directly.</p>
+  <div class="fmt">
+    <div><h4>NetCDF</h4><p>Gridded model and satellite fields, CF metadata, time axes.</p><span>Grids</span></div>
+    <div><h4>HDF5</h4><p>Satellite products and large nested datasets.</p><span>Grids</span></div>
+    <div><h4>Zarr</h4><p>Chunked arrays for the cloud and the browser.</p><span>Grids</span></div>
+    <div><h4>HSD</h4><p>Himawari raw binary, calibrated to brightness temperature.</p><span>Satellite</span></div>
+    <div><h4>VOL</h4><p>Weather radar volume scans.</p><span>Radar</span></div>
+    <div><h4>BUFR</h4><p>WMO binary for station and upper-air observations.</p><span>Observations</span></div>
+    <div><h4>Parquet</h4><p>Columnar tables, fast and small, readable in the browser.</p><span>Tables</span></div>
+    <div><h4>SQL</h4><p>Databases for station records, warnings and history.</p><span>Databases</span></div>
+    <div><h4>GeoJSON</h4><p>Boundaries and vectorised features for web maps.</p><span>Vectors</span></div>
+    <div><h4>GeoTIFF</h4><p>Georeferenced rasters: terrain, land cover, classified maps.</p><span>Rasters</span></div>
+    <div><h4>TIFF · PNG</h4><p>Scanned maps, charts and photos, ready to digitise.</p><span>Images</span></div>
+    <div><h4>DICOM</h4><p>Medical images such as X-rays, read and converted for analysis.</p><span>Images</span></div>
+    <div><h4>JSON</h4><p>API feeds and app data, flattened into clean tables.</p><span>Tables</span></div>
+    <div><h4>GPX · KML · NMEA</h4><p>GPS tracks and waypoints, cleaned and mapped.</p><span>GPS</span></div>
+    <div><h4>FIT</h4><p>Smartwatch and fitness tracker records: heart rate, position, time.</p><span>Wearables</span></div>
+  </div>
+</section>
+
+<section class="w sec about" id="about">
+  <img src="img/yosik.jpg" alt="Yosik Norman on a boat at sea" width="460" height="460" loading="lazy">
+  <div>
+    <div class="eye">About</div>
+    <h2>Yosik Norman</h2>
+    <p class="lede">Meteorologist in Indonesia since 2010. Physics degree in 2012, master's in earth sciences in 2017. I work mostly in R, with Bash, Fortran and GrADS for the heavy lifting.</p>
+    <p class="lede">Most days I am working with raw satellite, radar or station data, getting it into a shape a forecaster, a farmer or a planner can use.</p>
+  </div>
+</section>
+
+<section class="w sec" id="research">
+  <div class="eye">Research</div>
+  <h2>Published work</h2>
+  <div class="pub">
+    <div><p class="ref">Investigation of mesoscale convective systems over the Indonesian maritime continent using geostationary satellite data.</p>
+      <p>Norman, Y. et al. (2019). J. Phys.: Conf. Ser. 1204, 012124. <a href="https://doi.org/10.1088/1742-6596/1204/1/012124" target="_blank" rel="noopener">doi ↗</a></p></div>
+    <div><p>The convective tracker and the rain warning demo build on this work: cold-cloud detection, cluster tracking and the life cycle of convective systems.</p>
+      <p><a href="https://scholar.google.com/citations?user=llzgAucAAAAJ" target="_blank" rel="noopener">Full list on Google Scholar ↗</a></p></div>
+  </div>
+</section>
+
+<section class="end"><div class="w">
+  <div class="eye" style="color:#d6b47a">Work together</div>
+  <h2>Got weather or climate data<br>to <i>sort out?</i></h2>
+  <p>Cleaning station records, satellite processing, early-warning maps, agricultural and livestock climate risk. Contracts run through Upwork.</p>
+  <div class="cta" style="margin-top:26px"><a class="btn d" href="https://www.upwork.com/freelancers/~01fa050996385100a1" target="_blank" rel="noopener">Hire on Upwork ↗</a><a class="btn" href="https://github.com/yosiknorman" target="_blank" rel="noopener">GitHub ↗</a></div>
+</div></section>
+<footer class="w"><span>© Yosik Norman</span><span>Concept demos are not deployed products. No internal BMKG data is used.</span></footer>
+<script>
+// play videos only while on screen
+const io=new IntersectionObserver(es=>es.forEach(x=>{const v=x.target;if(x.isIntersecting){v.preload='auto';v.play().catch(()=>{})}else v.pause()}),{rootMargin:'200px'});
+document.querySelectorAll('video').forEach(v=>{if(matchMedia('(prefers-reduced-motion: reduce)').matches){v.removeAttribute('autoplay');v.pause()}else io.observe(v)});
+</script>
 </body>
-</p>
-
-
-	<h1>
-	<br clear="all" />
-	<p>
-	<hr/></p>
-
-	</h1>
-
-<h2>
-
-<p>&emsp;
-	<hr/></p>
-<br clear="all" />
-<p><center>&emsp; Yosik Norman</center></p>
-<p><center>&emsp; HP: +62-822-1913-0629</center></p>
-
-<center><a href="https://web.facebook.com/yosik.norman" target=""><img alt="" src="slider/facebook-icon.png"/></a>&nbsp;
-<a href="https://www.linkedin.com/in/yosik-norman-16ab1852/" target="blank"><img alt="" src="slider/in.png"/></a>&nbsp;
-<a href="https://www.instagram.com/yosiknorman/" target="blank"><img alt="" src="slider/twitter.png" /></a>
-</center>
-<p>
-	<hr/></p>
-</h2>
-</body>
-<script src="js/script.js"></script>
-
-<!--Google+ icon-->
 </html>

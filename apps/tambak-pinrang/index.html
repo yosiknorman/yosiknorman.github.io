@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Pond Watch Pinrang</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --ground:#f3f5f2; --sea:#d7e6ec; --line:#d6dcd8; --paper:#18242a; --mist:#66747a; --acc:#d2462e;
+  --ok:#2f9e7a; --watch:#e0a42b; --alert:#d2462e;
+  --display:"Archivo",ui-sans-serif,"Helvetica Neue",Arial,sans-serif;
+  --data:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace; color-scheme:light}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--sea);color:var(--paper);font-family:var(--display);font-size:15px;line-height:1.45}
+button{font:inherit;color:inherit}
+#map{position:fixed;inset:0;width:100%;height:100%;display:block;background:radial-gradient(70% 90% at 20% 50%,#cfe1e9,#e3eef1)}
+#map path{fill:#f3f2ea;stroke:#c9c6b8;stroke-width:.8;vector-effect:non-scaling-stroke}
+#map path.co{fill:#ece9dc}
+#map text{font-family:var(--data);font-size:11px;fill:#5d6a6f;letter-spacing:.08em;text-transform:uppercase;pointer-events:none;paint-order:stroke;stroke:#f3f2ea;stroke-width:3px}
+#map circle.s{stroke:#fff;cursor:pointer;transition:fill .3s}
+#map circle.on{stroke:var(--paper)}
+#map circle.p{fill:none;stroke:var(--alert);pointer-events:none;animation:pulse 1.6s ease-out infinite;transform-box:fill-box;transform-origin:center}
+@keyframes pulse{from{opacity:.9;transform:scale(1)}to{opacity:0;transform:scale(3.2)}}
+header{position:fixed;top:28px;left:36px;pointer-events:none}
+.eye{font-family:var(--data);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--mist)}
+.eye b{color:var(--acc);font-weight:500}
+h1{margin:6px 0 4px;font-size:46px;font-weight:600;letter-spacing:-.025em;line-height:1;display:flex;align-items:center;gap:12px}
+h1 svg{width:58px;height:34px;overflow:visible}
+.sub{color:var(--mist);font-size:14px}
+.legend{display:flex;gap:16px;margin-top:14px;font-size:12.5px}
+.legend span{display:flex;align-items:center;gap:6px}.legend i{width:10px;height:10px;border-radius:50%}
+.swim{animation:swim 2.6s ease-in-out infinite}.leg1{transform-origin:22px 20px;animation:kick .5s ease-in-out infinite alternate}
+@keyframes swim{0%,100%{transform:translate(0,0)}50%{transform:translate(6px,-2px)}}
+@keyframes kick{to{transform:rotate(12deg)}}
+@media (prefers-reduced-motion:reduce){.swim,.leg1,#map circle.p{animation:none}}
+.bottom{position:fixed;left:36px;right:420px;bottom:26px}
+.date{font-size:58px;font-weight:300;letter-spacing:-.04em;line-height:1}
+.date small{font-family:var(--data);font-size:12px;letter-spacing:.06em;color:var(--mist);margin-left:12px}
+.tl{display:flex;align-items:center;gap:14px;margin-top:10px}
+.play{width:44px;height:44px;border-radius:50%;border:0;background:var(--paper);color:#fff;display:grid;place-items:center;cursor:pointer;flex:none}
+.play svg{width:16px;height:16px}
+.track{position:relative;flex:1;height:54px;cursor:pointer}
+.track svg{position:absolute;inset:0;width:100%;height:42px}
+.track .cur{position:absolute;top:-4px;width:2px;height:50px;background:var(--paper);pointer-events:none}
+.track .mo{position:absolute;bottom:0;font-family:var(--data);font-size:10.5px;color:var(--mist)}
+aside{position:fixed;top:24px;right:24px;bottom:24px;width:372px;padding:20px 22px;background:rgba(255,255,255,.8);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-radius:16px;box-shadow:0 12px 40px rgba(20,50,60,.12);overflow:auto}
+h2{margin:0 0 10px;font-size:11px;font-weight:500;font-family:var(--data);letter-spacing:.14em;text-transform:uppercase;color:var(--mist);display:flex;justify-content:space-between}
+section{padding:14px 0;border-top:1px solid var(--line)}section:first-child{border-top:0;padding-top:0}
+.kpi{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.kpi b{display:block;font-size:28px;font-weight:600;letter-spacing:-.02em;line-height:1.1}
+.kpi span{font-size:12px;color:var(--mist)}
+.log{display:grid;gap:4px;max-height:132px;overflow:auto;font-size:12.5px}
+.log div{display:grid;grid-template-columns:52px 1fr;gap:8px}.log em{font-style:normal;font-family:var(--data);font-size:11.5px;color:var(--mist)}
+.name{font-size:22px;font-weight:600;letter-spacing:-.01em;line-height:1.15}
+.name small{display:block;font-size:12.5px;font-weight:400;color:var(--mist)}
+.sat{position:relative;height:170px;margin-top:10px;border-radius:10px;overflow:hidden;background:#cfd6c8}
+.sat #tiles{position:absolute;inset:0}.sat img{position:absolute;width:256px;height:256px}
+.sat .att{position:absolute;right:6px;bottom:4px;font-size:9.5px;color:#fff;text-shadow:0 0 3px #000}
+.sat .st{position:absolute;left:8px;top:8px;font-size:11.5px;font-weight:600;color:#fff;padding:3px 8px;border-radius:5px}
+.sat .pin{position:absolute;left:50%;top:50%;width:14px;height:14px;margin:-7px;border:2px solid #fff;border-radius:50%;box-shadow:0 0 0 2px rgba(0,0,0,.3)}
+.cond{font-size:13px;margin:8px 0 0}.cond b{font-weight:600}
+.chart{width:100%;display:block;margin-top:8px}
+.cap{font-size:11.5px;color:var(--mist);margin:2px 0 0}
+.note{font-size:11.5px;color:var(--mist);margin:0}.note a{color:inherit}
+.tip{position:fixed;pointer-events:none;background:var(--paper);color:#fff;font-size:12px;padding:6px 9px;border-radius:6px;display:none;white-space:nowrap}
+@media (max-width:960px){
+  #map{position:relative;height:min(64vh,620px)}
+  header{position:absolute;top:14px;left:16px}h1{font-size:30px}
+  .bottom{position:static;padding:8px 16px}.date{font-size:36px}
+  aside{position:static;width:auto;margin:8px 16px 16px;backdrop-filter:none;background:#fff}
+}
+</style>
+</head>
+<body>
+<svg id="map" role="img" aria-label="Map of Pinrang coast with pond sites coloured by status"></svg>
+<header>
+  <div class="eye"><b>Concept demo · sample data</b> · CHIRPS rain · pond logs</div>
+  <h1>Pond watch <svg viewBox="0 0 58 34" aria-hidden="true"><g class="swim"><path d="M6 18c6-9 20-11 30-6 4 2 6 5 6 8-6 3-16 4-24 1" fill="#e98a6a"/><path d="M42 20l8-5-2 7 2 7-8-5z" fill="#d9704f"/><path d="M8 17l-6-7M9 16l-5-9" stroke="#b5583c" stroke-width="1.2" fill="none"/><circle cx="12" cy="16" r="1.6" fill="#18242a"/><g class="leg1" stroke="#c96a4b" stroke-width="1.3"><path d="M18 22l-2 5M23 23l-1 5M28 23l0 5M33 22l1 5"/></g></g></svg></h1>
+  <div class="sub">Pinrang coast · 42 ponds · daily</div>
+  <div class="legend"><span><i style="background:var(--ok)"></i>Good</span><span><i style="background:var(--watch)"></i>Watch</span><span><i style="background:var(--alert)"></i>Alert</span></div>
+</header>
+<div class="bottom">
+  <div class="date" id="date"></div>
+  <div class="tl"><button class="play" id="play" aria-label="Play"><svg viewBox="0 0 16 16" id="pi"></svg></button>
+    <div class="track" id="track"><svg id="strip" preserveAspectRatio="none"></svg><div class="cur" id="cur"></div></div></div>
+</div>
+<aside>
+  <section><h2>Coast today <span id="rmax"></span></h2>
+    <div class="kpi"><div><b id="nG" style="color:var(--ok)"></b><span>good</span></div><div><b id="nW" style="color:var(--watch)"></b><span>watch</span></div><div><b id="nA" style="color:var(--alert)"></b><span>alert</span></div></div></section>
+  <section><h2>Alerts, last 14 days <span id="nlog"></span></h2><div class="log" id="log"></div></section>
+  <section><h2>Pond <span id="pk"></span></h2>
+    <div class="name" id="pname"></div>
+    <div class="sat"><div id="tiles"></div><span class="pin"></span><span class="st" id="pst"></span><span class="att">Imagery © Esri, Maxar</span></div>
+    <p class="cond" id="cond"></p>
+    <svg class="chart" id="cS" viewBox="0 0 328 96"></svg><p class="cap">Salinity, ppt · band 20-35</p>
+    <svg class="chart" id="cT" viewBox="0 0 328 80"></svg><p class="cap">Water temperature, °C</p>
+    <svg class="chart" id="cR" viewBox="0 0 328 56"></svg><p class="cap">Rain, mm/day</p></section>
+  <section><h2>Basis</h2><p class="note">Salinity 20-35 ppt: no difference in Phronima growth across this range; slow drops are tolerated, sudden ones are the risk (<a href="https://journal.unram.ac.id/index.php/jfn/article/view/10975">Jannah et al., J. Fish Nutrition</a>). Chlorella feed gives the best Phronima density (<a href="https://smujo.id/biodiv/article/view/6310">Herawati et al. 2020, Biodiversitas</a>). Phronima suppa is endemic to brackish ponds in Suppa (<a href="https://www.researchgate.net/publication/286067985_Production_of_endemic_microcrustacean_phronima_suppa_phronima_sp_to_subtitute_artemia_salina_in_tiger_prawn_cultivation">Production of endemic Phronima suppa</a>). Pond data here is a sample.</p></section>
+</aside>
+<div class="tip" id="tip"></div>
+<script>
+(async()=>{
+const TH={sal:[20,35],temp:[26,32],rain:50};   // Phronima: 20-35 ppt tested with no growth difference (Jannah et al. 2026); edit here
+const D=await (await fetch('data.json')).json(), S=D.sites, NT=D.days.length, $=id=>document.getElementById(id);
+const mon=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'], dlab=d=>{const [y,m,dd]=d.split('-');return `${+dd} ${mon[m-1]} ${y}`};
+const COL=['var(--ok)','var(--watch)','var(--alert)'], NAME=['Good','Watch','Alert'];
+const status=(s,t)=>{const a=s.sal[t],w=s.temp[t],r=s.rain[t];if(r>=TH.rain||a<TH.sal[0]-5||a>TH.sal[1]+5||w>TH.temp[1]+.5)return 2;if(a<TH.sal[0]||a>TH.sal[1]||w>TH.temp[1]||w<TH.temp[0])return 1;return 0};
+const ST=S.map(s=>Array.from({length:NT},(_,t)=>status(s,t)));
+let t=Math.max(0,Array.from({length:NT},(_,d)=>d).findIndex(d=>d>45&&ST.filter(a=>a[d]===2).length>=3&&ST.filter(a=>a[d]===0).length>=15)), sel=S.findIndex(s=>s.kec==='Suppa')+3, playing=false;
+
+// map
+const svg=$('map'),NS='http://www.w3.org/2000/svg';let x0=1e9,x1=-1e9,y0=1e9,y1=-1e9;
+for(const k of D.kec)for(const r of k.geo)for(const [x,y] of r){x0=Math.min(x0,x);x1=Math.max(x1,x);y0=Math.min(y0,y);y1=Math.max(y1,y)}
+const CL=Math.cos((y0+y1)/2*Math.PI/180),X=x=>(x-x0)*CL,Y=y=>y1-y;
+for(const k of D.kec){const p=document.createElementNS(NS,'path');p.setAttribute('d',k.geo.map(r=>'M'+r.map(([x,y])=>X(x).toFixed(4)+','+Y(y).toFixed(4)).join('L')+'Z').join(''));if(k.coast)p.classList.add('co');svg.appendChild(p)}
+for(const k of D.kec){if(!k.coast)continue;const r=k.geo[0];let sx=0,sy=0;for(const [x,y] of r){sx+=x;sy+=y}const tx=document.createElementNS(NS,'text');tx.setAttribute('x',X(sx/r.length+.03));tx.setAttribute('y',Y(sy/r.length));tx.textContent=k.kec;svg.appendChild(tx)}
+const pulses=S.map(s=>{const c=document.createElementNS(NS,'circle');c.classList.add('p');c.setAttribute('cx',X(s.lon));c.setAttribute('cy',Y(s.lat));svg.appendChild(c);return c});
+const dots=S.map((s,i)=>{const c=document.createElementNS(NS,'circle');c.classList.add('s');c.setAttribute('cx',X(s.lon));c.setAttribute('cy',Y(s.lat));
+  c.onclick=()=>{sel=i;render()};c.onmousemove=e=>{const tp=$('tip');tp.innerHTML=`<b>${s.id}</b> ${s.kec} · ${s.sal[t]} ppt · ${s.temp[t]} °C · ${s.rain[t]} mm`;tp.style.display='block';tp.style.left=(e.clientX+14)+'px';tp.style.top=(e.clientY+14)+'px'};
+  c.onmouseleave=()=>$('tip').style.display='none';svg.appendChild(c);return c});
+let sc=1;function fit(){const w=innerWidth,h=svg.clientHeight,wide=w>960,W=(x1-x0)*CL,H=y1-y0;
+  const aw=wide?w-36-420:w-32,ah=wide?h-150-200:h-150,s=Math.min(aw/W,ah/H),ox=wide?36+(aw-W*s)/2+60:16+(aw-W*s)/2,oy=wide?140+(ah-H*s)/2:130+(ah-H*s)/2;sc=s;
+  svg.setAttribute('viewBox',`${-ox/s} ${-oy/s} ${w/s} ${h/s}`);svg.querySelectorAll('text').forEach(tx=>{tx.style.fontSize=(11/s)+'px';tx.style.strokeWidth=(3/s)+'px'});
+  dots.forEach(c=>{c.setAttribute('r',5.5/s);c.style.strokeWidth=(1.5/s)+'px'});pulses.forEach(c=>{c.setAttribute('r',5.5/s);c.style.strokeWidth=(2/s)+'px'})}
+addEventListener('resize',fit);fit();
+
+// timeline strip: share of ponds per status per day
+{const st=$('strip');st.setAttribute('viewBox',`0 0 ${NT} 1`);let h='';const C=['#2f9e7a','#e0a42b','#d2462e'];
+  for(let d=0;d<NT;d++){const c=[0,0,0];ST.forEach(a=>c[a[d]]++);let y=0;for(const i of [2,1,0]){const v=c[i]/S.length;h+=`<rect x="${d}" y="${y.toFixed(3)}" width="1.05" height="${v.toFixed(3)}" fill="${C[i]}"/>`;y+=v}}st.innerHTML=h;
+  const tr=$('track');for(let m=0;m<12;m++){const d=D.days.findIndex(x=>+x.slice(5,7)===m+1&&x.endsWith('-01'));const s=document.createElement('span');s.className='mo';s.style.left=(d/NT*100)+'%';s.textContent=mon[m];tr.appendChild(s)}
+  const seek=e=>{const r=tr.getBoundingClientRect();t=Math.max(0,Math.min(NT-1,Math.floor((e.clientX-r.left)/r.width*NT)));setPlay(false);render()};
+  tr.addEventListener('pointerdown',e=>{seek(e);tr.setPointerCapture(e.pointerId);tr.onpointermove=seek});tr.addEventListener('pointerup',()=>tr.onpointermove=null)}
+
+// satellite view at the pond, zoom 16
+let satFor=-1;function sat(s){if(satFor===sel)return;satFor=sel;const z=16,n=2**z,fx=(s.lon+180)/360*n,fy=(1-Math.log(Math.tan(s.lat*Math.PI/180)+1/Math.cos(s.lat*Math.PI/180))/Math.PI)/2*n;
+  const box=$('tiles'),W=box.clientWidth||328,H=170;let h='';for(let dx=-2;dx<=2;dx++)for(let dy=-1;dy<=1;dy++){const tx=Math.floor(fx)+dx,ty=Math.floor(fy)+dy,l=W/2+(tx-fx)*256,tp=H/2+(ty-fy)*256;
+  if(l>W||l<-256||tp>H||tp<-256)continue;h+=`<img alt="" src="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/${z}/${ty}/${tx}" style="left:${l.toFixed(0)}px;top:${tp.toFixed(0)}px">`}box.innerHTML=h}
+
+function line(v,lo,hi,band,H,col){const W=328,px=d=>4+d/(NT-1)*(W-8),py=x=>H-6-(x-lo)/(hi-lo)*(H-12);let h='';
+  if(band)h+=`<rect x="4" width="${W-8}" y="${py(band[1])}" height="${py(band[0])-py(band[1])}" fill="#2f9e7a" opacity=".12"/>`;
+  h+=`<path d="M${v.map((x,d)=>px(d).toFixed(1)+','+py(Math.max(lo,Math.min(hi,x))).toFixed(1)).join('L')}" fill="none" stroke="${col}" stroke-width="1.3"/>`;
+  h+=`<line x1="${px(t)}" x2="${px(t)}" y1="0" y2="${H}" stroke="var(--paper)"/><circle cx="${px(t)}" cy="${py(Math.max(lo,Math.min(hi,v[t])))}" r="3.2" fill="var(--paper)"/>`;
+  h+=`<text x="${W-4}" y="10" text-anchor="end" font-size="9.5" font-family="JetBrains Mono" fill="#66747a">${v[t]}</text>`;return h}
+function bars(v,H){const W=328,px=d=>4+d/(NT-1)*(W-8),mx=Math.max(...v);let h='';for(let d=0;d<NT;d++){if(!v[d])continue;const bh=Math.max(1,v[d]/mx*(H-4));h+=`<rect x="${px(d)-.5}" y="${H-bh}" width="1.2" height="${bh}" fill="${v[d]>=TH.rain?'#d2462e':'#6f98b0'}"/>`}
+  h+=`<line x1="${px(t)}" x2="${px(t)}" y1="0" y2="${H}" stroke="var(--paper)"/>`;return h}
+function cond(s){const a=s.sal[t],w=s.temp[t],r=s.rain[t],d3=t>=3?a-s.sal[t-3]:0,out=[];
+  if(r>=TH.rain)out.push(`<b style="color:var(--alert)">Heavy rain ${r} mm.</b> Close inlets, keep water deep; recheck salinity tomorrow.`);
+  if(d3<=-4)out.push(`Salinity fell ${(-d3).toFixed(1)} ppt in 3 days; feed lightly and add sea water at high tide.`);
+  if(a<TH.sal[0])out.push(`Water too fresh (${a} ppt).`);else if(a>TH.sal[1])out.push(`Water too salty (${a} ppt); add fresh water or flush at high tide.`);
+  if(w>TH.temp[1])out.push(`Warm water (${w} °C); raise water level, aerate in the afternoon.`);
+  return out.length?out.join(' '):`Stable: ${a} ppt, ${w} °C. Good for Phronima.`}
+
+function render(){$('date').innerHTML=`${dlab(D.days[t])}<small>day ${t+1}</small>`;$('cur').style.left=`calc(${(t+.5)/NT*100}% - 1px)`;
+  const c=[0,0,0];S.forEach((s,i)=>{const k=ST[i][t];c[k]++;dots[i].style.fill=COL[k];dots[i].classList.toggle('on',i===sel);pulses[i].style.display=k===2?'':'none'});
+  $('nG').textContent=c[0];$('nW').textContent=c[1];$('nA').textContent=c[2];$('rmax').textContent='max rain '+Math.max(...S.map(s=>s.rain[t]))+' mm';
+  const ev=[];for(let d=t;d>=Math.max(0,t-13);d--)S.forEach((s,i)=>{if(ST[i][d]===2&&(d===0||ST[i][d-1]!==2))ev.push(`<div><em>${dlab(D.days[d]).replace(/ \d{4}$/,'')}</em><span>${s.id} ${s.kec}: ${s.rain[d]>=TH.rain?'heavy rain '+s.rain[d]+' mm':s.sal[d]<TH.sal[0]?'salinity '+s.sal[d]+' ppt':s.temp[d]>TH.temp[1]?'water '+s.temp[d]+' °C':'salinity '+s.sal[d]+' ppt'}</span></div>`)});
+  $('log').innerHTML=ev.length?ev.slice(0,40).join(''):'<p class="note">No alerts</p>';$('nlog').textContent=ev.length;
+  const s=S[sel],k=ST[sel][t];$('pname').innerHTML=`${s.id}<small>${s.kec} · ${s.lat.toFixed(3)}, ${s.lon.toFixed(3)}</small>`;$('pk').textContent=NAME[k];
+  $('pst').textContent=NAME[k];$('pst').style.background=COL[k];sat(s);$('cond').innerHTML=cond(s);
+  $('cS').innerHTML=line(s.sal,0,45,TH.sal,96,'#2b6f8f');$('cT').innerHTML=line(s.temp,25,34,TH.temp,80,'#c2603f');$('cR').innerHTML=bars(s.rain,56)}
+const PLAY='<path d="M4 2l10 6-10 6z" fill="currentColor"/>',PAUSE='<rect x="3" y="2" width="3.5" height="12" fill="currentColor"/><rect x="9.5" y="2" width="3.5" height="12" fill="currentColor"/>';
+let timer;function setPlay(p){playing=p;$('pi').innerHTML=p?PAUSE:PLAY;clearInterval(timer);if(p)timer=setInterval(()=>{t=(t+1)%NT;render()},180)}
+$('play').onclick=()=>setPlay(!playing);setPlay(false);
+addEventListener('keydown',e=>{if(e.key==='ArrowRight'){t=Math.min(NT-1,t+1);render()}if(e.key==='ArrowLeft'){t=Math.max(0,t-1);render()}if(e.key===' '){e.preventDefault();setPlay(!playing)}});
+render();
+})();
+</script>
+</body>
+</html>

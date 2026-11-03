@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Herd Climate</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+:root{--ivory:#f7f4ee;--paper:#fffdf9;--ink:#14201b;--soft:#5b6660;--hair:#e4ded2;--gold:#a8834a;
+  --c0:#9db8a2;--c1:#d8c48e;--c2:#cf8a5a;--c3:#9e3b2c;
+  --serif:"Instrument Serif",Georgia,serif;--sans:"Manrope",ui-sans-serif,Arial,sans-serif;--mono:"JetBrains Mono",ui-monospace,Menlo,monospace;color-scheme:light}
+*{box-sizing:border-box}html,body{margin:0;background:var(--ivory);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased}
+button{font:inherit;color:inherit}a{color:inherit}
+.w{max-width:1240px;margin:0 auto;padding:0 32px}
+nav{display:flex;align-items:center;gap:14px;padding:22px 0;border-bottom:1px solid var(--hair)}
+nav .mark{font-family:var(--serif);font-size:26px;letter-spacing:-.01em}nav .mark i{color:var(--gold)}
+nav .s{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--soft)}
+nav .tag{margin-left:auto;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;border:1px solid var(--ink);padding:4px 10px;border-radius:999px}
+.hero{display:grid;grid-template-columns:1.05fr 1fr;gap:48px;padding:56px 0 30px;align-items:center}
+.eye{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold)}
+h1{font-family:var(--serif);font-weight:400;font-size:clamp(48px,6.4vw,92px);line-height:.95;letter-spacing:-.025em;margin:14px 0 22px}
+h1 i{color:var(--gold)}
+.lede{font-size:18px;color:#323c37;max-width:520px;margin:0}
+.lede b{font-weight:600}
+.demo{font-size:12.5px;color:var(--soft);margin:12px 0 0;padding-left:10px;border-left:2px solid var(--gold)}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);margin-top:36px;border-top:1px solid var(--ink)}
+.kpis div{padding:14px 12px 0 0}.kpis div+div{padding-left:14px;border-left:1px solid var(--hair)}
+.kpis b{display:block;font-family:var(--serif);font-weight:400;font-size:42px;line-height:1;letter-spacing:-.02em}
+.kpis span{font-size:12px;color:var(--soft)}
+.map{position:relative;background:var(--paper);border:1px solid var(--hair);border-radius:4px;aspect-ratio:1.45}
+.map svg{width:100%;height:100%;display:block}
+.map .cap{position:absolute;left:16px;bottom:12px;font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;color:var(--soft);text-transform:uppercase}
+.time{display:grid;grid-template-columns:auto 1fr auto;gap:18px;align-items:center;padding:18px 0;border-top:1px solid var(--hair);border-bottom:1px solid var(--hair);margin-top:24px}
+.play{width:42px;height:42px;border-radius:50%;border:1px solid var(--ink);background:none;display:grid;place-items:center;cursor:pointer}.play svg{width:14px;height:14px}
+.tl{position:relative;height:46px;cursor:pointer}.tl svg{width:100%;height:30px;display:block}
+.tl .days{display:flex;justify-content:space-between;font-family:var(--mono);font-size:10.5px;color:var(--soft);margin-top:4px}
+.tl .cur{position:absolute;top:-4px;width:1px;height:38px;background:var(--ink)}
+.now{font-family:var(--serif);font-size:34px;line-height:1;text-align:right;white-space:nowrap}.now small{display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;color:var(--soft);text-transform:uppercase;margin-top:4px}
+h2{font-family:var(--serif);font-weight:400;font-size:44px;letter-spacing:-.02em;line-height:1;margin:72px 0 8px}
+.sub{color:var(--soft);margin:0 0 22px;max-width:620px}
+table{width:100%;border-collapse:collapse}
+th{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--soft);font-weight:400;text-align:left;padding:0 10px 10px;border-bottom:1px solid var(--ink)}
+td{padding:14px 10px;border-bottom:1px solid var(--hair);vertical-align:middle}
+tr.r{cursor:pointer;transition:background .2s}tr.r:hover{background:var(--paper)}tr.r.on{background:var(--paper);box-shadow:inset 3px 0 0 var(--gold)}
+td.n{font-family:var(--serif);font-size:22px;line-height:1.1}td.n small{display:block;font-family:var(--sans);font-size:12px;color:var(--soft)}
+td.m{font-family:var(--mono);font-size:13px}
+.chip{display:inline-block;min-width:46px;text-align:center;font-family:var(--mono);font-size:13px;padding:4px 8px;border-radius:999px}
+td svg{width:220px;height:34px;display:block}
+.detail{display:grid;grid-template-columns:360px 1fr;gap:40px;align-items:start}
+.dial{background:var(--paper);border:1px solid var(--hair);border-radius:4px;padding:18px}
+.dial svg{width:100%;display:block}
+.right .big{display:flex;align-items:baseline;gap:16px;flex-wrap:wrap}
+.right .big b{font-family:var(--serif);font-weight:400;font-size:96px;line-height:.9;letter-spacing:-.03em}
+.right .big span{font-size:20px}
+.right .meta{font-family:var(--mono);font-size:12px;color:var(--soft);margin:6px 0 18px}
+.area{width:100%;display:block;background:var(--paper);border:1px solid var(--hair);border-radius:4px}
+ol.acts{list-style:none;counter-reset:a;margin:22px 0 0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:14px 28px}
+ol.acts li{counter-increment:a;padding-top:10px;border-top:1px solid var(--hair);font-size:14.5px}
+ol.acts li::before{content:counter(a,decimal-leading-zero);display:block;font-family:var(--mono);font-size:11px;color:var(--gold);margin-bottom:4px}
+.scale{display:flex;gap:18px;flex-wrap:wrap;font-size:12.5px;color:var(--soft);margin-top:14px}.scale i{display:inline-block;width:22px;height:8px;border-radius:999px;margin-right:7px;vertical-align:1px}
+.ev{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--ink)}
+.ev div{padding:18px 18px 0 0}.ev div+div{padding-left:18px;border-left:1px solid var(--hair)}
+.ev b{display:block;font-family:var(--serif);font-weight:400;font-size:38px;line-height:1}
+.ev p{font-size:13.5px;margin:8px 0 10px;color:#323c37}.ev a{font-family:var(--mono);font-size:11px;color:var(--soft)}
+footer{margin:80px 0 40px;padding-top:18px;border-top:1px solid var(--hair);font-size:12px;color:var(--soft);display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+@media (max-width:980px){.hero,.detail{grid-template-columns:1fr}.ev{grid-template-columns:1fr 1fr}.ev div:nth-child(3){border-left:0;padding-left:0}td svg{width:120px}ol.acts{grid-template-columns:1fr}}
+@media (max-width:640px){.w{padding:0 18px}.kpis{grid-template-columns:1fr 1fr}.kpis div:nth-child(3){border-left:0;padding-left:0}.hide{display:none}h2{font-size:34px}.time{grid-template-columns:auto 1fr}.now{grid-column:1/-1;text-align:left}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="w">
+<nav><span class="mark">Herd <i>Climate</i></span><span class="s hide">Heat-stress outlook for dairy herds</span><span class="tag">Concept demo · sample data</span></nav>
+
+<section class="hero">
+  <div>
+    <div class="eye">Java &amp; Sulawesi · next 72 hours</div>
+    <h1>Every herd,<br><i>every hour.</i></h1>
+    <p class="lede" id="lede"></p>
+    <p class="demo">Concept demo. Weather and herd figures are illustrative, not from a live service.</p>
+    <div class="kpis" id="kpis"></div>
+  </div>
+  <div class="map"><svg id="map" aria-label="Dairy centres coloured by temperature-humidity index"></svg><div class="cap">Circle size = herd · colour = THI now</div></div>
+</section>
+
+<div class="time">
+  <button class="play" id="play" aria-label="Play"><svg viewBox="0 0 16 16" id="pi"></svg></button>
+  <div class="tl" id="tl"><svg id="tls" viewBox="0 0 720 30" preserveAspectRatio="none"></svg><div class="days" id="days"></div><div class="cur" id="cur"></div></div>
+  <div class="now" id="now"></div>
+</div>
+
+<h2>Eight centres, one view</h2>
+<p class="sub">Temperature-humidity index (THI) per hour. Highland herds recover at night; lowland herds often do not.</p>
+<table><thead><tr><th>Centre</th><th class="hide">Elevation</th><th class="hide">Herd</th><th>Now</th><th class="hide">Peak today</th><th>Hours ≥ 72</th><th class="hide">Next 72 h</th></tr></thead><tbody id="rows"></tbody></table>
+<div class="scale" id="scale"></div>
+
+<h2 id="dname"></h2>
+<p class="sub" id="dsub"></p>
+<div class="detail">
+  <div class="dial"><svg id="dial" viewBox="0 0 320 320" aria-label="Hourly THI for the day"></svg></div>
+  <div class="right">
+    <div class="big" id="dbig"></div><div class="meta" id="dmeta"></div>
+    <svg class="area" id="area" viewBox="0 0 760 220"></svg>
+    <ol class="acts" id="acts"></ol>
+  </div>
+</div>
+
+<h2>The evidence</h2>
+<p class="sub">Thresholds and context come from published work. The weather on this page is a sample.</p>
+<div class="ev">
+  <div><b>68</b><p>THI at which milk yield of high-producing cows starts to fall; the older line was 72.</p><a href="https://www.researchgate.net/publication/251735409_A_Re-evaluation_of_the_Impact_of_Temperature_Humidity_Index_THI_and_Black_Globe_Humidity_Index_BGHI_on_Milk_Production_in_High_Producing_Dairy_Cows">Zimbelman et al. 2009 ↗</a></div>
+  <div><b>10-12 kg</b><p>Typical daily milk of Friesian Holstein cows in Indonesia, well below their potential; heat stress is a main cause.</p><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10420724/">Review, Veterinary World 2023 ↗</a></div>
+  <div><b>73-82</b><p>THI measured at the national dairy breeding centre in Baturraden, enough to put cows at risk.</p><a href="https://www.researchgate.net/publication/262525632_Pengaruh_stress_panas_terhadap_performa_produksi_sapi_Friesian_Holstein_di_BBPTU-SP_Baturraden">BBPTU-SP Baturraden study ↗</a></div>
+  <div><b>Altitude</b><p>Lowland and lower-upland FH herds show moderate heat stress; upland herds much less.</p><a href="https://journal.ugm.ac.id/buletinpeternakan/article/view/37648">Buletin Peternakan, UGM ↗</a></div>
+</div>
+<footer><span>THI = (1.8T + 32) − (0.55 − 0.0055·RH)(1.8T − 26), NRC (1971). Herd sizes are rough. Weather: sample shaped on ERA5.</span><span>Herd Climate · concept demo by Yosik Norman, not a deployed product</span></footer>
+</div>
+<script>
+(async()=>{
+const [D,LAND]=await Promise.all([fetch('data.json').then(r=>r.json()),fetch('land.json').then(r=>r.json())]),S=D.sites,H=S[0].THI.length,$=id=>document.getElementById(id);
+const C=['#9db8a2','#d8c48e','#cf8a5a','#9e3b2c'],N=['Comfortable','Mild stress','Moderate stress','Severe stress'],cat=v=>v>=80?3:v>=72?2:v>=68?1:0;
+const T0=new Date(D.meta.start.replace(' ','T')+':00+07:00'),at=h=>{const d=new Date(T0.getTime()+h*36e5);return {hm:String((d.getUTCHours()+7)%24).padStart(2,'0')+':00',day:d.toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long',timeZone:'Asia/Jakarta'}),dd:d.toLocaleDateString('en-GB',{weekday:'short',day:'numeric',timeZone:'Asia/Jakarta'})}};
+let t=14,sel=S.findIndex(s=>s.name==='Boyolali'),playing=false;
+const ACT=[['Normal routine; keep troughs full.','Good hours for milking, moving and treating cows.'],
+ ['Add water points; intake rises sharply in heat.','Fans on in the barn.','Shift feeding to early morning and evening.','Check stocking density in pens.'],
+ ['Soak and fan cows at the feed line.','Open every side of the barn; fans at full.','Feed more at night; add buffer and electrolytes.','Postpone moving, trimming and vaccination.'],
+ ['Cool every hour: soak, then fan. Fresh and high-yield cows first.','Watch for open-mouth panting; call the vet if seen.','Feed in the cool hours only; never cut water.','No transport or handling until THI falls.']];
+$('scale').innerHTML=N.map((n,i)=>`<span><i style="background:${C[i]}"></i>${n} ${['< 68','68-71','72-79','≥ 80'][i]}</span>`).join('');
+
+// map
+const X0=105.6,X1=120.4,Y0=-9.1,Y1=-2.9,MW=1000,MH=MW/((X1-X0)/(Y1-Y0)),mx=x=>(x-X0)/(X1-X0)*MW,my=y=>(Y1-y)/(Y1-Y0)*MH;
+$('map').setAttribute('viewBox',`0 0 ${MW} ${MH}`);
+const landP=LAND.map(r=>'M'+r.map(([x,y])=>mx(x).toFixed(1)+','+my(y).toFixed(1)).join('L')+'Z').join('');
+function map(){let h=`<path d="${landP}" fill="#ece6da" stroke="#d9d1c2" stroke-width="1"/>`;
+  [...S].sort((a,b)=>b.cows-a.cows).forEach(s=>{const i=S.indexOf(s),r=6+Math.sqrt(s.cows)/9,v=s.THI[t];
+    h+=`<circle cx="${mx(s.lon)}" cy="${my(s.lat)}" r="${r}" fill="${C[cat(v)]}" fill-opacity=".85" stroke="${i===sel?'#14201b':'#fffdf9'}" stroke-width="${i===sel?2.5:1.5}" data-i="${i}" style="cursor:pointer"><title>${s.name} · THI ${v}</title></circle>`});
+  S.forEach((s,i)=>{if(i===sel||['Boyolali','Enrekang','Pangalengan','Grati'].includes(s.name)){const r=6+Math.sqrt(s.cows)/9;h+=`<text x="${mx(s.lon)}" y="${my(s.lat)-r-8}" text-anchor="middle" font-family="Instrument Serif" font-size="22" fill="#14201b">${s.name}</text>`}});
+  $('map').innerHTML=h;$('map').querySelectorAll('circle').forEach(c=>c.onclick=()=>{sel=+c.dataset.i;render()})}
+
+// timeline: worst THI across centres per hour
+{const W=720,bw=W/H;let h='';for(let k=0;k<H;k++){const v=Math.max(...S.map(s=>s.THI[k]));h+=`<rect x="${k*bw+.5}" y="${30-(v-58)/34*30}" width="${bw-1}" height="${(v-58)/34*30}" fill="${C[cat(v)]}"/>`}$('tls').innerHTML=h;
+ $('days').innerHTML=[0,24,48].map(k=>`<span>${at(k).dd}</span>`).join('')+'<span></span>';
+ const tl=$('tl'),seek=e=>{const r=tl.getBoundingClientRect();t=Math.max(0,Math.min(H-1,Math.floor((e.clientX-r.left)/r.width*H)));setPlay(false);render()};
+ tl.addEventListener('pointerdown',e=>{seek(e);tl.setPointerCapture(e.pointerId);tl.onpointermove=seek});tl.addEventListener('pointerup',()=>tl.onpointermove=null)}
+
+function spark(s){const W=220,Hh=34,bw=W/H;return `<svg viewBox="0 0 ${W} ${Hh}" preserveAspectRatio="none">`+s.THI.map((v,k)=>`<rect x="${k*bw}" y="${Hh-(v-58)/34*Hh}" width="${bw+.1}" height="${(v-58)/34*Hh}" fill="${C[cat(v)]}" opacity="${k===t?1:.8}"/>`).join('')+`<rect x="${t*bw}" y="0" width="${bw}" height="${Hh}" fill="none" stroke="#14201b"/></svg>`}
+function dial(s){const d=Math.floor(t/24),cx=160,cy=160,R0=78,R1=138;let h='';
+  for(const v of [68,72,80]){const r=R0+(R1-R0)*(v-60)/30;h+=`<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="#14201b" stroke-opacity=".12" ${v===72?'':'stroke-dasharray="2 4"'}/>`}
+  for(let k=0;k<24;k++){const v=s.THI[d*24+k],a=(k+.5)/24*2*Math.PI-Math.PI/2,r=R0+(R1-R0)*Math.max(.05,Math.min(1,(v-60)/30)),on=d*24+k===t;
+    h+=`<line x1="${cx+R0*Math.cos(a)}" y1="${cy+R0*Math.sin(a)}" x2="${cx+r*Math.cos(a)}" y2="${cy+r*Math.sin(a)}" stroke="${C[cat(v)]}" stroke-width="${on?11:8}" stroke-linecap="round" data-h="${d*24+k}" style="cursor:pointer"><title>${String(k).padStart(2,'0')}:00 · ${v}</title></line>`;
+    if(on)h+=`<circle cx="${cx+(r+12)*Math.cos(a)}" cy="${cy+(r+12)*Math.sin(a)}" r="3" fill="#14201b"/>`}
+  ['00','06','12','18'].forEach((l,i)=>{const a=i/4*2*Math.PI-Math.PI/2;h+=`<text x="${cx+(R1+16)*Math.cos(a)}" y="${cy+(R1+16)*Math.sin(a)+4}" text-anchor="middle" font-family="JetBrains Mono" font-size="10" fill="#5b6660">${l}</text>`});
+  const hs=s.THI.slice(d*24,d*24+24).filter(v=>v>=72).length;
+  h+=`<text x="${cx}" y="${cy+6}" text-anchor="middle" font-family="Instrument Serif" font-size="56" fill="#14201b">${hs}</text><text x="${cx}" y="${cy+26}" text-anchor="middle" font-family="JetBrains Mono" font-size="9.5" letter-spacing="1" fill="#5b6660">HOURS ≥ 72</text>`;
+  $('dial').innerHTML=h;$('dial').querySelectorAll('line[data-h]').forEach(l=>l.onclick=()=>{t=+l.dataset.h;render()})}
+function area(s){const W=760,Hh=220,L=36,B=26,lo=58,hi=92,px=k=>L+k/(H-1)*(W-L-12),py=v=>Hh-B-(v-lo)/(hi-lo)*(Hh-B-14);let h='';
+  [[lo,68,0],[68,72,1],[72,80,2],[80,hi,3]].forEach(([a,b,i])=>h+=`<rect x="${L}" y="${py(b)}" width="${W-L-12}" height="${py(a)-py(b)}" fill="${C[i]}" opacity=".13"/>`);
+  [68,72,80].forEach(v=>h+=`<text x="${L-8}" y="${py(v)+3}" text-anchor="end" font-family="JetBrains Mono" font-size="10" fill="#5b6660">${v}</text>`);
+  [24,48].forEach(k=>h+=`<line x1="${px(k)}" x2="${px(k)}" y1="10" y2="${Hh-B}" stroke="#14201b" stroke-opacity=".12"/>`);
+  [0,24,48].forEach(k=>h+=`<text x="${px(k)+6}" y="${Hh-8}" font-family="JetBrains Mono" font-size="10" fill="#5b6660">${at(k).dd}</text>`);
+  const p=s.THI.map((v,k)=>`${px(k).toFixed(1)},${py(v).toFixed(1)}`).join('L');
+  h+=`<defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9e3b2c" stop-opacity=".35"/><stop offset="1" stop-color="#9e3b2c" stop-opacity="0"/></linearGradient></defs>`;
+  h+=`<path d="M${px(0)},${Hh-B}L${p}L${px(H-1)},${Hh-B}Z" fill="url(#g)"/><path d="M${p}" fill="none" stroke="#14201b" stroke-width="1.6"/>`;
+  h+=`<line x1="${px(t)}" x2="${px(t)}" y1="10" y2="${Hh-B}" stroke="#a8834a"/><circle cx="${px(t)}" cy="${py(s.THI[t])}" r="5" fill="#fffdf9" stroke="#14201b" stroke-width="1.6"/>`;$('area').innerHTML=h}
+function render(){const s=S[sel],v=s.THI[t],c=cat(v),w=at(t);
+  const risk=S.filter(x=>x.THI[t]>=72),cows=risk.reduce((a,x)=>a+x.cows,0),tot=S.reduce((a,x)=>a+x.cows,0),peak=S.reduce((a,x)=>x.THI[t]>a.THI[t]?x:a);
+  const d=Math.floor(t/24),dayRisk=S.filter(x=>Math.max(...x.THI.slice(d*24,d*24+24))>=72).length;
+  $('lede').innerHTML=`In this sample, on <b>${w.day}</b>, ${dayRisk} of ${S.length} dairy centres cross the stress line. At ${w.hm} WIB, <b>${Math.round(cows/tot*100)} %</b> of the herd tracked here is under heat stress; <b>${peak.name}</b> runs hottest.`;
+  $('kpis').innerHTML=`<div><b>${risk.length}/${S.length}</b><span>centres under stress</span></div><div><b>${Math.round(cows/1000)}k</b><span>cows affected</span></div><div><b>${peak.THI[t].toFixed(0)}</b><span>peak THI now</span></div><div><b>${s.THI.slice(t).findIndex(u=>u<68)>=0?s.THI.slice(t).findIndex(u=>u<68)+' h':'none'}</b><span>to relief, ${s.name}</span></div>`;
+  $('now').innerHTML=`${w.hm}<small>${w.dd} · WIB</small>`;$('cur').style.left=`calc(${(t+.5)/H*100}%)`;
+  $('rows').innerHTML=S.map((x,i)=>{const xv=x.THI[t],today=x.THI.slice(d*24,d*24+24);return `<tr class="r ${i===sel?'on':''}" data-i="${i}"><td class="n">${x.name}<small>${x.region}</small></td><td class="m hide">${x.elev.toLocaleString('en')} m</td><td class="m hide">${(x.cows/1000).toFixed(1)}k</td>
+    <td><span class="chip" style="background:${C[cat(xv)]};color:${cat(xv)===3?'#fff':'#14201b'}">${xv.toFixed(0)}</span></td><td class="m hide">${Math.max(...today).toFixed(0)}</td><td class="m">${today.filter(u=>u>=72).length} h</td><td class="hide">${spark(x)}</td></tr>`}).join('');
+  $('rows').querySelectorAll('tr').forEach(r=>r.onclick=()=>{sel=+r.dataset.i;render()});
+  $('dname').textContent=s.name;$('dsub').textContent=`${s.region} · ${s.elev.toLocaleString('en')} m above sea level · about ${s.cows.toLocaleString('en')} cows`;
+  $('dbig').innerHTML=`<b>${v.toFixed(0)}</b><span style="color:${c>1?C[3]:'#14201b'}">${N[c]}</span>`;$('dmeta').textContent=`${w.dd} ${w.hm} WIB · air ${s.T[t]} °C · humidity ${s.RH[t]} %`;
+  $('acts').innerHTML=ACT[c].map(a=>`<li>${a}</li>`).join('');map();dial(s);area(s)}
+const PLAY='<path d="M4 2l10 6-10 6z" fill="currentColor"/>',PAUSE='<rect x="3" y="2" width="3.5" height="12" fill="currentColor"/><rect x="9.5" y="2" width="3.5" height="12" fill="currentColor"/>';
+let timer;function setPlay(p){playing=p;$('pi').innerHTML=p?PAUSE:PLAY;clearInterval(timer);if(p)timer=setInterval(()=>{t=(t+1)%H;render()},500)}
+$('play').onclick=()=>setPlay(!playing);setPlay(false);
+addEventListener('keydown',e=>{if(e.key==='ArrowRight'){t=Math.min(H-1,t+1);render()}if(e.key==='ArrowLeft'){t=Math.max(0,t-1);render()}});
+render();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,267 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Convective Cell Tracker</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: forecaster console. Map left with a timeline under it, decision panel right (warnings first, then cells, then method). Single dark look: the IR image sets it. */
+:root{
+  --ground:#f6f7f5; --panel:#ffffff; --line:#d3dade; --paper:#16232c; --mist:#5f727b;
+  --cold:#e0245e; --cyan:#0b8597; --warn:#b86e00;
+  --display:"Archivo",ui-sans-serif,"Helvetica Neue",Arial,sans-serif;
+  --data:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--paper);font-family:var(--display);font-size:15px;line-height:1.5}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
+.app{max-width:min(1440px,calc((100vh - 200px)*1.25 + 430px));margin:0 auto;padding-block:18px 28px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:grid;grid-template-columns:minmax(0,1fr) 380px;grid-template-rows:auto auto 1fr;gap:14px 18px}
+header{grid-column:1/-1;display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 18px}
+h1{margin:0;font-weight:700;font-size:20px;letter-spacing:0}
+.sub{color:var(--mist);font-size:14px}
+.badge{font-family:var(--data);font-size:12px;color:var(--mist)}
+.clock{margin-left:auto;font-family:var(--data);font-size:14px;color:var(--mist)}
+.clock b{color:var(--paper);font-weight:500;font-size:20px}
+.mapwrap{position:relative;min-width:0;width:min(100%,calc((100vh - 200px)*1.25));justify-self:start;align-self:start;border-radius:10px;overflow:hidden;background:#e9eef0;box-shadow:0 0 0 1px var(--line)}
+#map{display:block;width:100%;aspect-ratio:4/3.2;cursor:crosshair;touch-action:none}
+.probe{position:absolute;left:12px;top:12px;font-family:var(--data);font-size:12px;background:rgba(255,255,255,.78);padding:7px 10px;border-radius:6px;color:var(--mist);pointer-events:none;min-width:150px}
+.probe b{color:var(--paper);font-weight:500}
+.leg{position:absolute;right:12px;bottom:12px;width:220px;font-family:var(--data);font-size:10.5px;color:var(--mist);background:rgba(255,255,255,.78);padding:8px 10px;border-radius:6px;pointer-events:none}
+.leg canvas{width:100%;height:8px;display:block;border-radius:2px;margin-bottom:3px}
+.leg .tk{display:flex;justify-content:space-between}
+.leg .k{display:flex;gap:12px;margin-top:6px;font-family:var(--display);font-size:11.5px;flex-wrap:wrap}
+.leg .k i{display:inline-block;width:16px;height:0;border-top:2px solid var(--paper);vertical-align:middle;margin-right:5px}
+.leg .k i.f{border-top:2px dashed var(--cold)}
+.timeline{grid-column:1;align-self:start;width:min(100%,calc((100vh - 200px)*1.25));display:flex;align-items:center;gap:12px;min-width:0}
+.play{width:42px;height:42px;border-radius:50%;border:0;background:var(--paper);color:var(--ground);cursor:pointer;flex:none;display:grid;place-items:center}
+.play svg{width:16px;height:16px}
+.scrub{flex:1;min-width:0;position:relative}
+#t{width:100%;accent-color:var(--cold)}
+.ticks{display:flex;justify-content:space-between;font-family:var(--data);font-size:11px;color:var(--mist);margin-top:2px}
+.side{grid-row:2/4;grid-column:2;display:flex;flex-direction:column;gap:14px;min-width:0}
+.card{background:none;border-top:1px solid rgba(60,80,90,.25);padding:10px 0}
+.card h2{margin:0 0 8px;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--mist);display:flex;justify-content:space-between;align-items:baseline}
+.card h2 span{font-weight:400;color:var(--mist);font-size:12.5px;font-family:var(--data)}
+.alerts{display:grid;gap:0;align-content:start}
+.alerts{height:240px;overflow:auto;overscroll-behavior:contain}
+.note{margin:4px 0 0;font-size:12px;color:var(--mist);line-height:1.5}
+.al{display:grid;grid-template-columns:auto 1fr auto;gap:4px 10px;align-items:center;padding:5px 4px;border-radius:0;border-bottom:1px solid rgba(60,80,90,.12)}
+.al.mid{background:rgba(255,181,71,.09);box-shadow:inset 3px 0 0 var(--warn)}
+.al b{font-size:14px}
+.al .eta{font-family:var(--data);font-size:13px;text-align:right}
+.al small{grid-column:2/4;color:var(--mist);font-size:12px;line-height:1.35}
+.al .dot{width:9px;height:9px;border-radius:50%;background:var(--cold)}
+.al.mid .dot{background:var(--warn)}
+.empty{color:var(--mist);font-size:13.5px;margin:0}
+.cells{display:grid;gap:2px;height:330px;align-content:start;overscroll-behavior:contain;overflow:auto;margin:0 -6px;padding:0 6px}
+.cell{display:grid;grid-template-columns:34px 1fr 86px;gap:2px 10px;align-items:center;padding:8px 6px;border-radius:7px;border:0;background:transparent;text-align:left;cursor:pointer;width:100%}
+.cell:hover{background:rgba(60,80,90,.08)}
+.cell.on{background:rgba(95,211,230,.12)}
+.cell .id{font-family:var(--data);font-size:13px;color:var(--mist)}
+.cell .nm{font-size:13.5px;line-height:1.35}
+.cell .nm em{font-style:normal;color:var(--mist);font-family:var(--data);font-size:11.5px;display:block}
+.cell canvas{width:86px;height:30px}
+.method ol{margin:0;padding-left:18px;color:#c3d0d5;font-size:13.5px;display:grid;gap:6px}
+.method p{margin:10px 0 0;color:var(--mist);font-size:12.5px}
+.method code{font-family:var(--data);font-size:12px;color:var(--paper)}
+.hist .row{display:flex;gap:8px;margin-bottom:10px}
+.hist select{flex:1;min-width:0;font:13px var(--data);color:var(--paper);background:var(--ground);border:1px solid var(--line);border-radius:6px;padding:6px 8px}
+.hl{max-height:190px;overflow:auto;display:grid;gap:1px;margin:0 -6px;padding:0 6px}
+.hw{display:grid;grid-template-columns:62px 44px 1fr auto;gap:8px;align-items:baseline;padding:6px;border:0;border-radius:6px;background:transparent;text-align:left;cursor:pointer;width:100%;font-family:var(--data);font-size:12.5px}
+.hw:hover{background:rgba(60,80,90,.08)}
+.hw.on{background:rgba(95,211,230,.12)}
+.hw .c{color:var(--cyan)}
+.hw .m{color:var(--mist)}
+.hw .e{text-align:right}
+#hchart{width:100%;height:110px;display:block;margin-top:10px}
+.hcap{font-family:var(--data);font-size:11.5px;color:var(--mist);margin:4px 0 0}
+.hcap i{display:inline-block;width:12px;height:0;vertical-align:middle;margin:0 4px 0 8px;border-top:2px solid var(--cold)}
+.hcap i.a{border-top:6px solid rgba(95,211,230,.35)}
+@media (max-width:960px){
+  .app{grid-template-columns:1fr}
+  .side{grid-row:auto;grid-column:1}
+  .clock{margin-left:0;width:100%}
+  .mapwrap,.timeline{width:100%}
+  .leg{position:static;width:auto;margin:0;border-radius:0;background:var(--panel)}
+  .leg .k{font-size:12px}
+}
+@media (hover:none){.probe{display:none}}
+</style>
+
+<div class="app">
+  <header>
+    <h1>Convective cells</h1>
+    <span class="sub">Banten, Lampung · B13 10.4 µm · <a href="view3d.html">3D</a></span>
+    <span class="badge">Concept demo · sample data</span>
+    <div class="clock"><b id="wib">13:00</b> WIB · <span id="utc">06:00 UTC</span></div>
+  </header>
+
+  <div class="mapwrap">
+    <canvas id="map" aria-label="Infrared image with tracked convective cells"></canvas>
+    <div class="probe" id="probe" style="display:none"><b id="pT"></b><br><span id="pL"></span></div>
+    <div class="leg">
+      <canvas id="cbar" width="220" height="8"></canvas>
+      <div class="tk"><span>300 K</span><span>263</span><span>227</span><span>190 K</span></div>
+      <div class="k"><span><i></i>cell edge 235 K</span><span><i class="f"></i>next 60 min</span><span style="color:#b86e00">··› merge</span><span style="color:#0b8597">··› split</span></div>
+    </div>
+  </div>
+
+  <div class="timeline">
+    <button class="play" id="play" aria-label="Pause"><svg viewBox="0 0 16 16" id="pi"><rect x="3" y="2" width="3.5" height="12" fill="currentColor"/><rect x="9.5" y="2" width="3.5" height="12" fill="currentColor"/></svg></button>
+    <div class="scrub"><input type="range" id="t" min="0" max="18" value="0" aria-label="Time step"><div class="ticks" id="ticks"></div></div>
+  </div>
+
+  <aside class="side">
+    <section class="card">
+      <h2>Warnings <span>next 60 min</span></h2>
+      <div class="alerts" id="alerts"></div>
+    </section>
+    <section class="card">
+      <h2>Tracked cells <span id="ncell">0 active</span></h2>
+      <div class="cells" id="cells"></div>
+    </section>
+    <section class="card hist">
+      <h2>History <span id="hn">warnings</span></h2>
+      <div class="row"><select id="hrun" aria-label="Run"></select><select id="hplace" aria-label="Town"></select></div>
+      <div class="hl" id="hlist"></div>
+      <div id="htrack" hidden><canvas id="hchart"></canvas><p class="hcap" id="hcap"></p></div>
+    </section>
+    <p class="note">Tb &lt; 235 K, area ≥ 150 km², overlap ≥ 25%. Motion: last 30 min. Alert: cell edge ≤ 10 km within 60 min.</p>
+  </aside>
+</div>
+
+<script type="module">
+import {parquetReadObjects} from 'https://cdn.jsdelivr.net/npm/hyparquet@1.31.4/src/index.js';
+// data/: meta.json, tb.zarr (Zarr v2 uint8, Tb = v + 180 K, 1 frame per chunk), cells/warnings/places/runs.parquet
+const get=u=>fetch(u).then(r=>{if(!r.ok)throw Error(`${u}: ${r.status}`);return r});
+const pq=async f=>parquetReadObjects({file:await (await get('data/'+f)).arrayBuffer()});
+let D,ZA,CA,WA;
+try{[D,ZA,CA,WA]=await Promise.all([get('data/meta.json').then(r=>r.json()),get('data/tb.zarr/.zarray').then(r=>r.json()),pq('cells.parquet'),pq('warnings.parquet')])}
+catch(e){document.querySelector('.mapwrap').insertAdjacentHTML('beforeend',`<p class="probe" style="top:auto;bottom:12px">Data not loaded (${e.message}). Serve this folder over http.</p>`);throw e}
+const M=D.meta,RUN=M.run_id,NX=M.nx,NY=M.ny,NT=M.nt;
+if(M.sample_data===false){const b=document.querySelector(".badge");b.textContent="Concept demo · Himawari-9 · "+M.start_utc.slice(0,10);document.querySelectorAll("p").forEach(p=>{if(/^Sample data:|Sample data: a synthetic/.test(p.textContent))p.textContent=p.textContent.replace(/Sample data: a synthetic[^;.]*(;|.)|Sample data: a synthetic[^.]*./,"Real data: Himawari-9 band 13, "+M.start_utc+" UTC, read from JMA HSD (NOAA open data) in R.")})}
+// cells of the mapped run -> frames[t] and tracks[id]
+const F=CA.filter(c=>c.run_id===RUN).map(c=>({t:c.t,id:c.id,lon:c.lon,lat:c.lat,area:c.area_km2,tmin:c.tmin_k,ecc:c.ecc,poly:JSON.parse(c.poly),u:c.u,v:c.v,spd:c.spd_kmh,hd:c.hd_deg,age:c.age_min,merged:c.merged_min,ev:c.event||'',par:c.parents?String(c.parents).split(',').map(Number):[]}));
+const pos=(id,t)=>frames[t]?.find(c=>c.id===id);
+const frames=Array.from({length:NT},(_,t)=>F.filter(c=>c.t===t)),tracks={};
+for(const c of F)(tracks[c.id]??=[]).push([c.t,c.lon,c.lat,c.area,c.tmin]);
+// Tb frames from Zarr, fetched on demand
+const raw=new Uint8Array(NT*NX*NY),img=[],pend=[];
+const inflate=async b=>new Uint8Array(await new Response(new Blob([b]).stream().pipeThrough(new DecompressionStream('deflate'))).arrayBuffer());
+function load(t){return pend[t]??=(async()=>{let u;
+  try{const b=await (await get(`data/tb.zarr/${t}.0.0`)).arrayBuffer();u=ZA.compressor?await inflate(b):new Uint8Array(b)}catch(e){u=new Uint8Array(NX*NY).fill(ZA.fill_value??0)}
+  raw.set(u,t*NX*NY);const c=document.createElement('canvas');c.width=NX;c.height=NY;const x=c.getContext('2d'),im=x.createImageData(NX,NY);
+  for(let i=0;i<NX*NY;i++){const v=u[i];im.data[i*4]=LUT[v*3];im.data[i*4+1]=LUT[v*3+1];im.data[i*4+2]=LUT[v*3+2];im.data[i*4+3]=255}x.putImageData(im,0,0);img[t]=c})()}
+const tbAt=(t,x,y)=>img[t]?raw[t*NX*NY+y*NX+x]+180:null;
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+// IR enhancement colormap
+const S=[[300,[18,28,34]],[273,[92,104,110]],[250,[178,188,192]],[240,[222,228,231]],[235,[63,149,214]],[225,[95,211,230]],[218,[120,214,120]],[210,[246,214,72]],[203,[255,140,60]],[197,[255,77,122]],[190,[255,240,250]]];
+function cm(k){if(k>=S[0][0])return S[0][1];for(let i=1;i<S.length;i++){if(k>=S[i][0]){const a=S[i-1],b=S[i],f=(a[0]-k)/(a[0]-b[0]);return[0,1,2].map(j=>a[1][j]+(b[1][j]-a[1][j])*f)}}return S[S.length-1][1]}
+const LUT=new Uint8ClampedArray(256*3);for(let v=0;v<256;v++){const c=cm(v+180);LUT.set(c.map(Math.round),v*3)}
+const cv=document.getElementById('map'),ctx=cv.getContext('2d');let W,H,dpr;
+const X=lon=>(lon-M.lon0)/(M.lon1-M.lon0)*W, Y=lat=>(M.lat1-lat)/(M.lat1-M.lat0)*H;
+const kmx=111*Math.cos(6.3*Math.PI/180),kmy=111;
+function size(){dpr=Math.min(2,devicePixelRatio||1);cv.width=Math.round(cv.clientWidth*dpr);cv.height=Math.round(cv.clientHeight*dpr);W=cv.width;H=cv.height}
+let t=0,sel=null,playing=!reduce;
+const f2=v=>String(v).padStart(2,'0'),hm=d=>`${f2(d.getUTCHours())}:${f2(d.getUTCMinutes())}`;
+const time=s=>{const d=new Date(s.replace(' ','T')+'Z');return{utc:hm(d),wib:hm(new Date(+d+7*36e5))}};
+const tm=i=>time(M.time_utc[i]);
+function project(c,mins){return[c.lon+c.u*mins/60,c.lat+c.v*mins/60]}
+// warnings for the mapped run, nearest ETA per town
+function warnings(i){const best={};for(const w of WA)if(w.run_id===RUN&&w.t===i&&(!best[w.place]||w.eta_min<best[w.place].eta))best[w.place]={nm:w.place,id:w.cell_id,eta:w.eta_min,tmin:w.tmin_k,spd:w.spd_kmh};
+  return Object.values(best).sort((a,b)=>a.eta-b.eta)}
+const compass=d=>['N','NE','E','SE','S','SW','W','NW'][Math.round(d/45)%8];
+function arrow(x0,y0,x1,y1,col){const a=Math.atan2(y1-y0,x1-x0),s=7*dpr;ctx.beginPath();ctx.moveTo(x1,y1);ctx.lineTo(x1-s*Math.cos(a-.45),y1-s*Math.sin(a-.45));ctx.lineTo(x1-s*Math.cos(a+.45),y1-s*Math.sin(a+.45));ctx.closePath();ctx.fillStyle=col;ctx.fill()}
+function draw(){
+  if(img[t]){ctx.imageSmoothingEnabled=true;ctx.drawImage(img[t],0,0,W,H)}else{ctx.fillStyle='#0a1822';ctx.fillRect(0,0,W,H);const k=t;load(k).then(()=>{if(t===k)draw()})}
+  // land outline
+  ctx.lineWidth=1.1*dpr;ctx.strokeStyle='rgba(230,238,240,.55)';
+  for(const p of D.coast){ctx.beginPath();p.forEach(([lo,la],k)=>k?ctx.lineTo(X(lo),Y(la)):ctx.moveTo(X(lo),Y(la)));ctx.closePath();ctx.stroke()}
+  // graticule labels
+  ctx.fillStyle='rgba(147,169,179,.85)';ctx.font=`${10.5*dpr}px "JetBrains Mono",monospace`;
+  for(let lo=Math.ceil(M.lon0+.5);lo<M.lon1;lo++){ctx.fillText(lo+'°E',X(lo)+3*dpr,H-6*dpr);ctx.fillRect(X(lo),H-24*dpr,1*dpr,10*dpr)}
+  for(let la=Math.floor(M.lat1-.2);la>M.lat0;la--){ctx.fillText(Math.abs(la)+'°S',W-34*dpr,Y(la)-4*dpr);ctx.fillRect(W-10*dpr,Y(la),10*dpr,1*dpr)}
+  const fr=frames[t];
+  // track tails
+  for(const c of fr){const tr=tracks[c.id].filter(p=>p[0]<=t);if(tr.length<2)continue;ctx.beginPath();tr.forEach((p,k)=>k?ctx.lineTo(X(p[1]),Y(p[2])):ctx.moveTo(X(p[1]),Y(p[2])));ctx.strokeStyle=c.id===sel?'rgba(95,211,230,.95)':'rgba(230,238,240,.6)';ctx.lineWidth=1.6*dpr;ctx.setLineDash([]);ctx.stroke();
+    for(const p of tr){ctx.beginPath();ctx.arc(X(p[1]),Y(p[2]),1.8*dpr,0,7);ctx.fillStyle=ctx.strokeStyle;ctx.fill()}}
+  // forecast
+  for(const c of fr){if(c.u==null)continue;const [x60,y60]=project(c,60),[x30,y30]=project(c,30);const r=Math.sqrt(c.area/Math.PI);
+    ctx.setLineDash([6*dpr,5*dpr]);ctx.strokeStyle='rgba(255,77,122,.95)';ctx.lineWidth=1.8*dpr;ctx.beginPath();ctx.moveTo(X(c.lon),Y(c.lat));ctx.lineTo(X(x60),Y(y60));ctx.stroke();ctx.setLineDash([]);arrow(X(c.lon),Y(c.lat),X(x60),Y(y60),'rgba(255,77,122,.95)');ctx.setLineDash([6*dpr,5*dpr]);
+    for(const [x,y,g] of [[x30,y30,1],[x60,y60,1.35]]){ctx.beginPath();ctx.ellipse(X(x),Y(y),r*g/kmx/(M.lon1-M.lon0)*W,r*g/kmy/(M.lat1-M.lat0)*H,0,0,7);ctx.stroke()}
+    ctx.setLineDash([])}
+  // merge / split links: parent position one step before -> cell, kept 30 min
+  const seen=new Set();for(let k=t;k>=Math.max(1,t-3);k--)for(const c of frames[k])if(c.ev){if(!pos(c.id,t))continue;const dup=seen.has(c.id);seen.add(c.id);const fade=1-(t-k)/4,col=c.ev==='merge'?`rgba(255,181,71,${fade})`:`rgba(95,211,230,${fade})`;
+    for(const id of c.par){const p=pos(id,k-1);if(!p||(c.ev==='split'&&id===c.id))continue;ctx.setLineDash([4*dpr,3*dpr]);ctx.lineWidth=2.4*dpr;ctx.beginPath();ctx.moveTo(X(p.lon),Y(p.lat));ctx.lineTo(X(c.lon),Y(c.lat));ctx.strokeStyle=col;ctx.stroke();ctx.setLineDash([]);arrow(X(p.lon),Y(p.lat),X(c.lon),Y(c.lat),col)}
+    if(dup)continue;const lab=c.ev==='merge'?'merge '+c.par.map(i=>'C'+i).join('+'):'split from C'+c.par[0];ctx.font=`600 ${11*dpr}px "JetBrains Mono",monospace`;const w=ctx.measureText(lab).width,lx=X(c.lon)-w/2-4*dpr,ly=Y(c.lat)+10*dpr;ctx.fillStyle='rgba(8,19,27,.85)';ctx.fillRect(lx,ly,w+8*dpr,16*dpr);ctx.fillStyle=c.ev==='merge'?'#ffb547':'#5fd3e6';ctx.fillText(lab,lx+4*dpr,ly+12*dpr);ctx.globalAlpha=1}
+  // cell edges
+  for(const c of fr){ctx.beginPath();c.poly.forEach(([lo,la],k)=>k?ctx.lineTo(X(lo),Y(la)):ctx.moveTo(X(lo),Y(la)));ctx.closePath();ctx.lineWidth=(c.id===sel?2.6:1.6)*dpr;ctx.strokeStyle=c.id===sel?'#5fd3e6':'#e6eef0';ctx.stroke();
+    const lab=`C${c.id}`;ctx.font=`600 ${12*dpr}px "Archivo",sans-serif`;const tw=ctx.measureText(lab).width;const lx=X(c.lon)-tw/2-5*dpr,ly=Y(c.lat)-9*dpr;ctx.fillStyle='rgba(8,19,27,.8)';ctx.fillRect(lx,ly,tw+10*dpr,17*dpr);ctx.fillStyle=c.id===sel?'#5fd3e6':'#e6eef0';ctx.fillText(lab,lx+5*dpr,ly+12.5*dpr)}
+  // towns
+  const W2=warnings(t),hit=new Set(W2.map(w=>w.nm));
+  ctx.font=`${11.5*dpr}px "Archivo",sans-serif`;
+  for(const [nm,lo,la,left] of D.places){const x=X(lo),y=Y(la);ctx.beginPath();ctx.arc(x,y,3.4*dpr,0,7);ctx.fillStyle=hit.has(nm)?'#ff4d7a':'#e6eef0';ctx.fill();ctx.lineWidth=1.2*dpr;ctx.strokeStyle='#08131b';ctx.stroke();
+    ctx.fillStyle='rgba(8,19,27,.65)';const tw=ctx.measureText(nm).width;const bx=left?x-tw-14*dpr:x+6*dpr;ctx.fillRect(bx,y-8*dpr,tw+8*dpr,15*dpr);ctx.fillStyle=hit.has(nm)?'#ffd1dc':'#e6eef0';ctx.fillText(nm,bx+4*dpr,y+3.5*dpr)}
+  panel(W2);
+}
+function spark(cv,tr){const c=cv.getContext('2d'),w=cv.width=172,h=cv.height=60;c.clearRect(0,0,w,h);const xs=p=>p[0]/(NT-1)*w;
+  c.strokeStyle='rgba(147,169,179,.25)';c.beginPath();c.moveTo(0,h-1);c.lineTo(w,h-1);c.stroke();
+  // area as fill
+  const amax=Math.max(...tracks[tr].map(p=>p[3]));const pts=tracks[tr].filter(p=>p[0]<=t);if(!pts.length)return;
+  c.beginPath();c.moveTo(xs(pts[0]),h);pts.forEach(p=>c.lineTo(xs(p),h-4-(p[3]/amax)*(h-10)));c.lineTo(xs(pts[pts.length-1]),h);c.fillStyle='rgba(95,211,230,.25)';c.fill();
+  // min Tb as line (colder = higher)
+  c.beginPath();pts.forEach((p,k)=>{const y=h-4-((240-p[4])/55)*(h-10);k?c.lineTo(xs(p),y):c.moveTo(xs(p),y)});c.strokeStyle='#ff4d7a';c.lineWidth=2;c.stroke();
+  const e=pts[pts.length-1];c.beginPath();c.arc(xs(e),h-4-((240-e[4])/55)*(h-10),3,0,7);c.fillStyle='#ff4d7a';c.fill()}
+function panel(W2){
+  const al=document.getElementById('alerts');
+  al.innerHTML=W2.length?W2.map(w=>`<div class="al ${w.tmin<205?'':'mid'}"><span class="dot"></span><b>${w.nm}</b><span class="eta">${w.eta===0?'now':'~'+w.eta+' min'}</span><small>C${w.id} · ${Math.round(w.tmin)} K${w.tmin<205?' · heavy rain':''}${w.spd?` · ${Math.round(w.spd)} km/h`:''}</small></div>`).join(''):'<p class="empty">No alerts</p>';
+  const fr=frames[t];document.getElementById('ncell').textContent=`${fr.length} active`;
+  const box=document.getElementById('cells');
+  if(!fr.length){box.innerHTML='<p class="empty">No cells colder than 235 K yet. Convection usually starts over the Banten and Bogor highlands after midday.</p>';return}
+  box.innerHTML=fr.map(c=>`<button class="cell ${c.id===sel?'on':''}" data-id="${c.id}"><span class="id">C${c.id}</span><span class="nm">${Math.round(c.area).toLocaleString()} km² · ${Math.round(c.tmin)} K<em>${c.spd!=null?`${Math.round(c.spd)} km/h ${compass(c.hd)} · `:'new · '}${c.ev==='merge'?'merged from '+c.par.map(i=>'C'+i).join('+'):c.ev==='split'?'split from C'+c.par[0]:c.merged!=null&&c.merged<=30&&c.age>c.merged?`merged ${c.merged} min ago`:`age ${c.age} min`}</em></span><canvas data-tr="${c.id}"></canvas></button>`).join('');
+  box.querySelectorAll('canvas').forEach(cn=>spark(cn,cn.dataset.tr));
+  box.querySelectorAll('.cell').forEach(b=>b.onclick=()=>{sel=+b.dataset.id===sel?null:+b.dataset.id;draw()});
+}
+// history: past warnings per run and town, then one cell's track
+const hr=document.getElementById('hrun'),hp=document.getElementById('hplace'),hl=document.getElementById('hlist');let hsel=null;
+hr.innerHTML=D.runs.map(r=>`<option value="${r.run_id}">${r.start_utc} UTC${r.sample_data?' · sample':''}</option>`).join('');hr.value=RUN;
+hp.innerHTML='<option value="">All towns</option>'+D.places.map(p=>`<option>${p[0]}</option>`).join('');
+function hist(){const r=hr.value,p=hp.value,ws=WA.filter(w=>w.run_id===r&&(!p||w.place===p));
+  document.getElementById('hn').textContent=`${ws.length} warning${ws.length===1?'':'s'}`;
+  hl.innerHTML=ws.length?ws.map(w=>`<button class="hw ${w.cell_id===hsel?'on':''}" data-id="${w.cell_id}" data-t="${w.t}"><span>${time(w.time_utc).wib}</span><span class="c">C${w.cell_id}</span><span class="m">${p?`${Math.round(w.tmin_k)} K`:w.place}</span><span class="e">${w.eta_min?'+'+w.eta_min+' min':'now'}</span></button>`).join(''):'<p class="empty">No warnings for this town in this run.</p>';
+  hl.querySelectorAll('.hw').forEach(b=>b.onclick=()=>{hsel=+b.dataset.id;hist();htrack(r,hsel);if(r===RUN){sel=hsel;playing=false;icon();setT(+b.dataset.t)}});
+  if(hsel!=null&&!ws.some(w=>w.cell_id===hsel)){hsel=null;document.getElementById('htrack').hidden=true}}
+function htrack(r,id){const pts=CA.filter(c=>c.run_id===r&&c.id===id);document.getElementById('htrack').hidden=!pts.length;if(!pts.length)return;
+  const cn=document.getElementById('hchart');dpr=Math.min(2,devicePixelRatio||1);const w=cn.width=cn.clientWidth*dpr,h=cn.height=cn.clientHeight*dpr,c=cn.getContext('2d'),pd=4*dpr;
+  const t0=pts[0].t,t1=Math.max(t0+1,pts[pts.length-1].t),xs=k=>pd+(k-t0)/(t1-t0)*(w-2*pd),amax=Math.max(...pts.map(p=>p.area_km2)),ya=a=>h-14*dpr-a/amax*(h-24*dpr);
+  const tl=Math.min(...pts.map(p=>p.tmin_k)),yt=k=>h-14*dpr-(240-k)/(240-Math.min(195,tl))*(h-24*dpr);
+  c.strokeStyle='rgba(147,169,179,.25)';c.beginPath();c.moveTo(0,h-14*dpr);c.lineTo(w,h-14*dpr);c.stroke();
+  c.beginPath();c.moveTo(xs(t0),h-14*dpr);pts.forEach(p=>c.lineTo(xs(p.t),ya(p.area_km2)));c.lineTo(xs(pts[pts.length-1].t),h-14*dpr);c.fillStyle='rgba(95,211,230,.3)';c.fill();
+  c.beginPath();pts.forEach((p,k)=>k?c.lineTo(xs(p.t),yt(p.tmin_k)):c.moveTo(xs(p.t),yt(p.tmin_k)));c.strokeStyle='#ff4d7a';c.lineWidth=2*dpr;c.stroke();
+  for(const p of pts){c.beginPath();c.arc(xs(p.t),yt(p.tmin_k),2.2*dpr,0,7);c.fillStyle='#ff4d7a';c.fill()}
+  c.fillStyle='#93a9b3';c.font=`${10.5*dpr}px "JetBrains Mono",monospace`;const a=time(pts[0].time_utc).wib,b=time(pts[pts.length-1].time_utc).wib;
+  c.fillText(a,pd,h-2*dpr);c.fillText(b,w-pd-c.measureText(b).width,h-2*dpr);
+  document.getElementById('hcap').innerHTML=`C${id} · ${a}-${b} WIB · max ${Math.round(amax).toLocaleString()} km² · min ${Math.round(tl)} K<br><i class="a"></i>area<i></i>coldest top`}
+hr.onchange=()=>{hsel=null;document.getElementById('htrack').hidden=true;hist()};hp.onchange=hist;
+// timeline
+const rg=document.getElementById('t'),tk=document.getElementById('ticks');rg.max=NT-1;
+tk.innerHTML=[0,1,2,3].map(k=>`<span>${tm(Math.round(k*(NT-1)/3)).wib}</span>`).join('');
+function setT(i){t=i;rg.value=i;const q=tm(i);document.getElementById('wib').textContent=q.wib;document.getElementById('utc').textContent=q.utc+' UTC';draw()}
+rg.oninput=()=>{playing=false;icon();setT(+rg.value)};
+const pb=document.getElementById('play');function icon(){pb.setAttribute('aria-label',playing?'Pause':'Play');document.getElementById('pi').innerHTML=playing?'<rect x="3" y="2" width="3.5" height="12" fill="currentColor"/><rect x="9.5" y="2" width="3.5" height="12" fill="currentColor"/>':'<path d="M4 2 L14 8 L4 14 Z" fill="currentColor"/>'}
+pb.onclick=()=>{playing=!playing;icon()};icon();
+let last=0;function loop(ts){if(playing&&ts-last>900){last=ts;setT((t+1)%NT)}requestAnimationFrame(loop)}
+// probe
+cv.addEventListener('pointerleave',()=>document.getElementById('probe').style.display='none');
+cv.addEventListener('pointermove',e=>{const r=cv.getBoundingClientRect();const x=Math.floor((e.clientX-r.left)/r.width*NX),y=Math.floor((e.clientY-r.top)/r.height*NY);if(x<0||y<0||x>=NX||y>=NY)return;const k=tbAt(t,x,y),lo=M.lon0+(x+.5)*M.res,la=M.lat1-(y+.5)*M.res;
+  document.getElementById('probe').style.display='';document.getElementById('pT').textContent=k==null?'':`${k} K  (${(k-273.15).toFixed(0)} °C)`;document.getElementById('pL').textContent=`${lo.toFixed(2)}°E ${Math.abs(la).toFixed(2)}°S${k<235?' · convective':''}`});
+cv.addEventListener('click',e=>{const r=cv.getBoundingClientRect();const lo=M.lon0+(e.clientX-r.left)/r.width*(M.lon1-M.lon0),la=M.lat1-(e.clientY-r.top)/r.height*(M.lat1-M.lat0);let b=null,bd=1e9;for(const c of frames[t]){const d=Math.hypot(c.lon-lo,c.lat-la);if(d<bd){bd=d;b=c}}sel=b&&bd<.25?b.id:null;draw()});
+// legend
+const cb=document.getElementById('cbar').getContext('2d');for(let i=0;i<220;i++){const c=cm(300-i*110/220);cb.fillStyle=`rgb(${c.map(Math.round)})`;cb.fillRect(i,0,1,8)}
+size();addEventListener('resize',()=>{size();draw();if(hsel!=null)htrack(hr.value,hsel)});
+const t0=Math.min(10,NT-1);await load(t0);setT(t0);hist();requestAnimationFrame(loop);
+// warm the rest of the frames in the background, next ones first
+for(let k=1;k<NT;k++)await load((t0+k)%NT);
+</script>

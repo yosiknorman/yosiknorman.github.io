@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Rain Gauge QC</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..700&family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+:root{--paper:#fbfaf6;--ink:#1a1c1a;--mist:#6d706a;--line:#e3e0d6;--acc:#b8402a;--ok:#2f8f6b;
+  --fM:#c8c4b6;--fC:#7a6fb0;--fR:#b8402a;--fS:#e08a2c;--fZ:#3f8fb8;--fA:#a84f8f;--fO:#d9b22a;
+  --serif:"Fraunces",Georgia,serif;--sans:"Inter Tight",ui-sans-serif,Arial,sans-serif;--data:"JetBrains Mono",ui-monospace,Menlo,monospace;color-scheme:light}
+*{box-sizing:border-box}html,body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.5}
+button{font:inherit;color:inherit}a{color:inherit}
+.wrap{max-width:1180px;margin:0 auto;padding:40px 24px 60px}
+.eye{font-family:var(--data);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--mist)}.eye b{color:var(--acc);font-weight:500}
+h1{font-family:var(--serif);font-weight:400;font-size:clamp(40px,6vw,76px);letter-spacing:-.03em;line-height:.98;margin:10px 0 18px}
+h1 em{font-style:italic;color:var(--acc)}
+.lede{max-width:640px;font-size:17px;color:#3c3f3b;margin:0 0 30px}
+.nums{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--ink);border-bottom:1px solid var(--line)}
+.nums div{padding:16px 16px 14px 0}.nums div+div{padding-left:16px;border-left:1px solid var(--line)}
+.nums b{display:block;font-family:var(--serif);font-weight:400;font-size:44px;letter-spacing:-.02em;line-height:1}.nums span{font-size:13px;color:var(--mist)}
+h2{font-family:var(--serif);font-weight:400;font-size:28px;letter-spacing:-.01em;margin:48px 0 6px}
+.sub{color:var(--mist);font-size:13.5px;margin:0 0 14px}
+.matrix{position:relative;background:#fff;border:1px solid var(--line);border-radius:4px;padding:10px 10px 22px 118px}
+.matrix canvas{width:100%;height:396px;display:block;cursor:crosshair}
+.matrix .yl{position:absolute;left:10px;top:10px;font-family:var(--data);font-size:10.5px;line-height:18px;color:var(--mist)}
+.matrix .yl div{cursor:pointer;white-space:nowrap}.matrix .yl div.on{color:var(--acc);font-weight:500}
+.matrix .xl{position:absolute;left:118px;right:10px;bottom:4px;display:flex;justify-content:space-between;font-family:var(--data);font-size:10.5px;color:var(--mist)}
+.leg{display:flex;flex-wrap:wrap;gap:6px 16px;margin-top:10px;font-size:12.5px}.leg i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px;vertical-align:-1px}
+.grid2{display:grid;grid-template-columns:1.4fr 1fr;gap:28px;margin-top:8px}
+.card{background:#fff;border:1px solid var(--line);border-radius:4px;padding:18px}
+.card h3{margin:0 0 2px;font-family:var(--serif);font-weight:500;font-size:22px}.card h3 small{font-family:var(--data);font-size:11.5px;color:var(--mist);font-weight:400;margin-left:8px}
+.chart{width:100%;display:block;margin-top:10px}.cap{font-size:12px;color:var(--mist);margin:2px 0 0}
+.years{display:flex;gap:4px;flex-wrap:wrap;margin-top:10px}.years button{border:1px solid var(--line);background:none;border-radius:3px;padding:2px 8px;font-family:var(--data);font-size:11.5px;cursor:pointer}.years button.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.verdict{font-size:14px;margin:10px 0 0}
+.chk{display:grid;grid-template-columns:1fr auto;gap:8px 12px;font-size:14px;margin:6px 0 0}.chk b{font-family:var(--data);font-weight:500}
+.chk .g{color:var(--ok)}.chk .w{color:#b07a12}
+.refs{font-size:12.5px;color:#4a4d48;margin:14px 0 0;padding-left:18px}.refs li{margin-bottom:4px}
+.dl{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.dl button{border:1px solid var(--ink);background:var(--ink);color:#fff;border-radius:3px;padding:7px 12px;font-size:13px;cursor:pointer}.dl button.s{background:none;color:var(--ink)}
+#mini{width:100%;display:block}#mini path{fill:#efece3;stroke:#fff}#mini circle{cursor:pointer;stroke:#fff}
+.tip{position:fixed;pointer-events:none;background:var(--ink);color:#fff;font-size:12px;padding:6px 9px;border-radius:4px;display:none;white-space:nowrap;font-family:var(--data)}
+@media (max-width:860px){.nums{grid-template-columns:1fr 1fr}.nums div:nth-child(3){border-left:0;padding-left:0}.grid2{grid-template-columns:1fr}.matrix{padding-left:96px}.matrix .xl{left:96px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="eye"><b>Concept demo · sample data</b> · QC report · daily rain gauges, Banten</div>
+  <h1>Ten years of rain records, <em>checked</em> and cleaned.</h1>
+  <p class="lede">22 gauges, 2015-2024. Every value is tested, every gap filled from neighbours, and every gauge tested for a hidden break such as a relocation.</p>
+  <div class="nums" id="nums"></div>
+
+  <h2>Where the problems are</h2>
+  <p class="sub">One row per gauge, one column per day. Blank = passed. Click a row.</p>
+  <div class="matrix"><canvas id="mx"></canvas><div class="yl" id="yl"></div><div class="xl" id="xl"></div></div>
+  <div class="leg" id="leg"></div>
+
+  <div class="grid2">
+    <div>
+      <h2 id="gt"></h2><p class="sub" id="gs"></p>
+      <div class="card"><h3>Daily rain <small id="gy"></small></h3><svg class="chart" id="cD" viewBox="0 0 560 150"></svg>
+        <p class="cap">Grey raw · colour flagged · line clean</p><div class="years" id="years"></div></div>
+      <div class="card" style="margin-top:14px"><h3>Homogeneity <small id="hT"></small></h3><svg class="chart" id="cH" viewBox="0 0 560 120"></svg>
+        <p class="cap">SNHT statistic by quarter · dashed = 95 % critical value</p><p class="verdict" id="hv"></p>
+        <div class="dl"><button id="d1">Clean CSV, this gauge</button><button class="s" id="d2">All gauges</button><button class="s" id="d3">QC report CSV</button></div></div>
+    </div>
+    <div>
+      <h2>Network</h2><p class="sub">Colour = share of days flagged</p>
+      <div class="card"><svg id="mini"></svg></div>
+      <h2>Method check</h2><p class="sub">Scored against the known truth of this sample</p>
+      <div class="card"><div class="chk" id="chk"></div>
+        <ol class="refs">
+          <li>QC and gap filling follow the <a href="https://community.wmo.int/en/product/602">WMO Guide to Climatological Practices</a> (WMO-No. 100, 2018 ed.).</li>
+          <li>Homogenisation follows <a href="https://doi.org/10.25607/OBP-1920">WMO Guidelines on Homogenization</a> (WMO-No. 1245, 2020).</li>
+          <li>SNHT: Alexandersson, H. (1986), <a href="https://doi.org/10.1002/joc.3370060607">Int. J. Climatol. 6, 661-675</a>.</li>
+          <li>Normal-ratio filling: Paulhus &amp; Kohler (1952), <a href="https://doi.org/10.1175/1520-0493(1952)080%3C0129:IOMPR%3E2.0.CO;2">Mon. Wea. Rev. 80, 129-133</a>.</li>
+        </ol></div>
+    </div>
+  </div>
+</div>
+<div class="tip" id="tip"></div>
+<script>
+(async()=>{
+const D=await (await fetch('data.json')).json(), S=D.st, $=id=>document.getElementById(id), FL=D.meta.flags, FK=Object.keys(FL), CK=D.meta.check;
+const FC=Object.fromEntries(FK.map(k=>[k,getComputedStyle(document.documentElement).getPropertyValue('--f'+k).trim()]));
+const T0=new Date(D.meta.start+'T00:00:00Z'), ND=S[0].raw.length, day=j=>new Date(T0.getTime()+j*864e5).toISOString().slice(0,10), YR=D.meta.years, fmt=n=>Math.round(n).toLocaleString('en');
+for(const s of S){s.cnt={};for(const c of s.flag)if(c!=='.')s.cnt[c]=(s.cnt[c]||0)+1;s.pct=Object.values(s.cnt).reduce((a,b)=>a+b,0)/ND*100;s.nfill=[...s.filled].filter(c=>c==='1').length}
+let sel=Math.max(0,S.findIndex(s=>s.hom.brk)), yr=YR[YR.length-1];
+const tot={};S.forEach(s=>FK.forEach(k=>tot[k]=(tot[k]||0)+(s.cnt[k]||0)));const all=Object.values(tot).reduce((a,b)=>a+b,0);
+$('nums').innerHTML=`<div><b>${fmt(S.length*ND)}</b><span>daily values in</span></div><div><b>${fmt(all)}</b><span>flagged (${(all/S.length/ND*100).toFixed(1)} %)</span></div><div><b>${fmt(S.reduce((a,s)=>a+s.nfill,0))}</b><span>gaps filled</span></div><div><b>${S.filter(s=>s.hom.brk).length}</b><span>breaks found and adjusted</span></div>`;
+$('leg').innerHTML=FK.map(k=>`<span><i style="background:${FC[k]}"></i>${FL[k]} · ${fmt(tot[k]||0)}</span>`).join('');
+
+// matrix
+const cv=$('mx'),yl=$('yl');yl.innerHTML=S.map((s,i)=>`<div data-i="${i}">${s.id} ${s.name}</div>`).join('');yl.querySelectorAll('div').forEach(d=>d.onclick=()=>{sel=+d.dataset.i;render()});
+$('xl').innerHTML=YR.map(y=>`<span>${y}</span>`).join('');
+function matrix(){const w=cv.clientWidth,h=cv.clientHeight,dpr=Math.min(2,devicePixelRatio||1);cv.width=w*dpr;cv.height=h*dpr;const c=cv.getContext('2d'),rh=h*dpr/S.length;
+  c.fillStyle='#fff';c.fillRect(0,0,cv.width,cv.height);
+  S.forEach((s,i)=>{if(i===sel){c.fillStyle='rgba(184,64,42,.08)';c.fillRect(0,i*rh,cv.width,rh)}for(let j=0;j<ND;j++){const f=s.flag[j];if(f==='.')continue;c.fillStyle=FC[f];c.fillRect(j/ND*cv.width,i*rh+rh*.18,Math.max(1,cv.width/ND),rh*.64)}
+    if(s.hom.brk){const j=Math.round((Date.parse(s.hom.brk+'-01')-T0)/864e5);c.fillStyle='#1a1c1a';c.fillRect(j/ND*cv.width,i*rh,2*dpr,rh)}});
+  yl.style.lineHeight=(h/S.length)+'px';yl.querySelectorAll('div').forEach((d,i)=>d.classList.toggle('on',i===sel))}
+cv.onmousemove=e=>{const r=cv.getBoundingClientRect(),i=Math.floor((e.clientY-r.top)/r.height*S.length),j=Math.floor((e.clientX-r.left)/r.width*ND);if(!S[i])return;const f=S[i].flag[j],tp=$('tip');
+  tp.textContent=`${S[i].name} · ${day(j)} · ${f==='.'?'ok':FL[f]}`;tp.style.display='block';tp.style.left=(e.clientX+12)+'px';tp.style.top=(e.clientY+12)+'px'};
+cv.onmouseleave=()=>$('tip').style.display='none';cv.onclick=e=>{const r=cv.getBoundingClientRect();sel=Math.floor((e.clientY-r.top)/r.height*S.length);yr=+day(Math.floor((e.clientX-r.left)/r.width*ND)).slice(0,4);render()};
+addEventListener('resize',()=>{matrix();mini()});
+
+// mini map
+const mm=$('mini'),NS='http://www.w3.org/2000/svg';let x0=1e9,x1=-1e9,y0=1e9,y1=-1e9;for(const k of D.kab)for(const r of k.geo)for(const [x,y] of r){x0=Math.min(x0,x);x1=Math.max(x1,x);y0=Math.min(y0,y);y1=Math.max(y1,y)}
+const CO=Math.cos(6.3*Math.PI/180),Wm=(x1-x0)*CO,Hm=y1-y0;mm.setAttribute('viewBox',`0 0 ${Wm} ${Hm}`);
+const qc=s=>s.pct<5?'#2f8f6b':s.pct<10?'#d9a12a':'#b8402a';
+function mini(){let h=D.kab.map(k=>`<path d="${k.geo.map(r=>'M'+r.map(([x,y])=>((x-x0)*CO).toFixed(4)+','+(y1-y).toFixed(4)).join('L')+'Z').join('')}" stroke-width="${Wm/300}"/>`).join('');
+  S.forEach((s,i)=>h+=`<circle data-i="${i}" cx="${(s.lon-x0)*CO}" cy="${y1-s.lat}" r="${Wm/(i===sel?60:85)}" fill="${qc(s)}" stroke-width="${Wm/(i===sel?200:400)}" ${i===sel?'stroke="#1a1c1a"':''}><title>${s.name} ${s.pct.toFixed(1)} %</title></circle>`);
+  mm.innerHTML=h;mm.querySelectorAll('circle').forEach(c=>c.onclick=()=>{sel=+c.dataset.i;render()})}
+
+$('years').innerHTML=YR.map(y=>`<button data-y="${y}">${y}</button>`).join('');$('years').querySelectorAll('button').forEach(b=>b.onclick=()=>{yr=+b.dataset.y;render()});
+function daily(s){const W=560,H=150,j0=Math.round((Date.UTC(yr,0,1)-T0)/864e5),n=(yr%4?365:366),bw=(W-8)/n;let mx=20;
+  for(let j=j0;j<j0+n;j++){const r=s.raw[j],c=s.clean[j];if(r>0&&r<3500)mx=Math.max(mx,r/10);if(c>0)mx=Math.max(mx,c/10)}mx=Math.min(mx,200);const py=v=>H-14-Math.min(v,mx)/mx*(H-24);let h='';
+  for(let j=j0;j<j0+n;j++){const f=s.flag[j],r=s.raw[j],x=4+(j-j0)*bw,bwi=Math.max(1,bw*.8).toFixed(2);
+    if(f==='.'){if(r>0)h+=`<rect x="${x.toFixed(2)}" y="${py(r/10).toFixed(1)}" width="${bwi}" height="${(H-14-py(r/10)).toFixed(1)}" fill="#cfcbbd"/>`}
+    else h+=`<rect x="${x.toFixed(2)}" y="${H-11}" width="${Math.max(1.2,bw)}" height="8" fill="${FC[f]}"/>`+(r>0&&r<99990?`<rect x="${x.toFixed(2)}" y="${py(r/10).toFixed(1)}" width="${bwi}" height="${(H-14-py(r/10)).toFixed(1)}" fill="${FC[f]}"/>`:'')}
+  let p='';for(let j=j0;j<j0+n;j++)p+=(p?'L':'M')+(4+(j-j0+.5)*bw).toFixed(1)+','+py(Math.max(0,s.clean[j]/10)).toFixed(1);
+  h+=`<path d="${p}" fill="none" stroke="#1a1c1a" stroke-width=".8" opacity=".7"/>`;
+  ['Jan','Apr','Jul','Oct'].forEach((m,i)=>h+=`<text x="${4+i*91*bw}" y="9" font-size="10" font-family="JetBrains Mono" fill="#8a8d86">${m}</text>`);
+  return h+`<text x="${W-4}" y="9" text-anchor="end" font-size="10" font-family="JetBrains Mono" fill="#8a8d86">max ${Math.round(mx)} mm</text>`}
+function snht(s){const W=560,H=120,T=s.hom.T,n=T.length,mx=Math.max(D.meta.T95*1.3,...T),px=k=>6+k/(n-1)*(W-12),py=v=>H-16-v/mx*(H-24);
+  let h=`<line x1="6" x2="${W-6}" y1="${py(D.meta.T95)}" y2="${py(D.meta.T95)}" stroke="#b8402a" stroke-dasharray="4 3"/><path d="M${T.map((v,k)=>px(k).toFixed(1)+','+py(v).toFixed(1)).join('L')}" fill="none" stroke="#1a1c1a" stroke-width="1.5"/>`;
+  YR.forEach((y,i)=>{if(i%2===1)h+=`<text x="${px(i*4)}" y="${H-2}" font-size="10" font-family="JetBrains Mono" fill="#8a8d86" text-anchor="middle">${y}</text>`});
+  if(s.hom.brk){const k=YR.indexOf(+s.hom.brk.slice(0,4))*4+(+s.hom.brk.slice(5,7)-1)/3-1;h+=`<line x1="${px(k)}" x2="${px(k)}" y1="4" y2="${H-16}" stroke="#b8402a" stroke-width="2"/><text x="${px(k)+5}" y="13" font-size="11" font-family="JetBrains Mono" fill="#b8402a">break ${s.hom.brk}</text>`}return h}
+// method check
+const tb=CK.breaks.true,fb=CK.breaks.found,hit=Object.keys(tb).filter(k=>fb[k]).length,fa=Object.keys(fb).filter(k=>!tb[k]).length;
+const row=(l,v,good)=>`<span>${l}</span><b class="${good?'g':'w'}">${v}</b>`;
+$('chk').innerHTML=row('Faulty values caught (recall)',Math.round(CK.qc.recall*100)+' %',CK.qc.recall>=.8)+row('Flags that were real faults (precision)',Math.round(CK.qc.precision*100)+' %',CK.qc.precision>=.8)+
+  row('Gap fill, mean abs. error',CK.fill.mae+' mm/day',CK.fill.mae<6)+row('Gap fill, wet/dry day right',Math.round(CK.fill.wet_hit*100)+' %',CK.fill.wet_hit>=.75)+row('Gap fill, total bias',CK.fill.bias_pct+' %',Math.abs(CK.fill.bias_pct)<5)+
+  row('Breaks found',`${hit} of ${Object.keys(tb).length}, ${fa} false`,hit===Object.keys(tb).length&&!fa)+row('Break dates (true / found)',Object.keys(tb).map(k=>`${tb[k]} / ${(fb[k]||'-').slice(0,7)}`).join(', '),true);
+function render(){const s=S[sel];matrix();mini();
+  $('gt').textContent=`${s.name}`;$('gs').textContent=`${s.id} · ${s.lat.toFixed(2)}, ${s.lon.toFixed(2)} · ${s.pct.toFixed(1)} % flagged · ${s.nfill} days filled`;
+  $('gy').textContent=yr;$('cD').innerHTML=daily(s);$('years').querySelectorAll('button').forEach(b=>b.classList.toggle('on',+b.dataset.y===yr));
+  $('hT').textContent=`T max ${s.hom.Tmax} / ${D.meta.T95}`;$('cH').innerHTML=snht(s);
+  $('hv').innerHTML=s.hom.brk?`<b style="color:#b8402a">Break in ${s.hom.brk}.</b> Later values scaled by ${s.hom.factor}.`:'Homogeneous at 95 %.'}
+const save=(name,txt)=>{const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([txt],{type:'text/csv'}));a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1e3)};
+const v=x=>x<0?'':(x/10).toFixed(1);
+$('d1').onclick=()=>{const s=S[sel];let t='date,raw_mm,flag,filled,clean_mm\n';for(let j=0;j<ND;j++)t+=`${day(j)},${s.raw[j]===-1?'':v(s.raw[j])},${s.flag[j]==='.'?'':s.flag[j]},${s.filled[j]},${v(s.clean[j])}\n`;save(`${s.id}_clean.csv`,t)};
+$('d2').onclick=()=>{let t='date,'+S.map(s=>s.id).join(',')+'\n';for(let j=0;j<ND;j++)t+=day(j)+','+S.map(s=>v(s.clean[j])).join(',')+'\n';save('banten_clean_daily.csv',t)};
+$('d3').onclick=()=>{let t='id,name,lon,lat,'+FK.map(k=>'n_'+k).join(',')+',pct_flagged,days_filled,snht_tmax,break,factor\n';
+  for(const s of S)t+=`${s.id},${s.name},${s.lon},${s.lat},${FK.map(k=>s.cnt[k]||0).join(',')},${s.pct.toFixed(2)},${s.nfill},${s.hom.Tmax},${s.hom.brk||''},${s.hom.factor||''}\n`;save('qc_report.csv',t)};
+render();
+})();
+</script>
+</body>
+</html>
